@@ -22,7 +22,7 @@ abstract class CaseCSJ {
     var coverageValue: Double
 
     @Enumerated(EnumType.STRING)
-    lateinit var resolutionType: ResolutionType
+    var resolutionType: ResolutionType
     var recidivistCustomer: Boolean
 
     @Enumerated(EnumType.STRING)
@@ -42,7 +42,7 @@ abstract class CaseCSJ {
         resolutionType: ResolutionType?,
         recidivistCustomer: Boolean?,
         internalStatus: InternalStatus?,
-        externalStatus: ExternalStatus?
+        externalStatus: ExternalStatus?,
     ) {
         this.id = id!!
         this.date = date!!
@@ -65,10 +65,10 @@ abstract class CaseCSJ {
         valueWithDiscount: Double?,
         coverageValue: Double?,
         resolutionType: ResolutionType?,
-        recidivistCustomer: Boolean,
+        recidivistCustomer: Boolean?,
         internalStatus: InternalStatus?,
         externalStatus: ExternalStatus?,
-        postCode: String?
+        postCode: String?,
     ) {
         this.id = id!!
         this.date = date!!
@@ -77,9 +77,10 @@ abstract class CaseCSJ {
         this.value = value!!
         this.valueWithDiscount = valueWithDiscount
         this.coverageValue = coverageValue!!
-        this.recidivistCustomer = recidivistCustomer
+        this.recidivistCustomer = recidivistCustomer!!
         this.internalStatus = internalStatus!!
         this.externalStatus = externalStatus!!
         this.postCode = postCode
+        this.resolutionType = resolutionType!!
     }
 }

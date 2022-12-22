@@ -36,10 +36,10 @@ class Misappropriation : CaseCSJ {
         valueWithDiscount,
         coverageValue,
         resolutionType,
-        recidivistCustomer == false,
+        recidivistCustomer,
         internalStatus,
         externalStatus,
-        postCode
+        postCode,
     ) {
         this.payMethod = payMethod
         this.chargeBack = chargeBack

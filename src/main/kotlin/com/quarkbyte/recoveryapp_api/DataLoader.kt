@@ -1,6 +1,7 @@
 package com.quarkbyte.recoveryapp_api
 
 import com.quarkbyte.recoveryapp_api.model.*
+import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import com.quarkbyte.recoveryapp_api.model.enums.StatusProduct
@@ -20,6 +21,8 @@ class DataLoader(
     private val productRepository: ProductRepository,
     private val planRepository: PlanRepository,
     private val sinistroRepository: SinistroRepository,
+    private val technicalSupportRepository: TechnicalSupportRepository,
+    private val misappropriationRepository: MisappropriationRepository,
     private val userRepository: UserRepository
 ) : ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
@@ -110,6 +113,15 @@ class DataLoader(
             )
         )
 
+        misappropriationRepository.save(
+            Misappropriation(
+                UUID.randomUUID(),Date(), StepCSJ.EXTRAJUDICIAL, Date(), 5000.0, 4500.0,4000.0,
+                ResolutionType.RECORRENCIA_PAGA, true, InternalStatus.CASO_NOVO,
+                ExternalStatus.EM_ABERTO, "PAC213213BR", PayMethod.NORMAL,false,
+                LocalDateTime.now()
+            )
+        )
+
         //save users
         userRepository.save(
             UserApp(null, "Paulera")
@@ -128,6 +140,20 @@ class DataLoader(
                 customerRepository.findAll()[0],
                 bondsmanRepository.findAll()[0],
                 sinistroRepository.findAll()[0]
+            )
+        )
+        planRepository.save(
+            Plan(
+                UUID.randomUUID(),
+                10000.00,
+                true,
+                userRepository.findAll()[0],
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                null,
+                customerRepository.findAll()[1],
+                bondsmanRepository.findAll()[0],
+                misappropriationRepository.findAll()[0]
             )
         )
 
