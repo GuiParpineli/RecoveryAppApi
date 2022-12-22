@@ -3,6 +3,7 @@ package com.quarkbyte.recoveryapp_api
 import com.quarkbyte.recoveryapp_api.model.*
 import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
+import com.quarkbyte.recoveryapp_api.model.cases.TechnicalSupport
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import com.quarkbyte.recoveryapp_api.model.enums.StatusProduct
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
@@ -119,6 +120,13 @@ class DataLoader(
                 ResolutionType.RECORRENCIA_PAGA, true, InternalStatus.CASO_NOVO,
                 ExternalStatus.EM_ABERTO, "PAC213213BR", PayMethod.NORMAL,false,
                 LocalDateTime.now()
+            )
+        )
+        technicalSupportRepository.save(
+            TechnicalSupport(
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(), 12000.0, 10000.0,
+                90000.0, ResolutionType.COMPRA, false, InternalStatus.PAGO,
+                ExternalStatus.RECUPERADO, "2223201BR", 25000.0,true
             )
         )
 
