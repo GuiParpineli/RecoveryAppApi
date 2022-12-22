@@ -9,28 +9,28 @@ import java.util.*
 abstract class CaseCSJ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private var id: UUID
+    var id: UUID
 
     @DateTimeFormat(pattern = "dd-mm-yyyy")
-    private var date: Date
+    var date: Date
 
     @Enumerated(EnumType.STRING)
-    private var stepCSJ: StepCSJ
-    private var resolutionDate: Date
-    private var value: Double
-    private var valueWithDiscount: Double? = null
-    private var coverageValue: Double
+    var stepCSJ: StepCSJ
+    var resolutionDate: Date
+    var value: Double
+    var valueWithDiscount: Double? = null
+    var coverageValue: Double
 
     @Enumerated(EnumType.STRING)
-    private lateinit var resolutionType: ResolutionType
-    private var recidivistCustomer: Boolean
+    lateinit var resolutionType: ResolutionType
+    var recidivistCustomer: Boolean
 
     @Enumerated(EnumType.STRING)
-    private var internalStatus: InternalStatus
+    var internalStatus: InternalStatus
 
     @Enumerated(EnumType.STRING)
-    private var externalStatus: ExternalStatus
-    private var postCode: String? = null
+    var externalStatus: ExternalStatus
+    var postCode: String? = null
 
     constructor(
         id: UUID?,

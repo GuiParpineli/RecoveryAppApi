@@ -9,8 +9,8 @@ import java.util.*
 
 @Entity
 class TechnicalSupport : CaseCSJ {
-    private var repairValue: Double
-    private var status: Boolean
+    var repairValue: Double
+    var status: Boolean
 
     constructor(
         id: UUID?, date: Date?, stepCSJ: StepCSJ?,

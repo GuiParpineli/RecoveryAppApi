@@ -6,16 +6,16 @@ import java.util.*
 
 @Entity
 class Sinistro : CaseCSJ{
-    private var initialTime: Date
-    private var type: SinistroType
-    private var imeiStatus: Boolean
-    private var boStatus: Boolean
-    private var videoStatus: Boolean
-    private var sinistroDate: Date
-    private var franchise: Float
-    private var franchiseTotalValue: Double
-    private var discountValue: Double
-    private var payment: Boolean
+    var initialTime: Date
+    var type: SinistroType
+    var imeiStatus: Boolean
+    var boStatus: Boolean
+    var videoStatus: Boolean
+    var sinistroDate: Date
+    var franchise: Float
+    var franchiseTotalValue: Double
+    var discountValue: Double
+    var payment: Boolean
 
     constructor(
         id: UUID?,

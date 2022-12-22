@@ -6,10 +6,10 @@ import java.time.LocalDateTime
 import java.util.*
 
 @Entity
-class Missappropriation : CaseCSJ {
-    private var payMethod: PayMethod
-    private var chargeBack: Boolean
-    private var chargeBackDate: LocalDateTime
+class Misappropriation : CaseCSJ {
+    var payMethod: PayMethod
+    var chargeBack: Boolean
+    var chargeBackDate: LocalDateTime
 
     constructor(
         id: UUID?,

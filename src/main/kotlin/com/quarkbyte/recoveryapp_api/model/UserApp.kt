@@ -10,6 +10,6 @@ import java.util.UUID
 data class UserApp (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private val id: UUID? = null,
+    val id: UUID? = null,
     val name: String,
 )

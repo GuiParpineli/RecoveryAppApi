@@ -1,7 +1,7 @@
 package com.quarkbyte.recoveryapp_api.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.quarkbyte.recoveryapp_api.exceptions.DeleteErrorException
+import com.fasterxml.jackson.module.kotlin.convertValue
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
 import com.quarkbyte.recoveryapp_api.model.Customer
@@ -16,18 +16,14 @@ data class CustomerService(
     val repository: CustomerRepository,
     val mapper: ObjectMapper
 ) {
-    @get:Throws(ResourceNotFoundException::class)
-    val all: ResponseEntity<*>
-        get() {
-            val saved: List<Customer> = repository.findAll()
-            val customerDTOS: MutableList<CustomerDTO> = ArrayList<CustomerDTO>()
-            if (saved.isEmpty()) throw ResourceNotFoundException("None Customers founded")
-            saved.forEach{ c: Customer? ->
-                customerDTOS.add( mapper.convertValue( c, CustomerDTO::class.java )
-                )
-            }
-            return ResponseEntity.ok<List<Customer>>(saved)
-        }
+    @Throws(ResourceNotFoundException::class)
+    fun getAll(): ResponseEntity<Any> {
+        val saved: List<Customer> = repository.findAll()
+        if (saved.isEmpty()) throw ResourceNotFoundException("None Customers founded")
+        val customerDTOS: MutableList<CustomerDTO> = mutableListOf()
+        saved.forEach { c -> customerDTOS.add( mapper.convertValue(c) ) }
+        return ResponseEntity.ok(customerDTOS)
+    }
 
     @Throws(ResourceNotFoundException::class)
     fun getById(id: UUID): ResponseEntity<*> {
