@@ -1,25 +1,25 @@
 package com.quarkbyte.recoveryapp_api.model
 
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import java.util.Date
+import jakarta.persistence.*
+import java.util.*
 
 @Entity
 data class Customer(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-    var name: String,
-    var lastName: String,
-    var cpf: String,
-    var phone: String,
-    var email: String,
-    var date: Date,
-    var gender: Gender,
-    var nationality: String
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private val id: UUID? = null,
+    private val name: String? = null,
+    private val lastName: String? = null,
+    private val cpf: String? = null,
+    private val phone: String? = null,
+    @ManyToOne
+    private val address: Address? = null,
+    private val email: String? = null,
+    private val birthDay: Date? = null,
+    @Enumerated(EnumType.STRING)
+    private val gender: Gender? = null,
+    private val nationality: String? = null,
 
-)
+    )
 

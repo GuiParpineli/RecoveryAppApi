@@ -1,40 +1,147 @@
 package com.quarkbyte.recoveryapp_api
 
-import com.quarkbyte.recoveryapp_api.model.Customer
+import com.quarkbyte.recoveryapp_api.model.*
+import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
-import com.quarkbyte.recoveryapp_api.repository.CustomerRepository
+import com.quarkbyte.recoveryapp_api.model.enums.StatusProduct
+import com.quarkbyte.recoveryapp_api.model.enums.csj.*
+import com.quarkbyte.recoveryapp_api.repository.*
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 import java.util.*
 
 @Component
-class DataLoader(private val repository: CustomerRepository) : ApplicationRunner {
+class DataLoader(
+    private val customerRepository: CustomerRepository,
+    private val bondsmanRepository: BondsmanRepository,
+    private val addressRepository: AddressRepository,
+    private val productRepository: ProductRepository,
+    private val planRepository: PlanRepository,
+    private val sinistroRepository: SinistroRepository,
+    private val userRepository: UserRepository
+) : ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
-        repository.save(
-            Customer(
-                0,
-                "Alberto",
-                "Robson",
-                "453.232.424-12",
-                "1234123",
-                "alb@gmail.com",
-                Date(),
-                Gender.MASCULINO,
-                "Gana",
+
+        //save address
+        addressRepository.save(
+            Address(
+                null,
+                "Berilo",
+                "MG",
+                "Ruas das flores",
+                "Brasil",
+                "1231-3123",
+                ""
             )
         )
-        repository.save(
+
+        //saving customers
+        customerRepository.save(
             Customer(
-                0,
-                "Marie",
-                "Currie",
-                "123.232.424-12",
-                "2314123",
-                "marie@gmail.com",
+                null,
+                "Alberto",
+                "Robson",
+                "123.123.134-22",
+                "9931-1231",
+                addressRepository.findAll()[0],
+                "albert@gmail.com",
                 Date(),
-                Gender.FEMININO,
-                "French",
+                Gender.MASCULINO,
+                "Uganda"
+            )
+        )
+        customerRepository.save(
+            Customer(
+                null,
+                "Jorge",
+                "Ventura",
+                "343.123.134-22",
+                "32931-1231",
+                addressRepository.findAll()[0],
+                "jorge@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Jamaica"
+            )
+        )
+        customerRepository.save(
+            Customer(
+                null,
+                "Zico",
+                "Costa",
+                "213.222.123-22",
+                "99931-1231",
+                addressRepository.findAll()[0],
+                "jorge@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Jamaica"
+            )
+        )
+
+        //saving Bondsman
+        bondsmanRepository.save(
+            Bondsman(
+                null,
+                "Zico",
+                "Costa",
+                "213.222.123-22",
+                "99931-1231",
+                addressRepository.findAll()[0],
+                "jorge@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Jamaica"
+            )
+        )
+
+        //save plantypes
+        sinistroRepository.save(
+            Sinistro(
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(),
+                2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
+                InternalStatus.ACOMPANHAR, ExternalStatus.EM_ABERTO,
+                Date(), SinistroType.FURTO_QUALIFICADO,
+                true, true,
+                true, Date(), 200.0f,
+                2222.0, 20.0, false
+            )
+        )
+
+        //save users
+        userRepository.save(
+            UserApp(null, "Paulera")
+        )
+
+        //save plan
+        planRepository.save(
+            Plan(
+                UUID.randomUUID(),
+                5000.00,
+                true,
+                userRepository.findAll()[0],
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                null,
+                customerRepository.findAll()[0],
+                bondsmanRepository.findAll()[0],
+                sinistroRepository.findAll()[0]
+            )
+        )
+
+
+//
+//        //save products
+        productRepository.save(
+            Product(
+                null,
+                "Iphone 13 Pro",
+                StatusProduct.ADQUIRIDO,
+                "22345",
+                "999929-229",
+                80000.0
             )
         )
     }

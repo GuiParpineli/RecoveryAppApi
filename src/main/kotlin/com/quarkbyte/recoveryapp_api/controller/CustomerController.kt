@@ -11,6 +11,4 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = ["customer"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class CustomerController(val service: CustomerService) {
 
-    @GetMapping()
-    fun findAll(): ResponseEntity<Any> = service.getAll()
 }

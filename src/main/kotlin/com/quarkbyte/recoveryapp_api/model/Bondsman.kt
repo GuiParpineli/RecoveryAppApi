@@ -2,21 +2,22 @@ package com.quarkbyte.recoveryapp_api.model
 
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import jakarta.persistence.*
+import java.util.*
 
 @Entity
 data class Bondsman(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-    var name: String,
-    var lastname: String,
-    var cpf: String,
-    var phone: String,
-    @OneToOne
-    var address: Address,
-    var email: String,
-    var birthDay: String,
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private val id: UUID? = null,
+    private val name: String? = null,
+    private val lastName: String? = null,
+    private val cpf: String? = null,
+    private val phone: String? = null,
+    @ManyToOne
+    private val address: Address? = null,
+    private val email: String? = null,
+    private val birthDay: Date? = null,
     @Enumerated(EnumType.STRING)
-    var gender: Gender?,
-    var nationality: String
+    private val gender: Gender? = null,
+    private val nationality: String? = null,
 )
