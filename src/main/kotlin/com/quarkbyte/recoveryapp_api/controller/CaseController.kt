@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
@@ -30,15 +31,26 @@ class CaseController(
     @GetMapping
     fun getALl(): ResponseEntity<*> = service.getAll()
 
-    @GetMapping("sinistro")
+    @GetMapping("sinistro/all")
     fun getAllSinistros() = sinsitroService.get()
 
-    @GetMapping("misappropriation")
+    //gets for each case
+
+    @GetMapping("misappropriation/all")
     fun getAllMisappropriation() = misappropriationService.get()
 
-    @GetMapping("technicalsupport")
+    @GetMapping("technicalsupport/all")
     fun getTechnicalSuport() = technicalSupportService.get()
 
+    //gets by id each case
+    @GetMapping("sinistro")
+    fun getSinistroById(@RequestParam("id") id: UUID) = sinsitroService.getById(id)
+    @GetMapping("misappropriation")
+    fun getMisappropriationById(@RequestParam("id") id: UUID) = misappropriationService.getById(id)
+    @GetMapping("technicalsupport")
+    fun getTechnicalSupport(@RequestParam("id") id: UUID) = technicalSupportService.getById(id)
+
+    //post for each case
     @PostMapping("saveSinistro")
     fun saveSinistro(@RequestBody sinistro: Sinistro) = sinsitroService.save(sinistro)
 
@@ -47,7 +59,7 @@ class CaseController(
         misappropriationService.save(misappropriation)
 
     @PostMapping("technicalsupport")
-    fun saveTechnicalSupport(@RequestBody technicalSupport: TechnicalSupport)  =
+    fun saveTechnicalSupport(@RequestBody technicalSupport: TechnicalSupport) =
         technicalSupportService.save(technicalSupport)
 
     @PatchMapping("updatesinistro")
