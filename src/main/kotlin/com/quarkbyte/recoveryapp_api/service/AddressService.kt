@@ -12,7 +12,7 @@ import java.util.*
 class AddressService(val repository: AddressRepository){
 
     @Throws(ResourceNotFoundException::class)
-    fun get(): ResponseEntity<*> {
+    fun getAll(): ResponseEntity<*> {
         val saved = repository.findAll()
         if (saved.isEmpty()) throw ResourceNotFoundException("None Address founded")
         return ResponseEntity.ok(saved)

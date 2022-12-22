@@ -13,6 +13,7 @@ class TechnicalSupportService(private val repository: TechnicalSupportRepository
 
     fun get(): ResponseEntity<*> {
         val saved = repository.findAll()
+        if(saved.isEmpty()) throw ResourceNotFoundException("None technical founded")
         return ResponseEntity.ok(saved)
     }
 
