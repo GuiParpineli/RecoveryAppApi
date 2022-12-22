@@ -31,34 +31,34 @@ class CaseController(
     fun getALl(): ResponseEntity<*> = service.getAll()
 
     @GetMapping("sinistro")
-    fun getAllSinistros(): ResponseEntity<*> = sinsitroService.get()
+    fun getAllSinistros() = sinsitroService.get()
 
     @GetMapping("misappropriation")
-    fun getAllMisappropriation(): ResponseEntity<*> = misappropriationService.get()
+    fun getAllMisappropriation() = misappropriationService.get()
 
     @GetMapping("technicalsupport")
-    fun getTechnicalSuport(): ResponseEntity<*> = technicalSupportService.get()
+    fun getTechnicalSuport() = technicalSupportService.get()
 
     @PostMapping("saveSinistro")
-    fun saveSinistro(@RequestBody sinistro: Sinistro): ResponseEntity<*> = sinsitroService.save(sinistro)
+    fun saveSinistro(@RequestBody sinistro: Sinistro) = sinsitroService.save(sinistro)
 
     @PostMapping("saveMisappopriation")
-    fun saveMisappropriation(@RequestBody misappropriation: Misappropriation): ResponseEntity<*> =
+    fun saveMisappropriation(@RequestBody misappropriation: Misappropriation) =
         misappropriationService.save(misappropriation)
 
     @PostMapping("technicalsupport")
-    fun saveTechnicalSupport(@RequestBody technicalSupport: TechnicalSupport): ResponseEntity<*> =
+    fun saveTechnicalSupport(@RequestBody technicalSupport: TechnicalSupport)  =
         technicalSupportService.save(technicalSupport)
 
     @PatchMapping("updatesinistro")
-    fun updateSinistro(@RequestBody sinistro: Sinistro): ResponseEntity<*> = sinsitroService.update(sinistro)
+    fun updateSinistro(@RequestBody sinistro: Sinistro) = sinsitroService.update(sinistro)
 
     @PatchMapping("updatemisappropriation")
-    fun updateMisappropriation(@RequestBody misappropriation: Misappropriation): ResponseEntity<*> =
+    fun updateMisappropriation(@RequestBody misappropriation: Misappropriation) =
         misappropriationService.update(misappropriation)
 
     @PatchMapping("updatetechnicalsupport")
-    fun updateTechnicalSupport(@RequestBody technicalSupport: TechnicalSupport): ResponseEntity<*> =
+    fun updateTechnicalSupport(@RequestBody technicalSupport: TechnicalSupport) =
         technicalSupportService.update(technicalSupport)
 
     @DeleteMapping("deletesinistro")
