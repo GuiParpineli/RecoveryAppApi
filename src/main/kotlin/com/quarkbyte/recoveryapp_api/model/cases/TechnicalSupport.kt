@@ -1,9 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.cases
 
-import com.quarkbyte.recoveryapp_api.model.enums.csj.ExternalStatus
-import com.quarkbyte.recoveryapp_api.model.enums.csj.InternalStatus
-import com.quarkbyte.recoveryapp_api.model.enums.csj.ResolutionType
-import com.quarkbyte.recoveryapp_api.model.enums.csj.StepCSJ
+import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import jakarta.persistence.Entity
 import java.util.*
 
@@ -13,13 +10,13 @@ class TechnicalSupport : CaseCSJ {
     var status: Boolean
 
     constructor(
-        id: UUID?, date: Date?, stepCSJ: StepCSJ?,
+        id: UUID?, date: Date?, stepCSJ: StepCSJ?, typeCaseCSJ: TypeCaseCSJ,
         resolutionDate: Date?, value: Double?, valueWithDiscount: Double?,
         coverageValue: Double?, resolutionType: ResolutionType?,
         recidivistCustomer: Boolean?, internalStatus: InternalStatus?,
         externalStatus: ExternalStatus?, postCode: String?, repairValue: Double, status: Boolean
     ) : super(
-        id, date, stepCSJ, resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
+        id, date, stepCSJ, typeCaseCSJ,resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
         recidivistCustomer!!, internalStatus, externalStatus, postCode
     ) {
         this.repairValue = repairValue

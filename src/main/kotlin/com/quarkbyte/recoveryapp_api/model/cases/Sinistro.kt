@@ -21,6 +21,7 @@ class Sinistro : CaseCSJ{
         id: UUID?,
         date: Date?,
         stepCSJ: StepCSJ?,
+        typeCaseCSJ: TypeCaseCSJ,
         resolutionDate: Date?,
         value: Double?,
         coverageValue: Double?,
@@ -39,7 +40,7 @@ class Sinistro : CaseCSJ{
         discountValue : Double,
         payment: Boolean
     ) : super(
-        id, date, stepCSJ, resolutionDate, value, coverageValue, resolutionType, recidivistCustomer,
+        id, date, stepCSJ, typeCaseCSJ, resolutionDate, value, coverageValue, resolutionType, recidivistCustomer,
         internalStatus, externalStatus
     ){
         this.initialTime = initialTime

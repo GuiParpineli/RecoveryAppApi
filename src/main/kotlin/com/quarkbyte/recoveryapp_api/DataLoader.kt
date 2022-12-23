@@ -33,17 +33,6 @@ class DataLoader(
 ) : ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
 
-        if (
-            customerRepository.findAll().isEmpty() &&
-            bondsmanRepository.findAll().isEmpty() &&
-            addressRepository.findAll().isEmpty() &&
-            productRepository.findAll().isEmpty() &&
-            planRepository.findAll().isEmpty() &&
-            sinistroRepository.findAll().isEmpty() &&
-            technicalSupportRepository.findAll().isEmpty() &&
-            misappropriationRepository.findAll().isEmpty() &&
-            userRepository.findAll().isEmpty()
-        ) {
 //        //save products
             productRepository.save(
                 Product(
@@ -141,7 +130,7 @@ class DataLoader(
             //save plantypes
             sinistroRepository.save(
                 Sinistro(
-                    UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(),
+                    UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.SINISTRO, Date(),
                     2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
                     InternalStatus.ACOMPANHAR, ExternalStatus.EM_ABERTO,
                     Date(), SinistroType.FURTO_QUALIFICADO,
@@ -153,7 +142,7 @@ class DataLoader(
 
             misappropriationRepository.save(
                 Misappropriation(
-                    UUID.randomUUID(), Date(), StepCSJ.EXTRAJUDICIAL, Date(), 5000.0, 4500.0, 4000.0,
+                    UUID.randomUUID(), Date(), StepCSJ.EXTRAJUDICIAL,TypeCaseCSJ.MISAPPROPRIATION, Date(), 5000.0, 4500.0, 4000.0,
                     ResolutionType.RECORRENCIA_PAGA, true, InternalStatus.CASO_NOVO,
                     ExternalStatus.EM_ABERTO, "PAC213213BR", PayMethod.NORMAL, false,
                     LocalDateTime.now()
@@ -161,7 +150,7 @@ class DataLoader(
             )
             technicalSupportRepository.save(
                 TechnicalSupport(
-                    UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(), 12000.0, 10000.0,
+                    UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.TECHNICAL_SUPPORT,Date(), 12000.0, 10000.0,
                     90000.0, ResolutionType.COMPRA, false, InternalStatus.PAGO,
                     ExternalStatus.RECUPERADO, "2223201BR", 25000.0, true
                 )
@@ -210,4 +199,4 @@ class DataLoader(
 //
         }
     }
-}
+

@@ -16,6 +16,8 @@ abstract class CaseCSJ {
 
     @Enumerated(EnumType.STRING)
     var stepCSJ: StepCSJ
+    @Enumerated(EnumType.STRING)
+    var typeCaseCSJ: TypeCaseCSJ
     var resolutionDate: Date
     var value: Double
     var valueWithDiscount: Double? = null
@@ -36,6 +38,7 @@ abstract class CaseCSJ {
         id: UUID?,
         date: Date?,
         stepCSJ: StepCSJ?,
+        typeCaseCSJ: TypeCaseCSJ,
         resolutionDate: Date?,
         value: Double?,
         coverageValue: Double?,
@@ -47,6 +50,7 @@ abstract class CaseCSJ {
         this.id = id!!
         this.date = date!!
         this.stepCSJ = stepCSJ!!
+        this.typeCaseCSJ = typeCaseCSJ
         this.resolutionDate = resolutionDate!!
         this.value = value!!
         this.coverageValue = coverageValue!!
@@ -60,6 +64,7 @@ abstract class CaseCSJ {
         id: UUID?,
         date: Date?,
         stepCSJ: StepCSJ?,
+        typeCaseCSJ: TypeCaseCSJ,
         resolutionDate: Date?,
         value: Double?,
         valueWithDiscount: Double?,
@@ -73,6 +78,7 @@ abstract class CaseCSJ {
         this.id = id!!
         this.date = date!!
         this.stepCSJ = stepCSJ!!
+        this.typeCaseCSJ = typeCaseCSJ
         this.resolutionDate = resolutionDate!!
         this.value = value!!
         this.valueWithDiscount = valueWithDiscount

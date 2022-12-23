@@ -70,21 +70,22 @@ class PlanMapper(
         }
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=" + productsIdlist.joinToString(separator = ","))
-            .withRel("product 1")
-            .withTitle(plan.productList?.get(0)?.name.toString())
-
+            .withRel("products")
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=" + plan.customer!!.id)
             .withRel("customer")
+            .withTitle(plan.customer.name.toString())
 
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
             .slash("?id=" + plan.bondsman!!.id)
             .withRel("bondsman")
+            .withTitle(plan.bondsman.name.toString())
 
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
             .slash("?id=" + plan.caseCSJ!!.id)
             .withRel("caseCSJ")
+            .withTitle(plan.caseCSJ.typeCaseCSJ.toString())
 
         return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink)
     }
