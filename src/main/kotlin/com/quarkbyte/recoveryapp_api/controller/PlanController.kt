@@ -2,6 +2,7 @@ package com.quarkbyte.recoveryapp_api.controller
 
 import com.quarkbyte.recoveryapp_api.model.Customer
 import com.quarkbyte.recoveryapp_api.model.Plan
+import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.service.PlanService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -15,8 +16,8 @@ class PlanController(private val service: PlanService) {
     fun getAll(): ResponseEntity<*> = service.getAll()
     @GetMapping("id")
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
-    @PostMapping
-    fun save(@RequestBody plan: Plan) = service.save(plan)
+    @PostMapping("save")
+    fun save(@RequestBody plan: PlanDTO) = service.save(plan)
     @PatchMapping
     fun update(@RequestBody plan: Plan) = service.update(plan)
     @DeleteMapping

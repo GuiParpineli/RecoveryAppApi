@@ -51,7 +51,6 @@ data class Plan(
 
     ) {
     @DateTimeFormat(pattern = "dd-mm-yyyy")
-    val createDate: String? = LocalDateTime.now()
-        .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
+    val creationDate: LocalDateTime = LocalDateTime.now()
 }
 

@@ -32,7 +32,7 @@ class CaseController(
     fun getALl(): ResponseEntity<*> = service.getAll()
 
     @GetMapping("sinistro/all")
-    fun getAllSinistros() = sinsitroService.get()
+    fun getAllSinistro() = sinsitroService.get()
 
     //gets for each case
 

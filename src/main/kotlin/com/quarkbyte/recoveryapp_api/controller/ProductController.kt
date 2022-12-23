@@ -12,6 +12,7 @@ import java.util.*
 @RequestMapping(value = ["product"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class ProductController(private val service: ProductService) {
 
+    @GetMapping
     fun getALl(): ResponseEntity<*> = service.getAll()
     @GetMapping("id")
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
