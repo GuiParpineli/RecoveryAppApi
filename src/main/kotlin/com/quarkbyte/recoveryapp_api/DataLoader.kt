@@ -39,6 +39,27 @@ class DataLoader(
             misappropriationRepository.findAll().isEmpty() &&
             userRepository.findAll().isEmpty()
         ) {
+//        //save products
+            productRepository.save(
+                Product(
+                    null,
+                    "Iphone 13 Pro",
+                    StatusProduct.ADQUIRIDO,
+                    "22345",
+                    "999929-229",
+                    80000.0
+                )
+            )
+            productRepository.save(
+                Product(
+                    null,
+                    "AppleWatch 5",
+                    StatusProduct.ADQUIRIDO,
+                    "3sa151345",
+                    "888929-229",
+                    50000.0
+                )
+            )
             //save address
             addressRepository.save(
                 Address(
@@ -155,7 +176,9 @@ class DataLoader(
                     userRepository.findAll()[0],
                     LocalDateTime.now(),
                     LocalDateTime.now(),
-                    null,
+                    listOf(productRepository.findAll()[0],
+                        productRepository.findAll()[1]
+                    ),
                     customerRepository.findAll()[0],
                     bondsmanRepository.findAll()[0],
                     sinistroRepository.findAll()[0]
@@ -169,7 +192,9 @@ class DataLoader(
                     userRepository.findAll()[0],
                     LocalDateTime.now(),
                     LocalDateTime.now(),
-                    null,
+                       listOf(productRepository.findAll()[0],
+                        productRepository.findAll()[1]
+                    ),
                     customerRepository.findAll()[1],
                     bondsmanRepository.findAll()[0],
                     misappropriationRepository.findAll()[0]
@@ -178,17 +203,6 @@ class DataLoader(
 
 
 //
-//        //save products
-            productRepository.save(
-                Product(
-                    null,
-                    "Iphone 13 Pro",
-                    StatusProduct.ADQUIRIDO,
-                    "22345",
-                    "999929-229",
-                    80000.0
-                )
-            )
         }
     }
 }

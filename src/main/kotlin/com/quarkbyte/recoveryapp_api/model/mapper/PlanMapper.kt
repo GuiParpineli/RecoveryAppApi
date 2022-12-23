@@ -12,6 +12,7 @@ import com.quarkbyte.recoveryapp_api.repository.*
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.stereotype.Component
+import java.util.UUID
 
 @Component
 class PlanMapper(
@@ -59,7 +60,7 @@ class PlanMapper(
     fun buildPlanOutput(plan: Plan, output: PlanOutput):
             EntityModel<PlanOutput> {
         val productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
-            .slash("?id=" + plan.productList!![0].id)
+            .slash("?id=" + plan.productList?.get(0)?.id)
             .withRel("productList")
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=" + plan.customer!!.id)
@@ -74,5 +75,7 @@ class PlanMapper(
         return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink)
 
     }
+
+
 }
 
