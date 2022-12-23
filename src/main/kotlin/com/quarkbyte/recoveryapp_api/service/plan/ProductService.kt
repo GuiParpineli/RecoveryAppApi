@@ -1,8 +1,8 @@
-package com.quarkbyte.recoveryapp_api.service
+package com.quarkbyte.recoveryapp_api.service.plan
 
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.Product
+import com.quarkbyte.recoveryapp_api.model.plan.Product
 import com.quarkbyte.recoveryapp_api.repository.ProductRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -32,6 +32,11 @@ class ProductService(private val repository: ProductRepository) {
             throw SaveErrorException("Error, not saved")
         }
         return ResponseEntity.ok<Any>(saved)
+    }
+
+    fun getAllbyId(id: List<UUID>): ResponseEntity<List<Product>> {
+        val saved: List<Product> = repository.findAllById(id)
+        return ResponseEntity.ok(saved)
     }
 
     @Throws(SaveErrorException::class)

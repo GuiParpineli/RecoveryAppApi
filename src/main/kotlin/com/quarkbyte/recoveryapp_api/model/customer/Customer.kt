@@ -1,5 +1,6 @@
-package com.quarkbyte.recoveryapp_api.model
+package com.quarkbyte.recoveryapp_api.model.customer
 
+import com.quarkbyte.recoveryapp_api.model.customer.Address
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import jakarta.persistence.*
 import java.util.*

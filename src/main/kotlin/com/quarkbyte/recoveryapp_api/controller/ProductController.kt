@@ -1,8 +1,7 @@
 package com.quarkbyte.recoveryapp_api.controller
 
-import com.quarkbyte.recoveryapp_api.model.Plan
-import com.quarkbyte.recoveryapp_api.model.Product
-import com.quarkbyte.recoveryapp_api.service.ProductService
+import com.quarkbyte.recoveryapp_api.model.plan.Product
+import com.quarkbyte.recoveryapp_api.service.plan.ProductService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -12,10 +11,13 @@ import java.util.*
 @RequestMapping(value = ["product"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class ProductController(private val service: ProductService) {
 
-    @GetMapping
+    @GetMapping("all")
     fun getALl(): ResponseEntity<*> = service.getAll()
-    @GetMapping("id")
+    @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
+    @GetMapping("allbyid")
+    fun findAllById(@RequestParam(value ="id") id: List<UUID>) = service.getAllbyId(id)
+
     @PostMapping
     fun save(@RequestBody product: Product) = service.save(product)
     @PatchMapping

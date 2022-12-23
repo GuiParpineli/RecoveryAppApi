@@ -1,10 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.quarkbyte.recoveryapp_api.model.Bondsman
-import com.quarkbyte.recoveryapp_api.model.Customer
-import com.quarkbyte.recoveryapp_api.model.Product
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import java.util.UUID
 
 @JsonIgnoreProperties(ignoreUnknown = true)

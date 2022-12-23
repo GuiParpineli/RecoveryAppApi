@@ -1,10 +1,10 @@
-package com.quarkbyte.recoveryapp_api.service
+package com.quarkbyte.recoveryapp_api.service.customer
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.convertValue
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.Customer
+import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.dto.CustomerDTO
 import com.quarkbyte.recoveryapp_api.repository.CustomerRepository
 import org.springframework.http.ResponseEntity

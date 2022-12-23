@@ -1,7 +1,7 @@
 package com.quarkbyte.recoveryapp_api.controller
 
-import com.quarkbyte.recoveryapp_api.model.Address
-import com.quarkbyte.recoveryapp_api.service.AddressService
+import com.quarkbyte.recoveryapp_api.model.customer.Address
+import com.quarkbyte.recoveryapp_api.service.customer.AddressService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -17,9 +17,9 @@ import java.util.UUID
 @RestController
 @RequestMapping(value = ["address"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class AddressController(private val service: AddressService) {
-    @GetMapping
+    @GetMapping("all")
     fun getAll(): ResponseEntity<*> = service.getAll()
-    @GetMapping("id")
+    @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
     @PostMapping
     fun save(@RequestBody address: Address) = service.save(address)

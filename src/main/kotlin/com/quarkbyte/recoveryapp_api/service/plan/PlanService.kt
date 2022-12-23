@@ -1,8 +1,8 @@
-package com.quarkbyte.recoveryapp_api.service
+package com.quarkbyte.recoveryapp_api.service.plan
 
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.Plan
+import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
 import com.quarkbyte.recoveryapp_api.model.mapper.PlanMapper

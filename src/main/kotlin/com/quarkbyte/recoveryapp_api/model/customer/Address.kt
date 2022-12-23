@@ -1,4 +1,4 @@
-package com.quarkbyte.recoveryapp_api.model
+package com.quarkbyte.recoveryapp_api.model.customer
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

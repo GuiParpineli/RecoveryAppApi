@@ -4,9 +4,14 @@ import com.quarkbyte.recoveryapp_api.model.*
 import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.model.cases.TechnicalSupport
+import com.quarkbyte.recoveryapp_api.model.customer.Address
+import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
+import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import com.quarkbyte.recoveryapp_api.model.enums.StatusProduct
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
+import com.quarkbyte.recoveryapp_api.model.plan.Plan
+import com.quarkbyte.recoveryapp_api.model.plan.Product
 import com.quarkbyte.recoveryapp_api.repository.*
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner

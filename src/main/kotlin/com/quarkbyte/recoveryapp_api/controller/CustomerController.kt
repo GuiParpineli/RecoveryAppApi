@@ -1,7 +1,7 @@
 package com.quarkbyte.recoveryapp_api.controller
 
-import com.quarkbyte.recoveryapp_api.model.Customer
-import com.quarkbyte.recoveryapp_api.service.CustomerService
+import com.quarkbyte.recoveryapp_api.model.customer.Customer
+import com.quarkbyte.recoveryapp_api.service.customer.CustomerService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -18,10 +18,10 @@ import java.util.UUID
 @RequestMapping(value = ["customer"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class CustomerController(val service: CustomerService) {
 
-    @GetMapping
+    @GetMapping("all")
     fun getAll(): ResponseEntity<*> = service.getAll()
 
-    @GetMapping("id")
+    @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
 
     @PostMapping

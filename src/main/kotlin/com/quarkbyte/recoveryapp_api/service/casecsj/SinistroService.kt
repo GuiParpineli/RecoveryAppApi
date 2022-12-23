@@ -1,15 +1,15 @@
-package com.quarkbyte.recoveryapp_api.service
+package com.quarkbyte.recoveryapp_api.service.casecsj
 
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
-import com.quarkbyte.recoveryapp_api.repository.MisappropriationRepository
+import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
+import com.quarkbyte.recoveryapp_api.repository.SinistroRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class MisappropriationService(val repository: MisappropriationRepository) {
+class SinistroService(private val repository: SinistroRepository) {
 
     fun get(): ResponseEntity<*> {
         val saved = repository.findAll()
@@ -24,19 +24,19 @@ class MisappropriationService(val repository: MisappropriationRepository) {
     }
 
     @Throws(SaveErrorException::class)
-    fun save(misappropriation: Misappropriation): ResponseEntity<*> {
-        val saved: Misappropriation = try {
-            repository.save(misappropriation)
+    fun save(sinistro: Sinistro): ResponseEntity<*> {
+        val saved: Sinistro = try {
+            repository.save(sinistro)
         } catch (e: Exception) {
-            throw SaveErrorException("Error, not saved")
+            throw SaveErrorException("Error not saved")
         }
         return ResponseEntity.ok(saved)
     }
 
     @Throws(SaveErrorException::class)
-    fun update(misappropriation: Misappropriation): ResponseEntity<*> {
-        val saved: Misappropriation = try {
-            repository.saveAndFlush(misappropriation)
+    fun update(sinistro: Sinistro): ResponseEntity<*> {
+        val saved: Sinistro = try {
+            repository.saveAndFlush(sinistro)
         } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
@@ -48,6 +48,6 @@ class MisappropriationService(val repository: MisappropriationRepository) {
         val saved = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("None cases founded") }!!
         repository.deleteById(id)
-        return ResponseEntity.ok("$saved deleted successfully")
+        return ResponseEntity.ok("$saved deleted sucessfully")
     }
 }

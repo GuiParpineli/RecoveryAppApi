@@ -1,6 +1,9 @@
-package com.quarkbyte.recoveryapp_api.model
+package com.quarkbyte.recoveryapp_api.model.plan
 
+import com.quarkbyte.recoveryapp_api.model.UserApp
 import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
+import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -11,7 +14,6 @@ import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Entity

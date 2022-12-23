@@ -1,4 +1,4 @@
-package com.quarkbyte.recoveryapp_api.model
+package com.quarkbyte.recoveryapp_api.model.plan
 
 import com.quarkbyte.recoveryapp_api.model.enums.StatusProduct
 import jakarta.persistence.Entity

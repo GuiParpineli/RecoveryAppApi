@@ -3,10 +3,10 @@ package com.quarkbyte.recoveryapp_api.controller
 import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.model.cases.TechnicalSupport
-import com.quarkbyte.recoveryapp_api.service.CaseService
-import com.quarkbyte.recoveryapp_api.service.MisappropriationService
-import com.quarkbyte.recoveryapp_api.service.SinistroService
-import com.quarkbyte.recoveryapp_api.service.TechnicalSupportService
+import com.quarkbyte.recoveryapp_api.service.casecsj.CaseService
+import com.quarkbyte.recoveryapp_api.service.casecsj.MisappropriationService
+import com.quarkbyte.recoveryapp_api.service.casecsj.SinistroService
+import com.quarkbyte.recoveryapp_api.service.casecsj.TechnicalSupportService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

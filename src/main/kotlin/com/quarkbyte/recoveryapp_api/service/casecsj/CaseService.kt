@@ -1,4 +1,4 @@
-package com.quarkbyte.recoveryapp_api.service
+package com.quarkbyte.recoveryapp_api.service.casecsj
 
 import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.repository.CaseRepository
