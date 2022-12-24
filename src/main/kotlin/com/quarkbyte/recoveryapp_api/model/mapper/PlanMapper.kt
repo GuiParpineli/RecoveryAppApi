@@ -68,13 +68,13 @@ class PlanMapper(
         var productLink: Link? = null
         val productsIdList = mutableListOf<String>()
         var value = 0.0
-        plan.productList?.map { value = it.value!! + it.value}
+        plan.productList?.map { value += it.value!!}
         plan.productList?.forEach { i -> productsIdList.add(i.id.toString()) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=" + productsIdList.joinToString(separator = ","))
             .withRel("products")
-            .withTitle("und: ${productsIdList.size}, totalValue: $value }}")
+            .withTitle("und: ${productsIdList.size}, totalValue: $value ")
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=" + plan.customer!!.id)

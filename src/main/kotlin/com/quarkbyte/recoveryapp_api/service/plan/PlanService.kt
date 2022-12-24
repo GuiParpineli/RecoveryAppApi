@@ -12,7 +12,6 @@ import org.springframework.hateoas.EntityModel
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import java.util.*
-import kotlin.collections.LinkedHashSet
 
 @Service
 class PlanService(
@@ -26,11 +25,7 @@ class PlanService(
         val output: MutableList<PlanOutput> = mutableListOf()
         plans.forEach { p -> output.add(mapper.map(p)) }
         val saved: MutableList<EntityModel<PlanOutput>> = mutableListOf()
-        for (p in plans.indices) {
-            saved.add(
-                mapper.buildPlanOutput(plans[p], output[p])
-            )
-        }
+        for (p in plans.indices) { saved.add( mapper.buildPlanOutput( plans[p], output[p] ))}
         return ResponseEntity.ok(saved)
     }
 
@@ -73,6 +68,6 @@ class PlanService(
             repository.deleteById(id)
             caseRepository.deleteById(saved.get().caseCSJ!!.id)
         }
-        return ResponseEntity.ok("deleted sucessfully")
+        return ResponseEntity.ok("deleted successfully")
     }
 }
