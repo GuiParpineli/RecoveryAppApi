@@ -194,6 +194,38 @@ class DataLoader(
                     misappropriationRepository.findAll()[0]
                 )
             )
+        planRepository.save(
+                Plan(
+                    UUID.randomUUID(),
+                    20000.00,
+                    true,
+                    userRepository.findAll()[0],
+                    LocalDateTime.now(),
+                    LocalDateTime.now(),
+                       listOf(productRepository.findAll()[0],
+                        productRepository.findAll()[1],
+                        productRepository.findAll()[1]
+                    ),
+                    customerRepository.findAll()[1],
+                    bondsmanRepository.findAll()[0],
+                    misappropriationRepository.findAll()[0]
+                )
+            )
+        planRepository.save(
+                Plan(
+                    UUID.randomUUID(),
+                    6000.00,
+                    true,
+                    userRepository.findAll()[0],
+                    LocalDateTime.now(),
+                    LocalDateTime.now(),
+                       listOf(productRepository.findAll()[0]
+                    ),
+                    customerRepository.findAll()[2],
+                    bondsmanRepository.findAll()[0],
+                    technicalSupportRepository.findAll()[0]
+                )
+            )
 
 
 //

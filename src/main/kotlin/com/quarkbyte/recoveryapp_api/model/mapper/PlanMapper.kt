@@ -8,14 +8,12 @@ import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
+import com.quarkbyte.recoveryapp_api.model.plan.Product
 import com.quarkbyte.recoveryapp_api.repository.*
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.Link
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilderFactory
 import org.springframework.stereotype.Component
-import java.util.Arrays
-import java.util.UUID
 
 @Component
 class PlanMapper(
@@ -27,9 +25,14 @@ class PlanMapper(
 ) {
 
     fun map(input: PlanDTO): Plan {
-        val product =
-            productRepository.findById(input.productListId[0])
-                .orElseThrow { ResourceNotFoundException("none plans founded") }
+        val product = mutableListOf<Product>()
+
+        for (i in input.productListId.indices) {
+            product.add(
+                productRepository.findById(input.productListId[i])
+                    .orElseThrow { ResourceNotFoundException("none plans founded") }
+            )
+        }
         val analyst =
             userRepository.findById(input.analystId).orElseThrow { ResourceNotFoundException("none plans founded") }
         val customer =
@@ -44,7 +47,7 @@ class PlanMapper(
         return Plan(
             value = input.value,
             planStatus = input.planStatus,
-            productList = listOf(product),
+            productList = product,
             customer = customer,
             bondsman = bondsman,
             caseCSJ = case
@@ -63,14 +66,15 @@ class PlanMapper(
     fun buildPlanOutput(plan: Plan, output: PlanOutput): EntityModel<PlanOutput> {
 
         var productLink: Link? = null
-        var productsIdlist = mutableListOf<String>()
+        val productsIdList = mutableListOf<String>()
+        var value = 0.0
+        plan.productList?.map { value = it.value!! + it.value}
+        plan.productList?.forEach { i -> productsIdList.add(i.id.toString()) }
 
-        plan.productList?.forEach { i ->
-            productsIdlist.add(i.id.toString())
-        }
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
-            .slash("/allbyid?id=" + productsIdlist.joinToString(separator = ","))
+            .slash("/allbyid?id=" + productsIdList.joinToString(separator = ","))
             .withRel("products")
+            .withTitle("und: ${productsIdList.size}, totalValue: $value }}")
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=" + plan.customer!!.id)

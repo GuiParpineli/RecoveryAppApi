@@ -10,10 +10,8 @@ abstract class CaseCSJ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: UUID
-
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     var date: Date
-
     @Enumerated(EnumType.STRING)
     var stepCSJ: StepCSJ
     @Enumerated(EnumType.STRING)
@@ -22,14 +20,11 @@ abstract class CaseCSJ {
     var value: Double
     var valueWithDiscount: Double? = null
     var coverageValue: Double
-
     @Enumerated(EnumType.STRING)
     var resolutionType: ResolutionType
     var recidivistCustomer: Boolean
-
     @Enumerated(EnumType.STRING)
     var internalStatus: InternalStatus
-
     @Enumerated(EnumType.STRING)
     var externalStatus: ExternalStatus
     var postCode: String? = null

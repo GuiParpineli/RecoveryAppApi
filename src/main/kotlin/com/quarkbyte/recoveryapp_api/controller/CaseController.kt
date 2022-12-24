@@ -74,11 +74,11 @@ class CaseController(
         technicalSupportService.update(technicalSupport)
 
     @DeleteMapping("deletesinistro")
-    fun deleteSinistro(@PathVariable("id") id: UUID) = sinsitroService.delete(id)
+    fun deleteSinistro(@RequestParam("id") id: UUID) = sinsitroService.delete(id)
 
     @DeleteMapping("deletemisappropriation")
-    fun deleteMisappropriation(@PathVariable("id") id: UUID) = misappropriationService.delete(id)
+    fun deleteMisappropriation(@RequestParam("id") id: UUID) = misappropriationService.delete(id)
 
     @DeleteMapping("deletetechnicalsupport")
-    fun deleteTechnicalSupport(@PathVariable("id") id: UUID) = technicalSupportService.delete(id)
+    fun deleteTechnicalSupport(@RequestParam("id") id: UUID) = technicalSupportService.delete(id)
 }
