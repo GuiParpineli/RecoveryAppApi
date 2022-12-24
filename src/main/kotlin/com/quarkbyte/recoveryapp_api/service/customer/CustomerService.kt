@@ -54,9 +54,8 @@ data class CustomerService(
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
-        val saved: Customer = repository.findById(id)
-            .orElseThrow { ResourceNotFoundException("None address founded") }
-        repository.deleteById(id)
-        return ResponseEntity.ok<String>("$saved deleted successfully")
+        if (repository.findById(id).isPresent)
+            repository.deleteById(id)
+        return ResponseEntity.ok<String>("deleted successfully")
     }
 }

@@ -6,6 +6,7 @@ import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
 import com.quarkbyte.recoveryapp_api.model.mapper.PlanMapper
+import com.quarkbyte.recoveryapp_api.repository.CaseRepository
 import com.quarkbyte.recoveryapp_api.repository.PlanRepository
 import org.springframework.hateoas.EntityModel
 import org.springframework.http.ResponseEntity
@@ -16,6 +17,7 @@ import kotlin.collections.LinkedHashSet
 @Service
 class PlanService(
     private val repository: PlanRepository,
+    private val caseRepository: CaseRepository,
     val mapper: PlanMapper
 ) {
 
@@ -66,7 +68,11 @@ class PlanService(
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
-        repository.deleteById(id)
+        val saved = repository.findById(id)
+        if (saved.isPresent) {
+            repository.deleteById(id)
+            caseRepository.deleteById(saved.get().caseCSJ!!.id)
+        }
         return ResponseEntity.ok("deleted sucessfully")
     }
 }

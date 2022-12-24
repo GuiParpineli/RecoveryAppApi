@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class AddressService(val repository: AddressRepository){
+class AddressService(val repository: AddressRepository) {
 
     @Throws(ResourceNotFoundException::class)
     fun getAll(): ResponseEntity<*> {
@@ -47,9 +47,8 @@ class AddressService(val repository: AddressRepository){
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
-        val saved = repository.findById(id)
-            .orElseThrow { ResourceNotFoundException("None address founded") }!!
-        repository.deleteById(id)
-        return ResponseEntity.ok("Address$saved deleted successfully")
+        if (repository.findById(id).isPresent)
+            repository.deleteById(id)
+        return ResponseEntity.ok("Address deleted successfully")
     }
 }

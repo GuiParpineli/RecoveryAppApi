@@ -52,8 +52,7 @@ class ProductService(private val repository: ProductRepository) {
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
-        val saved: Product? = repository.findById(id)
-            .orElseThrow { ResourceNotFoundException("None products founded") }
+        if (repository.findById(id).isPresent)
         repository.deleteById(id)
         return ResponseEntity.ok<String>(" deleted successfully")
     }

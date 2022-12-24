@@ -46,9 +46,8 @@ class TechnicalSupportService(private val repository: TechnicalSupportRepository
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
-        val saved = repository.findById(id)
-            .orElseThrow { ResourceNotFoundException("None cases founded") }!!
+        if (repository.findById(id).isPresent)
         repository.deleteById(id)
-        return ResponseEntity.ok("$saved deleted sucessfully")
+        return ResponseEntity.ok("deleted successfully")
     }
 }

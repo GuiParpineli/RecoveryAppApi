@@ -45,9 +45,8 @@ class MisappropriationService(val repository: MisappropriationRepository) {
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
-        val saved = repository.findById(id)
-            .orElseThrow { ResourceNotFoundException("None cases founded") }!!
+        if (repository.findById(id).isPresent)
         repository.deleteById(id)
-        return ResponseEntity.ok("$saved deleted successfully")
+        return ResponseEntity.ok("deleted successfully")
     }
 }
