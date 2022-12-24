@@ -1,9 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.mapper
 
-import com.quarkbyte.recoveryapp_api.controller.BondsmanController
-import com.quarkbyte.recoveryapp_api.controller.CaseController
-import com.quarkbyte.recoveryapp_api.controller.CustomerController
-import com.quarkbyte.recoveryapp_api.controller.ProductController
+import com.quarkbyte.recoveryapp_api.controller.*
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
@@ -49,6 +46,7 @@ class PlanMapper(
             planStatus = input.planStatus,
             productList = product,
             customer = customer,
+            analyst = analyst,
             bondsman = bondsman,
             caseCSJ = case
         )
@@ -68,7 +66,7 @@ class PlanMapper(
         var productLink: Link? = null
         val productsIdList = mutableListOf<String>()
         var value = 0.0
-        plan.productList?.map { value += it.value!!}
+        plan.productList?.map { value += it.value!! }
         plan.productList?.forEach { i -> productsIdList.add(i.id.toString()) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
@@ -81,6 +79,11 @@ class PlanMapper(
             .withRel("customer")
             .withTitle(plan.customer.name.toString())
 
+        val analystLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
+            .slash("?id=" + plan.analyst!!.id)
+            .withRel("Analyst")
+            .withTitle(plan.analyst.name.toString())
+
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
             .slash("?id=" + plan.bondsman!!.id)
             .withRel("bondsman")
@@ -91,7 +94,7 @@ class PlanMapper(
             .withRel("caseCSJ")
             .withTitle(plan.caseCSJ.typeCaseCSJ.toString())
 
-        return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink)
+        return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink, analystLink)
     }
 
 }
