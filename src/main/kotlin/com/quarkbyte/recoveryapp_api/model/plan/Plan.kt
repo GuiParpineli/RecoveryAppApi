@@ -23,6 +23,7 @@ open class Plan(
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
     val planStatus: Boolean? = null,
+    var value: Double? = 0.0,
 
     @ManyToOne
     @JoinColumn(name = "analyst_id")
@@ -54,9 +55,6 @@ open class Plan(
 
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
-    var value: Double? = 0.0
-    init{
-        productList?.map { value = value?.plus(it.value) }
-    }
+
 }
 

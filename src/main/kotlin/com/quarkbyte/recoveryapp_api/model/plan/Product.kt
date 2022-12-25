@@ -11,10 +11,10 @@ import java.util.*
 class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null,
-    val name: String? = null,
-    val statusProduct: StatusProduct? = null,
-    val imei: String? = null,
-    val imei2: String? = null,
-    val value: Double = 0.0,
+    val id: UUID? ,
+    val name: String?,
+    val statusProduct: StatusProduct? ,
+    val imei: String? ,
+    val imei2: String? ,
+    val value: Double
 )

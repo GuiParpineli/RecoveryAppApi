@@ -44,6 +44,8 @@ class PlanMapper(
 
         return Plan(
             planStatus = input.planStatus,
+            initialDate = input.initialDate,
+            finalDate = input.finalDate,
             productList = product,
             customer = customer,
             analyst = analyst,
@@ -56,6 +58,8 @@ class PlanMapper(
         return PlanOutput(
             id = plan.id!!,
             value = plan.value,
+            initialDate = plan.initialDate,
+            finalDate = plan.finalDate,
             planStatus = plan.planStatus!!,
             creationDate = plan.creationDate
         )
@@ -63,11 +67,10 @@ class PlanMapper(
 
     fun buildPlanOutput(plan: Plan, output: PlanOutput): EntityModel<PlanOutput> {
 
-        var productLink: Link? = null
+        val productLink: Link?
         val productsIdList = mutableListOf<String>()
-        var names = mutableListOf<String>()
-        plan.productList?.forEach { p -> names.add(p.name.toString()) }
-        plan.productList?.forEach { i -> productsIdList.add(i.id.toString()) }
+        val names = mutableListOf<String>()
+        plan.productList?.forEach { p -> names.add(p.name.toString()) && productsIdList.add(p.id.toString()) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")

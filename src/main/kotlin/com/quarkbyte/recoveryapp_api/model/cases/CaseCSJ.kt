@@ -51,8 +51,8 @@ abstract class CaseCSJ {
         this.coverageValue = coverageValue!!
         this.resolutionType = resolutionType!!
         this.recidivistCustomer = recidivistCustomer!!
-        this.internalStatus = internalStatus!!
-        this.externalStatus = externalStatus!!
+        this.internalStatus = InternalStatus.CASO_NOVO
+        this.externalStatus = ExternalStatus.EM_ABERTO
     }
 
     constructor(
