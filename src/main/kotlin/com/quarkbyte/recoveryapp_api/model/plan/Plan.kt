@@ -22,7 +22,6 @@ data class Plan(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
-    val value: Double? = null,
     val planStatus: Boolean? = null,
 
     @ManyToOne
@@ -52,7 +51,12 @@ data class Plan(
     val caseCSJ: CaseCSJ? = null,
 
     ) {
+
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
+    var value: Double? = 0.0
+    init{
+        productList?.map { value = value?.plus(it.value) }
+    }
 }
 

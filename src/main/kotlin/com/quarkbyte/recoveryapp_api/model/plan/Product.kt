@@ -16,5 +16,5 @@ data class Product(
     val statusProduct: StatusProduct? = null,
     val imei: String? = null,
     val imei2: String? = null,
-    val value: Double? = null,
+    val value: Double = 0.0,
 )

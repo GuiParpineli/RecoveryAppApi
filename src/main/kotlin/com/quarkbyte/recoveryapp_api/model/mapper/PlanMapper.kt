@@ -42,7 +42,6 @@ class PlanMapper(
             caseRepository.findById(input.caseCSJId).orElseThrow { ResourceNotFoundException("none plans founded") }
 
         return Plan(
-            value = input.value,
             planStatus = input.planStatus,
             productList = product,
             customer = customer,
@@ -55,7 +54,7 @@ class PlanMapper(
     fun map(plan: Plan): PlanOutput {
         return PlanOutput(
             id = plan.id!!,
-            value = plan.value!!,
+            value = plan.value,
             planStatus = plan.planStatus!!,
             creationDate = plan.creationDate
         )
@@ -65,14 +64,14 @@ class PlanMapper(
 
         var productLink: Link? = null
         val productsIdList = mutableListOf<String>()
-        var value = 0.0
-        plan.productList?.map { value += it.value!! }
+        var names = mutableListOf<String>()
+        plan.productList?.forEach { p -> names.add(p.name.toString()) }
         plan.productList?.forEach { i -> productsIdList.add(i.id.toString()) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
-            .slash("/allbyid?id=" + productsIdList.joinToString(separator = ","))
+            .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")
             .withRel("products")
-            .withTitle("und: ${productsIdList.size}, totalValue: $value ")
+            .withTitle("products: $names")
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=" + plan.customer!!.id)
@@ -82,19 +81,20 @@ class PlanMapper(
         val analystLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
             .slash("?id=" + plan.analyst!!.id)
             .withRel("Analyst")
-            .withTitle(plan.analyst.name.toString())
+            .withTitle(plan.analyst.name)
 
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
-            .slash("?id=" + plan.bondsman!!.id)
+            .slash("?id=${plan.bondsman!!.id}")
             .withRel("bondsman")
             .withTitle(plan.bondsman.name.toString())
 
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
-            .slash("?id=" + plan.caseCSJ!!.id)
+            .slash("?id=${plan.caseCSJ!!.id}")
             .withRel("caseCSJ")
             .withTitle(plan.caseCSJ.typeCaseCSJ.toString())
 
         return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink, analystLink)
+
     }
 
 }

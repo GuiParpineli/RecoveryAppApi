@@ -41,7 +41,17 @@ class DataLoader(
                     StatusProduct.ADQUIRIDO,
                     "22345",
                     "999929-229",
-                    80000.0
+                    8000.0
+                )
+            )
+        productRepository.save(
+                Product(
+                    null,
+                    "Iphone 9",
+                    StatusProduct.ADQUIRIDO,
+                    "22345",
+                    "999929-229",
+                    3000.0
                 )
             )
             productRepository.save(
@@ -51,7 +61,7 @@ class DataLoader(
                     StatusProduct.ADQUIRIDO,
                     "3sa151345",
                     "888929-229",
-                    50000.0
+                    5000.0
                 )
             )
             //save address
@@ -165,7 +175,6 @@ class DataLoader(
             planRepository.save(
                 Plan(
                     UUID.randomUUID(),
-                    5000.00,
                     true,
                     userRepository.findAll()[0],
                     LocalDateTime.now(),
@@ -181,12 +190,11 @@ class DataLoader(
             planRepository.save(
                 Plan(
                     UUID.randomUUID(),
-                    10000.00,
                     true,
                     userRepository.findAll()[0],
                     LocalDateTime.now(),
                     LocalDateTime.now(),
-                       listOf(productRepository.findAll()[0],
+                       listOf(productRepository.findAll()[2],
                         productRepository.findAll()[1]
                     ),
                     customerRepository.findAll()[1],
@@ -197,14 +205,13 @@ class DataLoader(
         planRepository.save(
                 Plan(
                     UUID.randomUUID(),
-                    20000.00,
                     true,
                     userRepository.findAll()[0],
                     LocalDateTime.now(),
                     LocalDateTime.now(),
                        listOf(productRepository.findAll()[0],
                         productRepository.findAll()[1],
-                        productRepository.findAll()[1]
+                        productRepository.findAll()[2]
                     ),
                     customerRepository.findAll()[1],
                     bondsmanRepository.findAll()[0],
@@ -214,12 +221,11 @@ class DataLoader(
         planRepository.save(
                 Plan(
                     UUID.randomUUID(),
-                    6000.00,
                     true,
                     userRepository.findAll()[0],
                     LocalDateTime.now(),
                     LocalDateTime.now(),
-                       listOf(productRepository.findAll()[0]
+                       listOf(productRepository.findAll()[2]
                     ),
                     customerRepository.findAll()[2],
                     bondsmanRepository.findAll()[0],
