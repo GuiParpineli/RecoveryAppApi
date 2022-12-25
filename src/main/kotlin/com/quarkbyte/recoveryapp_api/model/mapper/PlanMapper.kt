@@ -11,6 +11,7 @@ import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.Link
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 class PlanMapper(
@@ -74,12 +75,12 @@ class PlanMapper(
             .withTitle("products: $names")
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
-            .slash("?id=" + plan.customer!!.id)
+            .slash("?id=${plan.customer!!.id}")
             .withRel("customer")
             .withTitle(plan.customer.name.toString())
 
         val analystLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
-            .slash("?id=" + plan.analyst!!.id)
+            .slash("?id=${plan.analyst!!.id}")
             .withRel("Analyst")
             .withTitle(plan.analyst.name)
 
@@ -89,7 +90,7 @@ class PlanMapper(
             .withTitle(plan.bondsman.name.toString())
 
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
-            .slash("?id=${plan.caseCSJ!!.id}")
+            .slash("${plan.caseCSJ?.typeCaseCSJ.toString().lowercase()}?id=${plan.caseCSJ!!.id}")
             .withRel("caseCSJ")
             .withTitle(plan.caseCSJ.typeCaseCSJ.toString())
 
