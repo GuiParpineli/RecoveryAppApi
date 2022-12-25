@@ -7,7 +7,7 @@ import jakarta.persistence.Id
 import java.util.UUID
 
 @Entity
-data class UserApp (
+class UserApp (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,

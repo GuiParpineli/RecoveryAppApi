@@ -8,7 +8,7 @@ import jakarta.persistence.Id
 import java.util.*
 
 @Entity
-data class Product(
+class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,

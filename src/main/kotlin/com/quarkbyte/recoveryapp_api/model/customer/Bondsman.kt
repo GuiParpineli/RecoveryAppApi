@@ -6,7 +6,7 @@ import jakarta.persistence.*
 import java.util.*
 
 @Entity
-data class Bondsman(
+class Bondsman(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,

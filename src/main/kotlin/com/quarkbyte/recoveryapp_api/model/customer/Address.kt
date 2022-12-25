@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 
 @Entity
-data class Address(
+class Address(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,

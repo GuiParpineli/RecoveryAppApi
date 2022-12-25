@@ -17,7 +17,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 @Entity
-data class Plan(
+open class Plan(
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
