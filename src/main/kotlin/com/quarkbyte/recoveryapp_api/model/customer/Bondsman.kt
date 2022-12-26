@@ -1,8 +1,10 @@
 package com.quarkbyte.recoveryapp_api.model.customer
 
-import com.quarkbyte.recoveryapp_api.model.customer.Address
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import jakarta.persistence.*
+import jakarta.validation.constraints.Size
+import org.hibernate.validator.constraints.UniqueElements
+import org.jetbrains.annotations.NotNull
 import java.util.*
 
 @Entity
@@ -10,15 +12,27 @@ class Bondsman(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
-    val name: String? = null,
-    val lastName: String? = null,
-    val cpf: String? = null,
-    val phone: String? = null,
+    @NotNull
+    @Size(min = 3, max = 20)
+    val name: String?,
+    @NotNull
+    @Size(min = 3, max = 30)
+    val lastName: String?,
+    @NotNull
+    @UniqueElements
+    @Size(min = 12)
+    val cpf: String?,
+    @NotNull
+    val phone: String?,
     @ManyToOne
-    val address: Address? = null,
-    val email: String? = null,
-    val birthDay: Date? = null,
+    val address: Address?,
+    @NotNull
+    @Size(min = 10, max = 40)
+    val email: String?,
+    @NotNull
+    val birthDay: Date?,
     @Enumerated(EnumType.STRING)
-    val gender: Gender? = null,
-    val nationality: String? = null,
+    val gender: Gender?,
+    @NotNull
+    val nationality: String?
 )

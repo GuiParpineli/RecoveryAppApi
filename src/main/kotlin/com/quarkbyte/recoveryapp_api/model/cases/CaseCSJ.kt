@@ -9,7 +9,7 @@ import java.util.*
 abstract class CaseCSJ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: UUID
+    var id: UUID? = null
 
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     var date: Date
@@ -33,6 +33,7 @@ abstract class CaseCSJ {
 
     @Enumerated(EnumType.STRING)
     var externalStatus: ExternalStatus
+    @Column(unique = true)
     var postCode: String? = null
 
     constructor(

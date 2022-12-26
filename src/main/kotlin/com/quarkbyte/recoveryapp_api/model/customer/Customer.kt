@@ -3,6 +3,9 @@ package com.quarkbyte.recoveryapp_api.model.customer
 import com.quarkbyte.recoveryapp_api.model.customer.Address
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
+import org.hibernate.validator.constraints.UniqueElements
 import java.util.*
 
 @Entity
@@ -10,16 +13,28 @@ class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
-    val name: String? = "",
-    val lastName: String? = "",
-    val cpf: String? = "",
-    val phone: String? = "",
+    @NotNull
+    @Size(min = 3, max = 20)
+    val name: String?,
+    @NotNull
+    @Size(min = 3, max = 30)
+    val lastName: String?,
+    @NotNull
+    @UniqueElements
+    @Size(min = 12)
+    val cpf: String?,
+    @NotNull
+    val phone: String?,
     @ManyToOne
-    val address: Address? = null,
-    val email: String? = "",
-    val birthDay: Date? = null,
+    val address: Address?,
+    @NotNull
+    @Size(min = 10, max = 40)
+    val email: String?,
+    @NotNull
+    val birthDay: Date?,
     @Enumerated(EnumType.STRING)
-    val gender: Gender? = null,
-    val nationality: String? = "",
+    val gender: Gender?,
+    @NotNull
+    val nationality: String?
 )
 

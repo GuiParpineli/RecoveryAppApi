@@ -18,10 +18,10 @@ import java.util.UUID
 @RequestMapping(value = ["bondsman"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class BondsmanController(private val service: BondsmanService) {
     @GetMapping("all")
-    fun getAll(): ResponseEntity<*> = service.getAll()
+    fun getAll() = service.getAll()
 
     @GetMapping
-    fun getById(id: UUID) = service.getById(id)
+    fun getById(@RequestParam("id") id: UUID) = service.getById(id)
 
     @PostMapping("register")
     fun save(@RequestBody bondsman: Bondsman) = service.save(bondsman)

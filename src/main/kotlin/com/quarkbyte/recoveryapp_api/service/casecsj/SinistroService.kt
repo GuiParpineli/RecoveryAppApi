@@ -5,6 +5,7 @@ import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.repository.SinistroRepository
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -25,19 +26,15 @@ class SinistroService(private val repository: SinistroRepository) {
 
     @Throws(SaveErrorException::class)
     fun save(sinistro: Sinistro): ResponseEntity<*> {
-        val saved: Sinistro = try {
-            repository.save(sinistro)
-        } catch (e: Exception) {
-            throw SaveErrorException("Error not saved")
-        }
+        val saved: Sinistro = try { repository.save(sinistro)
+        } catch (ex: Exception) { throw SaveErrorException("Error, not saved") }
         return ResponseEntity.ok(saved)
     }
 
-    @Throws(SaveErrorException::class)
     fun update(sinistro: Sinistro): ResponseEntity<*> {
         val saved: Sinistro = try {
             repository.saveAndFlush(sinistro)
-        } catch (e: Exception) {
+        } catch (ex: Exception) {
             throw SaveErrorException("Error, not saved")
         }
         return ResponseEntity.ok(saved)
@@ -46,7 +43,7 @@ class SinistroService(private val repository: SinistroRepository) {
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
         if (repository.findById(id).isPresent)
-        repository.deleteById(id)
+            repository.deleteById(id)
         return ResponseEntity.ok("deleted successfully")
     }
 }

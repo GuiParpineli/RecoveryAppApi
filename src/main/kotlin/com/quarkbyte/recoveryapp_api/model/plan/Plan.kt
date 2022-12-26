@@ -4,6 +4,7 @@ import com.quarkbyte.recoveryapp_api.model.UserApp
 import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
+import jakarta.persistence.Cacheable
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -17,6 +18,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 @Entity
+@Cacheable
 open class Plan(
 
     @Id

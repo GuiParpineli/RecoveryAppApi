@@ -66,7 +66,7 @@ class PlanService(
         val saved = repository.findById(id)
         if (saved.isPresent) {
             repository.deleteById(id)
-            caseRepository.deleteById(saved.get().caseCSJ!!.id)
+            caseRepository.deleteById(saved.get().caseCSJ?.id!!)
         }
         return ResponseEntity.ok("deleted successfully")
     }

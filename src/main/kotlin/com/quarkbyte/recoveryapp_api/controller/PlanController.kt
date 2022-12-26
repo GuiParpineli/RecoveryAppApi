@@ -13,6 +13,7 @@ import java.util.*
 class PlanController(private val service: PlanService) {
     @GetMapping("all")
     fun getAll(): ResponseEntity<*> = service.getAll()
+
     @GetMapping("allfull")
     fun getAllFull(): ResponseEntity<*> = service.getAllFull()
 
