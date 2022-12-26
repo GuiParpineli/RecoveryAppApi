@@ -25,25 +25,17 @@ open class Plan(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID? = null,
     val planStatus: Boolean,
     var value: Double,
-
     @ManyToOne @JoinColumn(name = "analyst_id") val analyst: UserApp,
     val initialDate: LocalDateTime,
     val finalDate: LocalDateTime,
-
     @ManyToMany @JoinTable(
-        name = "plan_products",
-        joinColumns = [JoinColumn(name = "id")],
+        name = "plan_products", joinColumns = [JoinColumn(name = "id")],
         inverseJoinColumns = [JoinColumn(name = "id_products")]
     ) val productList: List<Product>,
-
     @ManyToOne @JoinColumn(name = "customer_id") val customer: Customer,
-
     @ManyToOne @JoinColumn(name = "bondsman_id") val bondsman: Bondsman,
-
     @ManyToOne @JoinColumn(name = "caseCSJ_id") val caseCSJ: CaseCSJ? = null,
-
-    ) {
-
+) {
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
 }
