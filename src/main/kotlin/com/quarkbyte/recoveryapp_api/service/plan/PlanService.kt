@@ -32,7 +32,7 @@ class PlanService(
     @Throws(ResourceNotFoundException::class)
     fun getAllFull(): ResponseEntity<*> {
         val saved = repository.findAll()
-        if (saved.isEmpty()) ResourceNotFoundException("None plans founded")
+        if (saved.isEmpty()) throw ResourceNotFoundException("None plans founded")
         return ResponseEntity.ok(saved)
     }
 

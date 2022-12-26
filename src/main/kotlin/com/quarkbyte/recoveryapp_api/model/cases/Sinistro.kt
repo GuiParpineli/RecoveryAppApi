@@ -15,8 +15,6 @@ class Sinistro(
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     recidivistCustomer: Boolean?,
-    internalStatus: InternalStatus?,
-    externalStatus: ExternalStatus?,
     var initialTime: Date,
     var type: SinistroType,
     var imeiStatus: Boolean,
@@ -26,10 +24,9 @@ class Sinistro(
     var franchise: Float,
     var franchiseTotalValue: Double,
     var discountValue: Double,
-    var payment: Boolean
+    var payment: Boolean,
 ) : CaseCSJ(
-    id, date, stepCSJ, typeCaseCSJ, resolutionDate, value, coverageValue, resolutionType, recidivistCustomer,
-    internalStatus, externalStatus
-) {
+    id, date, stepCSJ, typeCaseCSJ, resolutionDate, value, coverageValue,
+    resolutionType, recidivistCustomer,
+)
 
-}

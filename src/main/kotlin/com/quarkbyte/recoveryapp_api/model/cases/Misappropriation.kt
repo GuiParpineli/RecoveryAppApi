@@ -17,8 +17,6 @@ class Misappropriation(
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     recidivistCustomer: Boolean?,
-    internalStatus: InternalStatus?,
-    externalStatus: ExternalStatus?,
     postCode: String?,
     var payMethod: PayMethod,
     var chargeBack: Boolean,
@@ -34,9 +32,6 @@ class Misappropriation(
     coverageValue,
     resolutionType,
     recidivistCustomer,
-    internalStatus,
-    externalStatus,
     postCode,
 ) {
-
 }

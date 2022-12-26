@@ -16,14 +16,10 @@ class TechnicalSupport(
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     recidivistCustomer: Boolean?,
-    internalStatus: InternalStatus?,
-    externalStatus: ExternalStatus?,
     postCode: String?,
     var repairValue: Double,
     var status: Boolean
 ) : CaseCSJ(
     id, date, stepCSJ, typeCaseCSJ, resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
-    recidivistCustomer!!, internalStatus, externalStatus, postCode
-) {
-
-}
+    recidivistCustomer!!,  postCode
+)

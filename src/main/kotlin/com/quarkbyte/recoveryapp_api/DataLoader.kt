@@ -34,209 +34,222 @@ class DataLoader(
     override fun run(args: ApplicationArguments?) {
 
 //        //save products
-            productRepository.save(
-                Product(
-                    null,
-                    "Iphone 13 Pro",
-                    StatusProduct.ADQUIRIDO,
-                    "22345",
-                    "999929-229",
-                    8000.0
-                )
-            )
         productRepository.save(
-                Product(
-                    null,
-                    "Iphone 9",
-                    StatusProduct.ADQUIRIDO,
-                    "22345",
-                    "999929-229",
-                    3000.0
-                )
+            Product(
+                null,
+                "Iphone 13 Pro",
+                StatusProduct.ADQUIRIDO,
+                "22345",
+                "999929-229",
+                8000.0
             )
-            productRepository.save(
-                Product(
-                    null,
-                    "AppleWatch 5",
-                    StatusProduct.ADQUIRIDO,
-                    "3sa151345",
-                    "888929-229",
-                    5000.0
-                )
+        )
+        productRepository.save(
+            Product(
+                null,
+                "Iphone 9",
+                StatusProduct.ADQUIRIDO,
+                "22345",
+                "999929-229",
+                3000.0
             )
-            //save address
-            addressRepository.save(
-                Address(
-                    null,
-                    "Berilo",
-                    "MG",
-                    "Ruas das flores",
-                    "Brasil",
-                    "1231-3123",
-                    ""
-                )
+        )
+        productRepository.save(
+            Product(
+                null,
+                "AppleWatch 5",
+                StatusProduct.ADQUIRIDO,
+                "3sa151345",
+                "888929-229",
+                5000.0
             )
+        )
+        //save address
+        addressRepository.save(
+            Address(
+                null,
+                "Berilo",
+                "MG",
+                "Ruas das flores",
+                "Brasil",
+                "1231-3123",
+                ""
+            )
+        )
 
-            //saving customers
-            customerRepository.save(
-                Customer(
-                    null,
-                    "Alberto",
-                    "Robson",
-                    "123.123.134-22",
-                    "9931-1231",
-                    addressRepository.findAll()[0],
-                    "albert@gmail.com",
-                    Date(),
-                    Gender.MASCULINO,
-                    "Uganda"
-                )
+        //saving customers
+        customerRepository.save(
+            Customer(
+                null,
+                "Alberto",
+                "Robson",
+                "123.123.134-22",
+                "9931-1231",
+                addressRepository.findAll()[0],
+                "albert@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Uganda"
             )
-            customerRepository.save(
-                Customer(
-                    null,
-                    "Jorge",
-                    "Ventura",
-                    "343.123.134-22",
-                    "32931-1231",
-                    addressRepository.findAll()[0],
-                    "jorge@gmail.com",
-                    Date(),
-                    Gender.MASCULINO,
-                    "Jamaica"
-                )
+        )
+        customerRepository.save(
+            Customer(
+                null,
+                "Jorge",
+                "Ventura",
+                "343.123.134-22",
+                "32931-1231",
+                addressRepository.findAll()[0],
+                "jorge@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Jamaica"
             )
-            customerRepository.save(
-                Customer(
-                    null,
-                    "Zico",
-                    "Costa",
-                    "213.222.123-22",
-                    "99931-1231",
-                    addressRepository.findAll()[0],
-                    "jorge@gmail.com",
-                    Date(),
-                    Gender.MASCULINO,
-                    "Jamaica"
-                )
+        )
+        customerRepository.save(
+            Customer(
+                null,
+                "Zico",
+                "Costa",
+                "213.222.123-22",
+                "99931-1231",
+                addressRepository.findAll()[0],
+                "jorge@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Jamaica"
             )
+        )
 
-            //saving Bondsman
-            bondsmanRepository.save(
-                Bondsman(
-                    null,
-                    "Zico",
-                    "Costa",
-                    "213.222.123-22",
-                    "99931-1231",
-                    addressRepository.findAll()[0],
-                    "jorge@gmail.com",
-                    Date(),
-                    Gender.MASCULINO,
-                    "Jamaica"
-                )
+        //saving Bondsman
+        bondsmanRepository.save(
+            Bondsman(
+                null,
+                "Zico",
+                "Costa",
+                "213.222.123-22",
+                "99931-1231",
+                addressRepository.findAll()[0],
+                "jorge@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Jamaica"
             )
+        )
 
-            //save plantypes
-            sinistroRepository.save(
-                Sinistro(
-                    UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.SINISTRO, Date(),
-                    2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
-                    InternalStatus.ACOMPANHAR, ExternalStatus.EM_ABERTO,
-                    Date(), SinistroType.FURTO_QUALIFICADO,
-                    true, true,
-                    true, Date(), 200.0f,
-                    2222.0, 20.0, false
-                )
+        //save plantypes
+        sinistroRepository.save(
+            Sinistro(
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.SINISTRO, Date(),
+                2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
+                Date(), SinistroType.FURTO_QUALIFICADO,
+                true, true,
+                true, Date(), 200.0f,
+                2222.0, 20.0, false
             )
+        )
 
-            misappropriationRepository.save(
-                Misappropriation(
-                    UUID.randomUUID(), Date(), StepCSJ.EXTRAJUDICIAL,TypeCaseCSJ.MISAPPROPRIATION, Date(), 5000.0, 4500.0, 4000.0,
-                    ResolutionType.RECORRENCIA_PAGA, true, InternalStatus.CASO_NOVO,
-                    ExternalStatus.EM_ABERTO, "PAC213213BR", PayMethod.NORMAL, false,
-                    LocalDateTime.now()
-                )
+        misappropriationRepository.save(
+            Misappropriation(
+                UUID.randomUUID(),
+                Date(),
+                StepCSJ.EXTRAJUDICIAL,
+                TypeCaseCSJ.MISAPPROPRIATION,
+                Date(),
+                5000.0,
+                4500.0,
+                4000.0,
+                ResolutionType.RECORRENCIA_PAGA,
+                true,
+                "PAC213213BR",
+                PayMethod.NORMAL,
+                false,
+                LocalDateTime.now()
             )
-            technicalSupportRepository.save(
-                TechnicalSupport(
-                    UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.TECHNICAL_SUPPORT,Date(), 12000.0, 10000.0,
-                    90000.0, ResolutionType.COMPRA, false, InternalStatus.PAGO,
-                    ExternalStatus.RECUPERADO, "2223201BR", 25000.0, true
-                )
+        )
+        technicalSupportRepository.save(
+            TechnicalSupport(
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.TECHNICAL_SUPPORT, Date(), 12000.0, 10000.0,
+                90000.0, ResolutionType.COMPRA, false,
+                "2223201BR", 25000.0, true
             )
+        )
 
-            //save users
-            userRepository.save(
-                UserApp(null, "Paulera")
-            )
+        //save users
+        userRepository.save(
+            UserApp(null, "Paulera")
+        )
 
-            //save plan
-            planRepository.save(
-                Plan(
-                    UUID.randomUUID(),
-                    true,
-                    47000.0,
-                    userRepository.findAll()[0],
-                    LocalDateTime.now(),
-                    LocalDateTime.now(),
-                    listOf(productRepository.findAll()[0],
-                        productRepository.findAll()[1]
-                    ),
-                    customerRepository.findAll()[0],
-                    bondsmanRepository.findAll()[0],
-                    sinistroRepository.findAll()[0]
-                )
-            )
-            planRepository.save(
-                Plan(
-                    UUID.randomUUID(),
-                    true,
-                    7000.0,
-                    userRepository.findAll()[0],
-                    LocalDateTime.now(),
-                    LocalDateTime.now(),
-                       listOf(productRepository.findAll()[2],
-                        productRepository.findAll()[1]
-                    ),
-                    customerRepository.findAll()[1],
-                    bondsmanRepository.findAll()[0],
-                    misappropriationRepository.findAll()[0]
-                )
-            )
+        //save plan
         planRepository.save(
-                Plan(
-                    UUID.randomUUID(),
-                    true,
-                    9400.0,
-                    userRepository.findAll()[0],
-                    LocalDateTime.now(),
-                    LocalDateTime.now(),
-                       listOf(productRepository.findAll()[0],
-                        productRepository.findAll()[1],
-                        productRepository.findAll()[2]
-                    ),
-                    customerRepository.findAll()[1],
-                    bondsmanRepository.findAll()[0],
-                    misappropriationRepository.findAll()[0]
-                )
+            Plan(
+                UUID.randomUUID(),
+                true,
+                47000.0,
+                userRepository.findAll()[0],
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                listOf(
+                    productRepository.findAll()[0],
+                    productRepository.findAll()[1]
+                ),
+                customerRepository.findAll()[0],
+                bondsmanRepository.findAll()[0],
+                sinistroRepository.findAll()[0]
             )
+        )
         planRepository.save(
-                Plan(
-                    UUID.randomUUID(),
-                    true,
-                    3000.0,
-                    userRepository.findAll()[0],
-                    LocalDateTime.now(),
-                    LocalDateTime.now(),
-                       listOf(productRepository.findAll()[2]
-                    ),
-                    customerRepository.findAll()[2],
-                    bondsmanRepository.findAll()[0],
-                    technicalSupportRepository.findAll()[0]
-                )
+            Plan(
+                UUID.randomUUID(),
+                true,
+                7000.0,
+                userRepository.findAll()[0],
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                listOf(
+                    productRepository.findAll()[2],
+                    productRepository.findAll()[1]
+                ),
+                customerRepository.findAll()[1],
+                bondsmanRepository.findAll()[0],
+                misappropriationRepository.findAll()[0]
             )
+        )
+        planRepository.save(
+            Plan(
+                UUID.randomUUID(),
+                true,
+                9400.0,
+                userRepository.findAll()[0],
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                listOf(
+                    productRepository.findAll()[0],
+                    productRepository.findAll()[1],
+                    productRepository.findAll()[2]
+                ),
+                customerRepository.findAll()[1],
+                bondsmanRepository.findAll()[0],
+                misappropriationRepository.findAll()[0]
+            )
+        )
+        planRepository.save(
+            Plan(
+                UUID.randomUUID(),
+                true,
+                3000.0,
+                userRepository.findAll()[0],
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                listOf(
+                    productRepository.findAll()[2]
+                ),
+                customerRepository.findAll()[2],
+                bondsmanRepository.findAll()[0],
+                technicalSupportRepository.findAll()[0]
+            )
+        )
 
-        }
     }
+}
 

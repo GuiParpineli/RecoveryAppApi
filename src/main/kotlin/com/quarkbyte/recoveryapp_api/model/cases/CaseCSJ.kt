@@ -10,21 +10,27 @@ abstract class CaseCSJ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: UUID
+
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     var date: Date
+
     @Enumerated(EnumType.STRING)
     var stepCSJ: StepCSJ
+
     @Enumerated(EnumType.STRING)
     var typeCaseCSJ: TypeCaseCSJ
     var resolutionDate: Date
     var value: Double
     var valueWithDiscount: Double? = null
     var coverageValue: Double
+
     @Enumerated(EnumType.STRING)
     var resolutionType: ResolutionType
     var recidivistCustomer: Boolean
+
     @Enumerated(EnumType.STRING)
     var internalStatus: InternalStatus
+
     @Enumerated(EnumType.STRING)
     var externalStatus: ExternalStatus
     var postCode: String? = null
@@ -39,8 +45,6 @@ abstract class CaseCSJ {
         coverageValue: Double?,
         resolutionType: ResolutionType?,
         recidivistCustomer: Boolean?,
-        internalStatus: InternalStatus?,
-        externalStatus: ExternalStatus?,
     ) {
         this.id = id!!
         this.date = date!!
@@ -66,8 +70,6 @@ abstract class CaseCSJ {
         coverageValue: Double?,
         resolutionType: ResolutionType?,
         recidivistCustomer: Boolean?,
-        internalStatus: InternalStatus?,
-        externalStatus: ExternalStatus?,
         postCode: String?,
     ) {
         this.id = id!!
@@ -79,9 +81,9 @@ abstract class CaseCSJ {
         this.valueWithDiscount = valueWithDiscount
         this.coverageValue = coverageValue!!
         this.recidivistCustomer = recidivistCustomer!!
-        this.internalStatus = internalStatus!!
-        this.externalStatus = externalStatus!!
         this.postCode = postCode
         this.resolutionType = resolutionType!!
+        this.internalStatus = InternalStatus.CASO_NOVO
+        this.externalStatus = ExternalStatus.EM_ABERTO
     }
 }
