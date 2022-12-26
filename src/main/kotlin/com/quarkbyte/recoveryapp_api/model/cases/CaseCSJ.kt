@@ -1,6 +1,5 @@
 package com.quarkbyte.recoveryapp_api.model.cases
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
@@ -17,7 +16,7 @@ import java.util.*
 @JsonSubTypes(
     JsonSubTypes.Type(value = Misappropriation::class, name = "Misappropriation"),
     JsonSubTypes.Type(value = Sinistro::class, name = "Sinistro"),
-    JsonSubTypes.Type(value = TechnicalSupport::class, name = "TechicalSupport")
+    JsonSubTypes.Type(value = TechnicalSupport::class, name = "TechnicalSupport")
 )
 abstract class CaseCSJ {
 

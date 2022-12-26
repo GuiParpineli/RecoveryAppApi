@@ -1,8 +1,5 @@
 package com.quarkbyte.recoveryapp_api.model.cases
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonTypeName
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import jakarta.persistence.Entity
@@ -22,7 +19,7 @@ class Sinistro(
     resolutionType: ResolutionType?,
     recidivistCustomer: Boolean?,
     var initialTime: Date,
-    var type: SinistroType,
+    var sinistroType: SinistroType,
     var imeiStatus: Boolean,
     var boStatus: Boolean,
     var videoStatus: Boolean,
