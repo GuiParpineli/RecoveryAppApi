@@ -2,6 +2,7 @@ package com.quarkbyte.recoveryapp_api.service.plan
 
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
+import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
@@ -54,16 +55,9 @@ class PlanService(
     }
 
     @Throws(SaveErrorException::class)
-    fun update(customer: Plan): ResponseEntity<*> {
-        var saved: Plan? = null
-        try {
-            if (repository.findById(customer.id!!).isPresent)
-                saved = repository.saveAndFlush(customer)
-        } catch (e: Exception) {
-            throw SaveErrorException("Error, not saved")
-        }
-        if (saved == null) throw SaveErrorException("Error, not saved")
-        return ResponseEntity.ok(saved)
+    fun update(input: Plan): ResponseEntity<*> {
+        val plan: Plan = repository.saveAndFlush(input)
+        return ResponseEntity.ok(plan)
     }
 
     @Throws(ResourceNotFoundException::class)

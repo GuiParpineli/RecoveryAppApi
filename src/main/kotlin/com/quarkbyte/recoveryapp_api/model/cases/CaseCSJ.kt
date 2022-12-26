@@ -26,13 +26,13 @@ abstract class CaseCSJ {
     @Enumerated(EnumType.STRING) var stepCSJ: StepCSJ
     var resolutionDate: Date
     var value: Double
-    var valueWithDiscount: Double? = null
+    var valueWithDiscount: Double? = 0.0
     var coverageValue: Double
     @Enumerated(EnumType.STRING) var resolutionType: ResolutionType
     var recidivistCustomer: Boolean
     @Enumerated(EnumType.STRING) var internalStatus: InternalStatus
     @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus
-    @Column(unique = true) var postCode: String? = null
+    @Column(unique = true) var postCode: String? =  ""
     abstract var typeCaseCSJ: String
 
     constructor(

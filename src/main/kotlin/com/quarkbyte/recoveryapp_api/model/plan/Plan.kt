@@ -13,12 +13,14 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.JoinTable
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
+import lombok.NoArgsConstructor
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import java.util.*
 
 @Entity
 @Cacheable
+@NoArgsConstructor
 open class Plan(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID? = null,
     val planStatus: Boolean,
@@ -41,6 +43,7 @@ open class Plan(
     @ManyToOne @JoinColumn(name = "caseCSJ_id") val caseCSJ: CaseCSJ? = null,
 
     ) {
+
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
 }

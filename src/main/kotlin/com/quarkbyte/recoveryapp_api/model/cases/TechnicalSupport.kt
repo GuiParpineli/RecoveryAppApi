@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor
 import java.util.*
 
 @Entity
-@NoArgsConstructor
 @JsonTypeName("TechnicalSupport")
 class TechnicalSupport(
     id: UUID?,
@@ -23,8 +22,8 @@ class TechnicalSupport(
     resolutionType: ResolutionType?,
     recidivistCustomer: Boolean?,
     postCode: String?,
-    var repairValue: Double,
-    var status: Boolean
+    var repairValue: Double = 0.0,
+    var status: Boolean = true
 ) : CaseCSJ(
     id, date, stepCSJ,  resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
     recidivistCustomer!!,  postCode
