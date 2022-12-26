@@ -24,14 +24,14 @@ open class Plan(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
-    val planStatus: Boolean? = null,
-    var value: Double? = 0.0,
+    val planStatus: Boolean,
+    var value: Double,
 
     @ManyToOne
     @JoinColumn(name = "analyst_id")
-    val analyst: UserApp? = null,
-    val initialDate: LocalDateTime? = null,
-    val finalDate: LocalDateTime? = null,
+    val analyst: UserApp,
+    val initialDate: LocalDateTime,
+    val finalDate: LocalDateTime,
 
     @ManyToMany
     @JoinTable(
@@ -39,15 +39,15 @@ open class Plan(
         joinColumns = [JoinColumn(name = "id")],
         inverseJoinColumns = [JoinColumn(name = "id_products")]
     )
-    val productList: List<Product>? = null,
+    val productList: List<Product>,
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    val customer: Customer? = null,
+    val customer: Customer,
 
     @ManyToOne
     @JoinColumn(name = "bondsman_id")
-    val bondsman: Bondsman? = null,
+    val bondsman: Bondsman,
 
     @ManyToOne
     @JoinColumn(name = "caseCSJ_id")

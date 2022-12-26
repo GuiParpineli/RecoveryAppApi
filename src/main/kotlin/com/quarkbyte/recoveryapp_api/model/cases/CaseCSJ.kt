@@ -38,52 +38,52 @@ abstract class CaseCSJ {
 
     constructor(
         id: UUID?,
-        date: Date?,
-        stepCSJ: StepCSJ?,
+        date: Date,
+        stepCSJ: StepCSJ,
         typeCaseCSJ: TypeCaseCSJ,
-        resolutionDate: Date?,
-        value: Double?,
-        coverageValue: Double?,
-        resolutionType: ResolutionType?,
-        recidivistCustomer: Boolean?,
+        resolutionDate: Date,
+        value: Double,
+        coverageValue: Double,
+        resolutionType: ResolutionType,
+        recidivistCustomer: Boolean,
     ) {
-        this.id = id!!
-        this.date = date!!
-        this.stepCSJ = stepCSJ!!
+        this.id = id
+        this.date = date
+        this.stepCSJ = stepCSJ
         this.typeCaseCSJ = typeCaseCSJ
-        this.resolutionDate = resolutionDate!!
-        this.value = value!!
-        this.coverageValue = coverageValue!!
-        this.resolutionType = resolutionType!!
-        this.recidivistCustomer = recidivistCustomer!!
+        this.resolutionDate = resolutionDate
+        this.value = value
+        this.coverageValue = coverageValue
+        this.resolutionType = resolutionType
+        this.recidivistCustomer = recidivistCustomer
         this.internalStatus = InternalStatus.CASO_NOVO
         this.externalStatus = ExternalStatus.EM_ABERTO
     }
 
     constructor(
         id: UUID?,
-        date: Date?,
-        stepCSJ: StepCSJ?,
+        date: Date,
+        stepCSJ: StepCSJ,
         typeCaseCSJ: TypeCaseCSJ,
-        resolutionDate: Date?,
-        value: Double?,
-        valueWithDiscount: Double?,
-        coverageValue: Double?,
-        resolutionType: ResolutionType?,
-        recidivistCustomer: Boolean?,
-        postCode: String?,
+        resolutionDate: Date,
+        value: Double,
+        valueWithDiscount: Double,
+        coverageValue: Double,
+        resolutionType: ResolutionType,
+        recidivistCustomer: Boolean,
+        postCode: String,
     ) {
-        this.id = id!!
-        this.date = date!!
-        this.stepCSJ = stepCSJ!!
+        this.id = id
+        this.date = date
+        this.stepCSJ = stepCSJ
         this.typeCaseCSJ = typeCaseCSJ
-        this.resolutionDate = resolutionDate!!
-        this.value = value!!
+        this.resolutionDate = resolutionDate
+        this.value = value
         this.valueWithDiscount = valueWithDiscount
-        this.coverageValue = coverageValue!!
-        this.recidivistCustomer = recidivistCustomer!!
+        this.coverageValue = coverageValue
+        this.recidivistCustomer = recidivistCustomer
         this.postCode = postCode
-        this.resolutionType = resolutionType!!
+        this.resolutionType = resolutionType
         this.internalStatus = InternalStatus.CASO_NOVO
         this.externalStatus = ExternalStatus.EM_ABERTO
     }

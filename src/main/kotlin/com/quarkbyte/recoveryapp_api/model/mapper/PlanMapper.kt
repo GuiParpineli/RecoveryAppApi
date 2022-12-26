@@ -44,8 +44,9 @@ class PlanMapper(
 
         return Plan(
             planStatus = input.planStatus,
-            initialDate = input.initialDate,
-            finalDate = input.finalDate,
+            initialDate = input.initialDate!!,
+            finalDate = input.finalDate!!,
+            value = input.value,
             productList = product,
             customer = customer,
             analyst = analyst,
@@ -60,7 +61,7 @@ class PlanMapper(
             value = plan.value,
             initialDate = plan.initialDate,
             finalDate = plan.finalDate,
-            planStatus = plan.planStatus!!,
+            planStatus = plan.planStatus,
             creationDate = plan.creationDate
         )
     }
@@ -70,7 +71,7 @@ class PlanMapper(
         val productLink: Link?
         val productsIdList = mutableListOf<String>()
         val names = mutableListOf<String>()
-        plan.productList?.forEach { p -> names.add(p.name.toString()) && productsIdList.add(p.id.toString()) }
+        plan.productList.forEach { p -> names.add(p.name.toString()) && productsIdList.add(p.id.toString()) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")
@@ -78,17 +79,17 @@ class PlanMapper(
             .withTitle("products: $names")
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
-            .slash("?id=${plan.customer!!.id}")
+            .slash("?id=${plan.customer.id}")
             .withRel("customer")
-            .withTitle(plan.customer.name.toString())
+            .withTitle("${plan.customer.name.toString()} ${plan.customer.lastName.toString()}")
 
         val analystLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
-            .slash("?id=${plan.analyst!!.id}")
+            .slash("?id=${plan.analyst.id}")
             .withRel("Analyst")
             .withTitle(plan.analyst.name)
 
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
-            .slash("?id=${plan.bondsman!!.id}")
+            .slash("?id=${plan.bondsman.id}")
             .withRel("bondsman")
             .withTitle(plan.bondsman.name.toString())
 
