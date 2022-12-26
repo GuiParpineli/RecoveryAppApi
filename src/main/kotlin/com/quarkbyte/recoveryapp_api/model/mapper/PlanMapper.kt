@@ -11,7 +11,6 @@ import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.Link
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class PlanMapper(
@@ -31,6 +30,7 @@ class PlanMapper(
                     .orElseThrow { ResourceNotFoundException("none plans founded") }
             )
         }
+
         val analyst =
             userRepository.findById(input.analystId).orElseThrow { ResourceNotFoundException("none plans founded") }
         val customer =
@@ -44,8 +44,8 @@ class PlanMapper(
 
         return Plan(
             planStatus = input.planStatus,
-            initialDate = input.initialDate!!,
-            finalDate = input.finalDate!!,
+            initialDate = input.initialDate,
+            finalDate = input.finalDate,
             value = input.value,
             productList = product,
             customer = customer,
@@ -99,8 +99,6 @@ class PlanMapper(
             .withTitle(plan.caseCSJ.typeCaseCSJ.toString())
 
         return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink, analystLink)
-
     }
-
 }
 
