@@ -140,7 +140,7 @@ class DataLoader(
         //save plantypes
         sinistroRepository.save(
             Sinistro(
-                UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.SINISTRO, Date(),
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO,  Date(),
                 2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
                 Date(), SinistroType.FURTO_QUALIFICADO,
                 true, true,
@@ -154,7 +154,6 @@ class DataLoader(
                 UUID.randomUUID(),
                 Date(),
                 StepCSJ.EXTRAJUDICIAL,
-                TypeCaseCSJ.MISAPPROPRIATION,
                 Date(),
                 5000.0,
                 4500.0,
@@ -169,7 +168,7 @@ class DataLoader(
         )
         technicalSupportRepository.save(
             TechnicalSupport(
-                UUID.randomUUID(), Date(), StepCSJ.ACORDO, TypeCaseCSJ.TECHNICAL_SUPPORT, Date(), 12000.0, 10000.0,
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO,  Date(), 12000.0, 10000.0,
                 90000.0, ResolutionType.COMPRA, false,
                 "2223201BR", 25000.0, true
             )

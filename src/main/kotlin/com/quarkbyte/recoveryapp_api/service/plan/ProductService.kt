@@ -22,6 +22,10 @@ class ProductService(private val repository: ProductRepository) {
             .orElseThrow { ResourceNotFoundException("None products founded") }
         return ResponseEntity.ok<Any>(saved)
     }
+    fun getAllbyId(id: List<UUID>): ResponseEntity<List<Product>> {
+        val saved: List<Product> = repository.findAllById(id)
+        return ResponseEntity.ok(saved)
+    }
 
     @Throws(SaveErrorException::class)
     fun save(customer: Product): ResponseEntity<*> {
@@ -32,11 +36,6 @@ class ProductService(private val repository: ProductRepository) {
             throw SaveErrorException("Error, not saved")
         }
         return ResponseEntity.ok<Any>(saved)
-    }
-
-    fun getAllbyId(id: List<UUID>): ResponseEntity<List<Product>> {
-        val saved: List<Product> = repository.findAllById(id)
-        return ResponseEntity.ok(saved)
     }
 
     @Throws(SaveErrorException::class)

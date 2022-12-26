@@ -9,12 +9,10 @@ import java.util.*
 
 @Entity
 class Product(
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? ,
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID?,
     val name: String?,
-    val statusProduct: StatusProduct? ,
-    val imei: String? ,
-    val imei2: String? ,
-    val value: Double
+    val statusProduct: StatusProduct?,
+    val imei: String?,
+    val imei2: String?,
+    val value: Double?
 )

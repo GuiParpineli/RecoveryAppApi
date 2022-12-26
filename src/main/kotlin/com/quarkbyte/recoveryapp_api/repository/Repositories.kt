@@ -32,6 +32,5 @@ interface ProductRepository : JpaRepository<Product, UUID>
 interface SinistroRepository : JpaRepository<Sinistro, UUID>
 @Repository
 interface TechnicalSupportRepository : JpaRepository<TechnicalSupport, UUID>
-
 @Repository
 interface UserRepository : JpaRepository<UserApp, UUID>

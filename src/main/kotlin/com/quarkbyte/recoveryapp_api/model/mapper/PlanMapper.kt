@@ -86,7 +86,7 @@ class PlanMapper(
         val analystLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
             .slash("?id=${plan.analyst.id}")
             .withRel("Analyst")
-            .withTitle(plan.analyst.name)
+            .withTitle(plan.analyst.name!!)
 
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
             .slash("?id=${plan.bondsman.id}")
@@ -94,9 +94,9 @@ class PlanMapper(
             .withTitle(plan.bondsman.name.toString())
 
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
-            .slash("${plan.caseCSJ?.typeCaseCSJ.toString().lowercase()}?id=${plan.caseCSJ!!.id}")
+            .slash("${plan.caseCSJ?.typeCaseCSJ?.lowercase()}?id=${plan.caseCSJ!!.id}")
             .withRel("caseCSJ")
-            .withTitle(plan.caseCSJ.typeCaseCSJ.toString())
+            .withTitle(plan.caseCSJ.typeCaseCSJ)
 
         return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink, analystLink)
     }

@@ -25,7 +25,9 @@ class PlanService(
         val output: MutableList<PlanOutput> = mutableListOf()
         plans.forEach { p -> output.add(mapper.map(p)) }
         val saved: MutableList<EntityModel<PlanOutput>> = mutableListOf()
-        for (p in plans.indices) { saved.add( mapper.buildPlanOutput( plans[p], output[p] ))}
+        for (p in plans.indices) {
+            saved.add(mapper.buildPlanOutput(plans[p], output[p]))
+        }
         return ResponseEntity.ok(saved)
     }
 
@@ -53,11 +55,14 @@ class PlanService(
 
     @Throws(SaveErrorException::class)
     fun update(customer: Plan): ResponseEntity<*> {
-        val saved: Plan = try {
-            repository.saveAndFlush(customer)
+        var saved: Plan? = null
+        try {
+            if (repository.findById(customer.id!!).isPresent)
+                saved = repository.saveAndFlush(customer)
         } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
+        if (saved == null) throw SaveErrorException("Error, not saved")
         return ResponseEntity.ok(saved)
     }
 

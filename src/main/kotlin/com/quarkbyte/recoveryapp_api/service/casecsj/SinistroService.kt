@@ -26,15 +26,20 @@ class SinistroService(private val repository: SinistroRepository) {
 
     @Throws(SaveErrorException::class)
     fun save(sinistro: Sinistro): ResponseEntity<*> {
-        val saved: Sinistro = try { repository.save(sinistro)
-        } catch (ex: Exception) { throw SaveErrorException("Error, not saved") }
+        val saved: Sinistro = try {
+            repository.save(sinistro)
+        } catch (ex: Exception) {
+            throw SaveErrorException("Error, not saved")
+        }
         return ResponseEntity.ok(saved)
     }
 
     fun update(sinistro: Sinistro): ResponseEntity<*> {
-        val saved: Sinistro = try {
-            repository.saveAndFlush(sinistro)
-        } catch (ex: Exception) {
+        var saved: Sinistro? = null
+        try {
+            if (repository.findById(sinistro.id!!).isPresent)
+                saved = repository.saveAndFlush(sinistro)
+        } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
         return ResponseEntity.ok(saved)

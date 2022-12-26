@@ -1,90 +1,86 @@
 package com.quarkbyte.recoveryapp_api.model.cases
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import jakarta.persistence.*
+import lombok.NoArgsConstructor
 import org.springframework.format.annotation.DateTimeFormat
 import java.util.*
 
 @Entity
+@NoArgsConstructor
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type"
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(value = Misappropriation::class, name = "Misappropriation"),
+    JsonSubTypes.Type(value = Sinistro::class, name = "Sinistro"),
+    JsonSubTypes.Type(value = TechnicalSupport::class, name = "TechicalSupport")
+)
 abstract class CaseCSJ {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: UUID? = null
 
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
-    var date: Date
-
-    @Enumerated(EnumType.STRING)
-    var stepCSJ: StepCSJ
-
-    @Enumerated(EnumType.STRING)
-    var typeCaseCSJ: TypeCaseCSJ
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: UUID? = null
+    @DateTimeFormat(pattern = "dd-mm-yyyy") var date: Date
+    @Enumerated(EnumType.STRING) var stepCSJ: StepCSJ
     var resolutionDate: Date
     var value: Double
     var valueWithDiscount: Double? = null
     var coverageValue: Double
-
-    @Enumerated(EnumType.STRING)
-    var resolutionType: ResolutionType
+    @Enumerated(EnumType.STRING) var resolutionType: ResolutionType
     var recidivistCustomer: Boolean
-
-    @Enumerated(EnumType.STRING)
-    var internalStatus: InternalStatus
-
-    @Enumerated(EnumType.STRING)
-    var externalStatus: ExternalStatus
-    @Column(unique = true)
-    var postCode: String? = null
+    @Enumerated(EnumType.STRING) var internalStatus: InternalStatus
+    @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus
+    @Column(unique = true) var postCode: String? = null
+    abstract var typeCaseCSJ: String
 
     constructor(
         id: UUID?,
-        date: Date,
-        stepCSJ: StepCSJ,
-        typeCaseCSJ: TypeCaseCSJ,
-        resolutionDate: Date,
-        value: Double,
-        coverageValue: Double,
-        resolutionType: ResolutionType,
-        recidivistCustomer: Boolean,
+        date: Date?,
+        stepCSJ: StepCSJ?,
+        resolutionDate: Date?,
+        value: Double?,
+        coverageValue: Double?,
+        resolutionType: ResolutionType?,
+        recidivistCustomer: Boolean?,
     ) {
-        this.id = id
-        this.date = date
-        this.stepCSJ = stepCSJ
-        this.typeCaseCSJ = typeCaseCSJ
-        this.resolutionDate = resolutionDate
-        this.value = value
-        this.coverageValue = coverageValue
-        this.resolutionType = resolutionType
-        this.recidivistCustomer = recidivistCustomer
+        this.id = id!!
+        this.date = date!!
+        this.stepCSJ = stepCSJ!!
+        this.resolutionDate = resolutionDate!!
+        this.value = value!!
+        this.coverageValue = coverageValue!!
+        this.resolutionType = resolutionType!!
+        this.recidivistCustomer = recidivistCustomer!!
         this.internalStatus = InternalStatus.CASO_NOVO
         this.externalStatus = ExternalStatus.EM_ABERTO
     }
 
     constructor(
         id: UUID?,
-        date: Date,
-        stepCSJ: StepCSJ,
-        typeCaseCSJ: TypeCaseCSJ,
-        resolutionDate: Date,
-        value: Double,
-        valueWithDiscount: Double,
-        coverageValue: Double,
-        resolutionType: ResolutionType,
-        recidivistCustomer: Boolean,
-        postCode: String,
+        date: Date?,
+        stepCSJ: StepCSJ?,
+        resolutionDate: Date?,
+        value: Double?,
+        valueWithDiscount: Double?,
+        coverageValue: Double?,
+        resolutionType: ResolutionType?,
+        recidivistCustomer: Boolean?,
+        postCode: String?,
     ) {
-        this.id = id
-        this.date = date
-        this.stepCSJ = stepCSJ
-        this.typeCaseCSJ = typeCaseCSJ
-        this.resolutionDate = resolutionDate
-        this.value = value
+        this.id = id!!
+        this.date = date!!
+        this.stepCSJ = stepCSJ!!
+        this.resolutionDate = resolutionDate!!
+        this.value = value!!
         this.valueWithDiscount = valueWithDiscount
-        this.coverageValue = coverageValue
-        this.recidivistCustomer = recidivistCustomer
+        this.coverageValue = coverageValue!!
+        this.recidivistCustomer = recidivistCustomer!!
         this.postCode = postCode
-        this.resolutionType = resolutionType
+        this.resolutionType = resolutionType!!
         this.internalStatus = InternalStatus.CASO_NOVO
         this.externalStatus = ExternalStatus.EM_ABERTO
     }
+
 }
