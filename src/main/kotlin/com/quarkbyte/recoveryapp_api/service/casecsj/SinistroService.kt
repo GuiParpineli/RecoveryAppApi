@@ -5,7 +5,6 @@ import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.repository.SinistroRepository
 import org.springframework.http.ResponseEntity
-import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -49,6 +48,6 @@ class SinistroService(private val repository: SinistroRepository) {
     fun delete(id: UUID): ResponseEntity<*> {
         if (repository.findById(id).isPresent)
             repository.deleteById(id)
-        return ResponseEntity.ok("deleted successfully")
+        return ResponseEntity.ok("Deleted successfully")
     }
 }
