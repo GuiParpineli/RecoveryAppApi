@@ -10,7 +10,7 @@ import java.util.*
 @NoArgsConstructor
 @JsonTypeName("Sinistro")
 class Sinistro(
-    id: UUID? = UUID.randomUUID(),
+    id: UUID?,
     date: Date?,
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,
@@ -29,9 +29,9 @@ class Sinistro(
     var discountValue: Double,
     var payment: Boolean,
 ) : CaseCSJ(
-    id, date, stepCSJ,  resolutionDate, value, coverageValue,
+    id, date, stepCSJ, resolutionDate, value, coverageValue,
     resolutionType, recidivistCustomer,
-){
+) {
     override var typeCaseCSJ: String = "SINISTRO"
 }
 

@@ -35,7 +35,7 @@ abstract class CaseCSJ {
     abstract var typeCaseCSJ: String
 
     constructor(
-        id: UUID?,
+        id: UUID? ,
         date: Date?,
         stepCSJ: StepCSJ?,
         resolutionDate: Date?,
@@ -44,7 +44,7 @@ abstract class CaseCSJ {
         resolutionType: ResolutionType?,
         recidivistCustomer: Boolean?,
     ) {
-        this.id = id!!
+        this.id = id
         this.date = date!!
         this.stepCSJ = stepCSJ!!
         this.resolutionDate = resolutionDate!!
@@ -68,7 +68,7 @@ abstract class CaseCSJ {
         recidivistCustomer: Boolean?,
         postCode: String?,
     ) {
-        this.id = id!!
+        this.id = id
         this.date = date!!
         this.stepCSJ = stepCSJ!!
         this.resolutionDate = resolutionDate!!
