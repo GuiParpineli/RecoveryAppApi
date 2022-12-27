@@ -19,4 +19,8 @@ class GlobalExceptions {
     @ExceptionHandler
     fun processDeleteError(e: DeleteErrorException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
+
+    @ExceptionHandler
+    fun processDataError(e: FinalDataException): ResponseEntity<String> =
+        ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 }

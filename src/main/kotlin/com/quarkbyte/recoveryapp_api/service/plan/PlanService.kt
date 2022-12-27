@@ -1,10 +1,12 @@
 package com.quarkbyte.recoveryapp_api.service.plan
 
+import com.quarkbyte.recoveryapp_api.exceptions.FinalDataException
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
+import com.quarkbyte.recoveryapp_api.model.dto.PlanInput
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
 import com.quarkbyte.recoveryapp_api.model.mapper.PlanMapper
 import com.quarkbyte.recoveryapp_api.repository.CaseRepository
@@ -55,8 +57,27 @@ class PlanService(
     }
 
     @Throws(SaveErrorException::class)
-    fun update(input: Plan): ResponseEntity<*> {
-        val plan: Plan = repository.saveAndFlush(input)
+    fun update(input: PlanInput): ResponseEntity<*> {
+        val saved = repository.findById(input.id)
+        var plan: Plan? = null
+        val copy = Plan(
+            input.id,
+            input.planStatus,
+            input.value,
+            saved.get().analyst,
+            saved.get().initialDate,
+            input.finalDate,
+            saved.get().productList,
+            saved.get().customer,
+            saved.get().bondsman,
+            saved.get().caseCSJ
+        )
+        if (copy.finalDate != null)
+            if (copy.finalDate < copy.initialDate)
+                throw FinalDataException("Final date cannot be less than start date ")
+        if (saved.isPresent)
+            plan = repository.saveAndFlush(copy)
+
         return ResponseEntity.ok(plan)
     }
 

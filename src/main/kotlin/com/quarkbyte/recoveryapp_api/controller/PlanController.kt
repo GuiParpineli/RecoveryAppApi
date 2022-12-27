@@ -2,6 +2,7 @@ package com.quarkbyte.recoveryapp_api.controller
 
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
+import com.quarkbyte.recoveryapp_api.model.dto.PlanInput
 import com.quarkbyte.recoveryapp_api.service.plan.PlanService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -24,7 +25,7 @@ class PlanController(private val service: PlanService) {
     fun save(@RequestBody plan: PlanDTO) = service.save(plan)
 
     @PatchMapping
-    fun update(@RequestBody plan: Plan) = service.update(plan)
+    fun update(@RequestBody plan: PlanInput) = service.update(plan)
 
     @DeleteMapping
     fun delete(@RequestParam("id") id: UUID) = service.delete(id)

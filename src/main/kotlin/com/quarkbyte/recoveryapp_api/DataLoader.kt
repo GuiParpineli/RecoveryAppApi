@@ -239,7 +239,7 @@ class DataLoader(
                 3000.0,
                 userRepository.findAll()[0],
                 LocalDateTime.now(),
-                LocalDateTime.now(),
+                null,
                 listOf(
                     productRepository.findAll()[2]
                 ),
