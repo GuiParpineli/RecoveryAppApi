@@ -67,7 +67,7 @@ class PlanService(
             saved.get().analyst,
             saved.get().initialDate,
             input.finalDate,
-            saved.get().productList,
+            input.productList ?: saved.get().productList,
             saved.get().customer,
             saved.get().bondsman,
             saved.get().caseCSJ

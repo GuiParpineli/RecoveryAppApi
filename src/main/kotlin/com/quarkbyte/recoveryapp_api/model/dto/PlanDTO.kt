@@ -9,7 +9,7 @@ data class PlanDTO(
     var value: Double,
     var planStatus: Boolean,
     val initialDate: LocalDateTime,
-    val finalDate: LocalDateTime,
+    val finalDate: LocalDateTime?,
     val analystId: UUID,
     var productListId: List<UUID>,
     var customerId: UUID,

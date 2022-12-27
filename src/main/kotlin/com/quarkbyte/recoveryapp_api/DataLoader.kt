@@ -120,6 +120,20 @@ class DataLoader(
                 "Jamaica"
             )
         )
+        customerRepository.save(
+            Customer(
+                null,
+                "Cristian",
+                "Simsen",
+                "321.162.123-22",
+                "99931-1231",
+                addressRepository.findAll()[0],
+                "csimsen@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Brasil"
+            )
+        )
 
         //saving Bondsman
         bondsmanRepository.save(
@@ -136,11 +150,53 @@ class DataLoader(
                 "Jamaica"
             )
         )
+        bondsmanRepository.save(
+            Bondsman(
+                null,
+                "Osvaldo",
+                "Gomes",
+                "13.222.123-22",
+                "99931-1231",
+                addressRepository.findAll()[0],
+                "osvald@gmail.com",
+                Date(),
+                Gender.MASCULINO,
+                "Letonia"
+            )
+        )
+        bondsmanRepository.save(
+            Bondsman(
+                null,
+                "Juricleide",
+                "Costa",
+                "786.231.423-22",
+                "91931-1231",
+                addressRepository.findAll()[0],
+                "jure@gmail.com",
+                Date(),
+                Gender.OUTRO,
+                "Suriname"
+            )
+        )
+        bondsmanRepository.save(
+            Bondsman(
+                null,
+                "Maria",
+                "Silva",
+                "676.431.123-22",
+                "81931-1231",
+                addressRepository.findAll()[0],
+                "maria@gmail.com",
+                Date(),
+                Gender.FEMININO,
+                "Brasil"
+            )
+        )
 
         //save plantypes
         sinistroRepository.save(
             Sinistro(
-                UUID.randomUUID(), Date(), StepCSJ.ACORDO,  Date(),
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(),
                 2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
                 Date(), SinistroType.FURTO_QUALIFICADO,
                 true, true,
@@ -166,9 +222,26 @@ class DataLoader(
                 LocalDateTime.now()
             )
         )
+        misappropriationRepository.save(
+            Misappropriation(
+                UUID.randomUUID(),
+                Date(),
+                StepCSJ.EXTRAJUDICIAL,
+                Date(),
+                10000.0,
+                3500.0,
+                2000.0,
+                ResolutionType.CHARGEBACK_PAGO,
+                true,
+                "PAC4313213BR",
+                PayMethod.RECORRENCIA,
+                false,
+                LocalDateTime.now()
+            )
+        )
         technicalSupportRepository.save(
             TechnicalSupport(
-                UUID.randomUUID(), Date(), StepCSJ.ACORDO,  Date(), 12000.0, 10000.0,
+                UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(), 12000.0, 10000.0,
                 90000.0, ResolutionType.COMPRA, false,
                 "2223201BR", 25000.0, true
             )
@@ -177,6 +250,9 @@ class DataLoader(
         //save users
         userRepository.save(
             UserApp(null, "Paulera")
+        )
+        userRepository.save(
+            UserApp(null, "Guilherme")
         )
 
         //save plan
@@ -210,7 +286,7 @@ class DataLoader(
                     productRepository.findAll()[1]
                 ),
                 customerRepository.findAll()[1],
-                bondsmanRepository.findAll()[0],
+                bondsmanRepository.findAll()[1],
                 misappropriationRepository.findAll()[0]
             )
         )
@@ -227,9 +303,9 @@ class DataLoader(
                     productRepository.findAll()[1],
                     productRepository.findAll()[2]
                 ),
-                customerRepository.findAll()[1],
-                bondsmanRepository.findAll()[0],
-                misappropriationRepository.findAll()[0]
+                customerRepository.findAll()[2],
+                bondsmanRepository.findAll()[2],
+                misappropriationRepository.findAll()[1]
             )
         )
         planRepository.save(
@@ -243,8 +319,8 @@ class DataLoader(
                 listOf(
                     productRepository.findAll()[2]
                 ),
-                customerRepository.findAll()[2],
-                bondsmanRepository.findAll()[0],
+                customerRepository.findAll()[3],
+                bondsmanRepository.findAll()[3],
                 technicalSupportRepository.findAll()[0]
             )
         )

@@ -31,11 +31,11 @@ open class Plan(
         inverseJoinColumns = [JoinColumn(name = "id_products")]
     ) val productList: List<Product>,
 
-    @OneToOne @JoinColumn(name = "customer_id") val customer: Customer,
+    @OneToOne @JoinColumn(name = "customer_id", unique = true) val customer: Customer,
 
-    @OneToOne @JoinColumn(name = "bondsman_id") val bondsman: Bondsman,
+    @OneToOne @JoinColumn(name = "bondsman_id", unique = true) val bondsman: Bondsman,
 
-    @OneToOne @JoinColumn(name = "caseCSJ_id") val caseCSJ: CaseCSJ? = null,
+    @OneToOne @JoinColumn(name = "caseCSJ_id", unique = true) val caseCSJ: CaseCSJ? = null,
 
     ) {
 
