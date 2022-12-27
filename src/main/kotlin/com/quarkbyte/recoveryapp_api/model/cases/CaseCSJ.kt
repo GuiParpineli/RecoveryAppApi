@@ -20,7 +20,7 @@ import java.util.*
 )
 abstract class CaseCSJ {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: UUID? = null
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: UUID?
     @DateTimeFormat(pattern = "dd-mm-yyyy") var date: Date
     @Enumerated(EnumType.STRING) var stepCSJ: StepCSJ
     var resolutionDate: Date
@@ -31,7 +31,7 @@ abstract class CaseCSJ {
     var recidivistCustomer: Boolean
     @Enumerated(EnumType.STRING) var internalStatus: InternalStatus
     @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus
-    @Column(unique = true) var postCode: String? =  ""
+    @Column(unique = true) var postCode: String? = null
     abstract var typeCaseCSJ: String
 
     constructor(

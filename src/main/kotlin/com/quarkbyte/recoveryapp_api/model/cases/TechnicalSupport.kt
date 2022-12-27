@@ -12,7 +12,7 @@ import java.util.*
 @Entity
 @JsonTypeName("TechnicalSupport")
 class TechnicalSupport(
-    id: UUID?,
+    id: UUID? = UUID.randomUUID(),
     date: Date?,
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,

@@ -13,7 +13,7 @@ import java.util.*
 @NoArgsConstructor
 @JsonTypeName("Misappropriation")
 class Misappropriation(
-    id: UUID?,
+    id: UUID? = UUID.randomUUID(),
     date: Date?,
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,

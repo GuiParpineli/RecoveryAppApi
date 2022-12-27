@@ -10,7 +10,7 @@ import java.util.*
 @NoArgsConstructor
 @JsonTypeName("Sinistro")
 class Sinistro(
-    id: UUID?,
+    id: UUID? = UUID.randomUUID(),
     date: Date?,
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,
