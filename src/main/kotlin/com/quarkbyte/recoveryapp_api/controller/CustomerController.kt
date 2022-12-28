@@ -24,6 +24,13 @@ class CustomerController(val service: CustomerService) {
     @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
 
+    @GetMapping("byemail")
+    fun getByEmail(@RequestParam("email") email:String,
+                   @RequestParam("cpf") cpf: String) = service.getByEmailorCpf(email, cpf)
+
+    @GetMapping("byname")
+    fun getByName(@RequestParam("name") name: String) = service.getByName(name)
+
     @PostMapping
     fun save(@RequestBody customer: Customer) = service.save(customer)
 

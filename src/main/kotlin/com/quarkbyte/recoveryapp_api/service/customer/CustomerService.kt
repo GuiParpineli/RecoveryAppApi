@@ -32,6 +32,19 @@ data class CustomerService(
         return ResponseEntity.ok<Any>(saved)
     }
 
+    fun getByEmailorCpf(email: String, cpf: String): ResponseEntity<*> {
+        val founded = repository.findByEmailOrCpf(email, cpf)
+        if (founded?.id == null)
+            throw ResourceNotFoundException("None Customer's founded")
+        return ResponseEntity.ok(founded)
+    }
+
+    fun getByName(name: String): ResponseEntity<*> {
+        val founded = repository.findByNameContainingIgnoreCase(name)
+        if (founded!!.isEmpty())
+            throw ResourceNotFoundException("None Customer's founded")
+        return ResponseEntity.ok(founded)
+    }
     @Throws(SaveErrorException::class)
     fun save(customer: Customer): ResponseEntity<*> {
         val saved: Customer = try {

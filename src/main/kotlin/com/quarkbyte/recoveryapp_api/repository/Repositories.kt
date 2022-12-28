@@ -16,21 +16,37 @@ import java.util.*
 
 @Repository
 interface AddressRepository : JpaRepository<Address, UUID>
+
 @Repository
-interface BondsmanRepository : JpaRepository<Bondsman, UUID>
+interface BondsmanRepository : JpaRepository<Bondsman, UUID> {
+    fun findByEmailOrCpf(email: String, cpf: String): Bondsman?
+    fun findByNameContainingIgnoreCase(name: String): List<Bondsman>?
+}
+
+@Repository
+interface CustomerRepository : JpaRepository<Customer, UUID> {
+    fun findByEmailOrCpf(email: String, cpf: String): Customer?
+    fun findByNameContainingIgnoreCase(name: String): List<Bondsman>?
+}
+
 @Repository
 interface CaseRepository : JpaRepository<CaseCSJ, UUID>
-@Repository
-interface CustomerRepository : JpaRepository<Customer, UUID>
+
+
 @Repository
 interface MisappropriationRepository : JpaRepository<Misappropriation, UUID>
+
 @Repository
 interface PlanRepository : JpaRepository<Plan, UUID>
+
 @Repository
 interface ProductRepository : JpaRepository<Product, UUID>
+
 @Repository
 interface SinistroRepository : JpaRepository<Sinistro, UUID>
+
 @Repository
 interface TechnicalSupportRepository : JpaRepository<TechnicalSupport, UUID>
+
 @Repository
 interface UserRepository : JpaRepository<UserApp, UUID>

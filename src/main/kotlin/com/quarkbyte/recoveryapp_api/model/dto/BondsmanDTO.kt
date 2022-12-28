@@ -5,8 +5,9 @@ import com.quarkbyte.recoveryapp_api.model.customer.Address
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BondsmanDTO(
-    var name: String? = null,
-    var lastName: String? = null,
-    var email: String? = null,
+    val name: String,
+    val lastName: String,
+    val phone: String,
+    val email: String,
     val address: Address
 )

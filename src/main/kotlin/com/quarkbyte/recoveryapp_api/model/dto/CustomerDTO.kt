@@ -5,8 +5,9 @@ import com.quarkbyte.recoveryapp_api.model.customer.Address
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CustomerDTO(
-    val name: String? ,
-    val lastName: String? ,
-    val email: String? ,
+    val name: String ,
+    val lastName: String,
+    val phone: String,
+    val email: String ,
     val address: Address
 )

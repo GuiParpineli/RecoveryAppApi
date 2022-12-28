@@ -22,7 +22,7 @@ class BondsmanService(
         val saved = repository.findAll()
         val bondsmanDTOS: MutableList<BondsmanDTO> = ArrayList()
         if (saved.isEmpty()) throw ResourceNotFoundException("None Bondsman founded")
-        saved.forEach { c  -> bondsmanDTOS.add(mapper.convertValue(c)) }
+        saved.forEach { c -> bondsmanDTOS.add(mapper.convertValue(c)) }
         return ResponseEntity.ok(bondsmanDTOS)
     }
 
@@ -33,30 +33,60 @@ class BondsmanService(
         return ResponseEntity.ok(saved)
     }
 
+    fun getByEmailorCpf(email: String, cpf: String): ResponseEntity<*> {
+        val founded = repository.findByEmailOrCpf(email, cpf)
+        if (founded?.id == null)
+            throw ResourceNotFoundException("None Bondman's founded")
+        return ResponseEntity.ok(founded)
+    }
+
+    fun getByName(name: String): ResponseEntity<*> {
+        val founded = repository.findByNameContainingIgnoreCase(name)
+        if (founded!!.isEmpty())
+            throw ResourceNotFoundException("None Bondman's founded")
+        return ResponseEntity.ok(founded)
+    }
+
     @Throws(SaveErrorException::class)
     fun save(bondsman: Bondsman): ResponseEntity<*> {
-        val saved: Bondsman = try {
-            repository.save(bondsman)
-        } catch (e: Exception) {
-            throw SaveErrorException("Error, not saved")
-        }
+        val saved: Bondsman =
+            try { repository.save(bondsman) }
+            catch (e: Exception) { throw SaveErrorException("Error, not saved") }
         return ResponseEntity.ok(saved)
     }
 
     @Throws(SaveErrorException::class)
     fun update(bondsman: Bondsman): ResponseEntity<*> {
-        val saved: Bondsman = try {
-            repository.saveAndFlush(bondsman)
+        var newBondsman: Bondsman? = null
+        val founded =
+            repository.findByEmailOrCpf(bondsman.email, bondsman.cpf)
+                ?: throw ResourceNotFoundException("None Bondsmans founded")
+        try {
+            if (founded.id != null) {
+                val copy = Bondsman(
+                    founded.id,
+                    founded.name,
+                    founded.lastName,
+                    founded.cpf,
+                    bondsman.phone,
+                    bondsman.address,
+                    founded.email,
+                    founded.birthDay,
+                    founded.gender,
+                    founded.nationality
+                )
+                newBondsman = repository.saveAndFlush(copy)
+            }
         } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
-        return ResponseEntity.ok(saved)
+        return ResponseEntity.ok(newBondsman)
     }
 
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
         if (repository.findById(id).isPresent)
-        repository.deleteById(id)
+            repository.deleteById(id)
         return ResponseEntity.ok("deleted successfully")
     }
 }

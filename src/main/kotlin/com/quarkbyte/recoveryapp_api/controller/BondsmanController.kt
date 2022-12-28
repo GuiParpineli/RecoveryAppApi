@@ -3,7 +3,6 @@ package com.quarkbyte.recoveryapp_api.controller
 import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.service.customer.BondsmanService
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -22,6 +21,13 @@ class BondsmanController(private val service: BondsmanService) {
 
     @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
+
+    @GetMapping("byemail")
+    fun getByEmail(@RequestParam("email") email:String,
+                   @RequestParam("cpf") cpf: String) = service.getByEmailorCpf(email, cpf)
+
+    @GetMapping("byname")
+    fun getByName(@RequestParam("name") name: String) = service.getByName(name)
 
     @PostMapping("register")
     fun save(@RequestBody bondsman: Bondsman) = service.save(bondsman)
