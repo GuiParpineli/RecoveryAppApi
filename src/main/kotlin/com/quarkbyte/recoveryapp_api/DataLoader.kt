@@ -67,7 +67,6 @@ class DataLoader(
         //save address
         addressRepository.save(
             Address(
-                null,
                 "Berilo",
                 "MG",
                 "Ruas das flores",

@@ -23,7 +23,7 @@ class BondsmanService(
         val bondsmanDTOS: MutableList<BondsmanDTO> = ArrayList()
         if (saved.isEmpty()) throw ResourceNotFoundException("None Bondsman founded")
         saved.forEach { c  -> bondsmanDTOS.add(mapper.convertValue(c)) }
-        return ResponseEntity.ok(saved)
+        return ResponseEntity.ok(bondsmanDTOS)
     }
 
     @Throws(ResourceNotFoundException::class)
