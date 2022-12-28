@@ -1,5 +1,6 @@
 package com.quarkbyte.recoveryapp_api.service.casecsj
 
+import com.quarkbyte.recoveryapp_api.exceptions.FinalDataException
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
@@ -25,6 +26,8 @@ class SinistroService(private val repository: SinistroRepository) {
 
     @Throws(SaveErrorException::class)
     fun save(sinistro: Sinistro): ResponseEntity<*> {
+        if (sinistro.date > sinistro.resolutionDate)
+            throw FinalDataException("Resolution date cannot be less than start date")
         val saved: Sinistro = try {
             repository.save(sinistro)
         } catch (ex: Exception) {
@@ -34,14 +37,40 @@ class SinistroService(private val repository: SinistroRepository) {
     }
 
     fun update(sinistro: Sinistro): ResponseEntity<*> {
-        var saved: Sinistro? = null
+        val saved = repository.findById(sinistro.id!!)
+        var newSinistro: Sinistro? = null
         try {
-            if (repository.findById(sinistro.id!!).isPresent)
-                saved = repository.saveAndFlush(sinistro)
+            if (saved.isPresent)
+                if (!(saved.get().boStatus && saved.get().imeiStatus &&
+                            saved.get().videoStatus)) {
+                    val copy = Sinistro(
+                            saved.get().id,
+                            saved.get().date,
+                            saved.get().stepCSJ,
+                            saved.get().resolutionDate,
+                            saved.get().value,
+                            saved.get().coverageValue,
+                            saved.get().resolutionType,
+                            saved.get().recidivistCustomer,
+                            saved.get().initialTime,
+                            saved.get().sinistroType,
+                            sinistro.imeiStatus,
+                            sinistro.boStatus,
+                            sinistro.videoStatus,
+                            sinistro.sinistroDate,
+                            saved.get().franchise,
+                            saved.get().franchiseTotalValue,
+                            saved.get().discountValue,
+                            saved.get().payment
+                        )
+                    newSinistro = repository.saveAndFlush(copy)
+                } else {
+                    newSinistro = repository.saveAndFlush(sinistro)
+                }
         } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
-        return ResponseEntity.ok(saved)
+        return ResponseEntity.ok(newSinistro)
     }
 
     @Throws(ResourceNotFoundException::class)

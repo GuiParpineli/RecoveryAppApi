@@ -3,7 +3,6 @@ package com.quarkbyte.recoveryapp_api.service.plan
 import com.quarkbyte.recoveryapp_api.exceptions.FinalDataException
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanInput
@@ -26,7 +25,7 @@ class PlanService(
     fun getAll(): ResponseEntity<*> {
         val plans = repository.findAll()
         val output: MutableList<PlanOutput> = mutableListOf()
-        plans.forEach { p -> output.add(mapper.map(p)) }
+        plans.forEach { p -> output.add( mapper.map(p)) }
         val saved: MutableList<EntityModel<PlanOutput>> = mutableListOf()
         for (p in plans.indices) {
             saved.add(mapper.buildPlanOutput(plans[p], output[p]))
@@ -50,16 +49,20 @@ class PlanService(
 
     @Throws(SaveErrorException::class)
     fun save(input: PlanDTO): ResponseEntity<*> {
+
         val plan: Plan = repository.save(mapper.map(input))
         val output = mapper.map(plan)
         val saved = mapper.buildPlanOutput(plan, output)
         return ResponseEntity.ok(saved)
+
     }
 
     @Throws(SaveErrorException::class)
     fun update(input: PlanInput): ResponseEntity<*> {
+
         val saved = repository.findById(input.id)
         var plan: Plan? = null
+
         val copy = Plan(
             input.id,
             input.planStatus,
@@ -72,9 +75,11 @@ class PlanService(
             saved.get().bondsman,
             saved.get().caseCSJ
         )
+
         if (copy.finalDate != null)
             if (copy.finalDate < copy.initialDate)
                 throw FinalDataException("Final date cannot be less than start date ")
+
         if (saved.isPresent)
             plan = repository.saveAndFlush(copy)
 

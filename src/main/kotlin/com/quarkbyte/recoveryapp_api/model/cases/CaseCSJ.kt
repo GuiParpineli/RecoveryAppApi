@@ -23,11 +23,11 @@ abstract class CaseCSJ {
     @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: UUID?
     @DateTimeFormat(pattern = "dd-mm-yyyy") var date: Date
     @Enumerated(EnumType.STRING) var stepCSJ: StepCSJ
-    var resolutionDate: Date
+    var resolutionDate: Date?
     var value: Double
     var valueWithDiscount: Double? = 0.0
     var coverageValue: Double
-    @Enumerated(EnumType.STRING) var resolutionType: ResolutionType
+    @Enumerated(EnumType.STRING) var resolutionType: ResolutionType?
     var recidivistCustomer: Boolean
     @Enumerated(EnumType.STRING) var internalStatus: InternalStatus
     @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus
@@ -71,13 +71,13 @@ abstract class CaseCSJ {
         this.id = id
         this.date = date!!
         this.stepCSJ = stepCSJ!!
-        this.resolutionDate = resolutionDate!!
+        this.resolutionDate = resolutionDate
         this.value = value!!
         this.valueWithDiscount = valueWithDiscount
         this.coverageValue = coverageValue!!
         this.recidivistCustomer = recidivistCustomer!!
         this.postCode = postCode
-        this.resolutionType = resolutionType!!
+        this.resolutionType = resolutionType
         this.internalStatus = InternalStatus.CASO_NOVO
         this.externalStatus = ExternalStatus.EM_ABERTO
     }
