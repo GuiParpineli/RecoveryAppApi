@@ -259,6 +259,7 @@ class DataLoader(
             Plan(
                 UUID.randomUUID(),
                 true,
+                "xasd212",
                 47000.0,
                 userRepository.findAll()[0],
                 LocalDateTime.now(),
@@ -276,6 +277,7 @@ class DataLoader(
             Plan(
                 UUID.randomUUID(),
                 true,
+                "rsd201",
                 7000.0,
                 userRepository.findAll()[0],
                 LocalDateTime.now(),
@@ -293,6 +295,7 @@ class DataLoader(
             Plan(
                 UUID.randomUUID(),
                 true,
+                "k2310",
                 9400.0,
                 userRepository.findAll()[0],
                 LocalDateTime.now(),
@@ -311,6 +314,7 @@ class DataLoader(
             Plan(
                 UUID.randomUUID(),
                 true,
+                "puy123",
                 3000.0,
                 userRepository.findAll()[0],
                 LocalDateTime.now(),

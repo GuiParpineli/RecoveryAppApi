@@ -25,7 +25,7 @@ class PlanService(
     fun getAll(): ResponseEntity<*> {
         val plans = repository.findAll()
         val output: MutableList<PlanOutput> = mutableListOf()
-        plans.forEach { p -> output.add( mapper.map(p)) }
+        plans.forEach { p -> output.add(mapper.map(p)) }
         val saved: MutableList<EntityModel<PlanOutput>> = mutableListOf()
         for (p in plans.indices) {
             saved.add(mapper.buildPlanOutput(plans[p], output[p]))
@@ -66,6 +66,7 @@ class PlanService(
         val copy = Plan(
             input.id,
             input.planStatus,
+            input.code,
             input.value,
             saved.get().analyst,
             saved.get().initialDate,

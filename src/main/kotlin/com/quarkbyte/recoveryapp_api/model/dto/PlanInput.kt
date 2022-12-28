@@ -8,6 +8,7 @@ import java.util.*
 @JsonIgnoreProperties(ignoreUnknown = true)
 class PlanInput (
     val id: UUID,
+    val code: String,
     var value: Double,
     var planStatus: Boolean,
     var productList: List<Product>?,

@@ -6,6 +6,7 @@ import java.util.UUID
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PlanDTO(
+    val code: String,
     var value: Double,
     var planStatus: Boolean,
     val initialDate: LocalDateTime,

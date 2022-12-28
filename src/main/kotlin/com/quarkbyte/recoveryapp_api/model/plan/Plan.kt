@@ -11,12 +11,13 @@ import java.time.LocalDateTime
 import java.util.*
 @Entity
 @Cacheable
-@NoArgsConstructor
 open class Plan(
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID? = null,
 
     val planStatus: Boolean,
+
+    val code: String,
 
     var value: Double,
 

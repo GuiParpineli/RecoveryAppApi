@@ -39,4 +39,5 @@ class CustomerController(val service: CustomerService) {
 
     @DeleteMapping
     fun delete(@RequestParam("id") id: UUID) = service.delete(id)
+
 }

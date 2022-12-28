@@ -32,7 +32,8 @@ class PlanMapper(
         }
 
         val analyst =
-            userRepository.findById(input.analystId).orElseThrow { ResourceNotFoundException("none plans founded") }
+            userRepository.findById(input.analystId)
+                .orElseThrow { ResourceNotFoundException("none plans founded") }
         val customer =
             customerRepository.findById(input.customerId)
                 .orElseThrow { ResourceNotFoundException("none plans founded") }
@@ -40,10 +41,12 @@ class PlanMapper(
             bondsmanRepository.findById(input.bondsmanId)
                 .orElseThrow { ResourceNotFoundException("none plans founded") }
         val case =
-            caseRepository.findById(input.caseCSJId).orElseThrow { ResourceNotFoundException("none plans founded") }
+            caseRepository.findById(input.caseCSJId)
+                .orElseThrow { ResourceNotFoundException("none plans founded") }
 
         return Plan(
             planStatus = input.planStatus,
+            code = input.code,
             initialDate = input.initialDate,
             finalDate = input.finalDate,
             value = input.value,
@@ -57,7 +60,7 @@ class PlanMapper(
 
     fun map(plan: Plan): PlanOutput {
         return PlanOutput(
-            id = plan.id!!,
+            code = plan.code,
             value = plan.value,
             initialDate = plan.initialDate,
             finalDate = plan.finalDate,

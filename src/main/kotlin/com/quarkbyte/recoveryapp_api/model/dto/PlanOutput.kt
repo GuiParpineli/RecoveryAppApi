@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 data class PlanOutput(
-    val id: UUID,
+    val code: String,
     var value: Double?,
     val initialDate: LocalDateTime?,
     val finalDate: LocalDateTime?,
