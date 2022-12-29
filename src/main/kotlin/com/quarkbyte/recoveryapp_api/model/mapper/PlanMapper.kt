@@ -72,7 +72,6 @@ class PlanMapper(
             initialDate = plan.initialDate,
             finalDate = plan.finalDate,
             planStatus = plan.planStatus,
-            caseCSJ = plan.caseCSJ,
             creationDate = plan.creationDate
         )
     }
@@ -81,13 +80,20 @@ class PlanMapper(
 
         val productLink: Link?
         val productsIdList = mutableListOf<String>()
+        val casesList= mutableListOf<String>()
         val names = mutableListOf<String>()
         plan.productList.forEach { p -> names.add(p.name.toString()) && productsIdList.add(p.id.toString()) }
+        plan.caseCSJ.forEach { p -> casesList.add(p?.id.toString()) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")
             .withRel("products")
             .withTitle("products: $names")
+
+        val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
+            .slash("/allbyid?id=${casesList.joinToString("," )}")
+            .withRel("caseCSJ")
+            .withTitle(plan.caseCSJ.toString())
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=${plan.customer.id}")
@@ -104,14 +110,8 @@ class PlanMapper(
             .withRel("bondsman")
             .withTitle(plan.bondsman.name.toString())
 
-/*
-        val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
-            .slash("${plan.caseCSJ[0]?.id}?id=${plan.caseCSJ!!.id}")
-            .withRel("caseCSJ")
-            .withTitle(plan.caseCSJ.typeCaseCSJ)
-*/
 
-        return EntityModel.of(output, productLink, customerLink, bondsmanLInk, analystLink)
+        return EntityModel.of(output, caseCSJLink,productLink, customerLink, bondsmanLInk, analystLink)
     }
 }
 

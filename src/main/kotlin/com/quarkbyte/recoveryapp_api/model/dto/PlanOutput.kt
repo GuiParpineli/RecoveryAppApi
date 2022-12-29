@@ -10,6 +10,5 @@ data class PlanOutput(
     val initialDate: LocalDateTime?,
     val finalDate: LocalDateTime?,
     var planStatus: Boolean,
-    var caseCSJ: List<CaseCSJ?>,
     val creationDate: LocalDateTime,
 )

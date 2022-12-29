@@ -32,7 +32,6 @@ interface CustomerRepository : JpaRepository<Customer, UUID> {
 @Repository
 interface CaseRepository : JpaRepository<CaseCSJ, UUID>
 
-
 @Repository
 interface MisappropriationRepository : JpaRepository<Misappropriation, UUID>
 

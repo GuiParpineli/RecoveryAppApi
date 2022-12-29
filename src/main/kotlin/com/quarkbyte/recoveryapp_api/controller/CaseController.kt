@@ -30,8 +30,12 @@ class CaseController(
     @GetMapping
     fun getALl(): ResponseEntity<*> = service.getAll()
 
+    @GetMapping("allbyid")
+    fun getAllById(@RequestParam("id") ids: List<UUID>) = service.getAllByID(ids)
+
     @GetMapping("sinistro/all")
     fun getAllSinistro() = sinistroService.get()
+
 
     //gets for each case
 

@@ -15,10 +15,18 @@ class CaseService(private val repository: CaseRepository) {
         return ResponseEntity.ok(saved)
     }
 
+    fun getAllByID(ids: List<UUID>): ResponseEntity<*> {
+        val saved = repository.findAllById(ids)
+        if (saved.isEmpty())
+            throw ResourceNotFoundException("None cases founded")
+        return ResponseEntity.ok(saved)
+    }
+
     @Throws(ResourceNotFoundException::class)
     fun delete(id: UUID): ResponseEntity<*> {
         if (repository.findById(id).isPresent)
             repository.deleteById(id)
         return ResponseEntity.ok("deleted successfully")
     }
+
 }
