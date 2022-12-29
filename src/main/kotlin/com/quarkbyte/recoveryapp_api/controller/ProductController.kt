@@ -13,15 +13,19 @@ class ProductController(private val service: ProductService) {
 
     @GetMapping("all")
     fun getALl(): ResponseEntity<*> = service.getAll()
+
     @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
+
     @GetMapping("allbyid")
     fun findAllById(@RequestParam(value ="id") id: List<UUID>) = service.getAllbyId(id)
 
     @PostMapping
     fun save(@RequestBody product: Product) = service.save(product)
+
     @PatchMapping
     fun update(@RequestBody product: Product) = service.update(product)
+
     @DeleteMapping
     fun delete(@RequestParam("id") id: UUID) = service.delete(id)
 }
