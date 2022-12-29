@@ -2,6 +2,7 @@ package com.quarkbyte.recoveryapp_api.model.mapper
 
 import com.quarkbyte.recoveryapp_api.controller.*
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
+import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
@@ -23,11 +24,19 @@ class PlanMapper(
 
     fun map(input: PlanDTO): Plan {
         val product = mutableListOf<Product>()
+        val cases = mutableListOf<CaseCSJ>()
 
         for (i in input.productListId.indices) {
             product.add(
                 productRepository.findById(input.productListId[i])
                     .orElseThrow { ResourceNotFoundException("none products founded") }
+            )
+        }
+
+        for(i in input.caseCSJId.indices){
+            cases.add(
+                caseRepository.findById(input.caseCSJId[i])
+                    .orElseThrow { ResourceNotFoundException("None Cases founded") }
             )
         }
 
@@ -40,9 +49,6 @@ class PlanMapper(
         val bondsman =
             bondsmanRepository.findById(input.bondsmanId)
                 .orElseThrow { ResourceNotFoundException("none bondsman founded") }
-        val case =
-            caseRepository.findById(input.caseCSJId)
-                .orElseThrow { ResourceNotFoundException("none case founded") }
 
         return Plan(
             planStatus = input.planStatus,
@@ -54,7 +60,7 @@ class PlanMapper(
             customer = customer,
             analyst = analyst,
             bondsman = bondsman,
-            caseCSJ = case
+            caseCSJ = cases
         )
     }
 
@@ -66,6 +72,7 @@ class PlanMapper(
             initialDate = plan.initialDate,
             finalDate = plan.finalDate,
             planStatus = plan.planStatus,
+            caseCSJ = plan.caseCSJ,
             creationDate = plan.creationDate
         )
     }
@@ -97,12 +104,14 @@ class PlanMapper(
             .withRel("bondsman")
             .withTitle(plan.bondsman.name.toString())
 
+/*
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
-            .slash("${plan.caseCSJ?.typeCaseCSJ?.lowercase()}?id=${plan.caseCSJ!!.id}")
+            .slash("${plan.caseCSJ[0]?.id}?id=${plan.caseCSJ!!.id}")
             .withRel("caseCSJ")
             .withTitle(plan.caseCSJ.typeCaseCSJ)
+*/
 
-        return EntityModel.of(output, productLink, customerLink, bondsmanLInk, caseCSJLink, analystLink)
+        return EntityModel.of(output, productLink, customerLink, bondsmanLInk, analystLink)
     }
 }
 

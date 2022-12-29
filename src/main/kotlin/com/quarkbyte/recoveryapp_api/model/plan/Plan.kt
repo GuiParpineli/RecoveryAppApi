@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import java.util.*
+
 @Entity
 @Cacheable
 open class Plan(
@@ -33,15 +34,19 @@ open class Plan(
         inverseJoinColumns = [JoinColumn(name = "id_products")]
     ) val productList: List<Product>,
 
-    @OneToOne @JoinColumn(name = "customer_id" ) val customer: Customer,
+    @OneToOne @JoinColumn(name = "customer_id") val customer: Customer,
 
-    @OneToOne @JoinColumn(name = "bondsman_id" ) val bondsman: Bondsman,
+    @OneToOne @JoinColumn(name = "bondsman_id") val bondsman: Bondsman,
 
-    @OneToOne @JoinColumn(name = "caseCSJ_id", unique = true) val caseCSJ: CaseCSJ? = null,
+    @ManyToMany @JoinTable(
+        joinColumns = [JoinColumn(name = "plan_id")],
+        inverseJoinColumns = [JoinColumn(name = "caseCSJ_id", unique = true)]
+    ) val caseCSJ: List<CaseCSJ?>,
 
     ) {
 
     var recidivistCustomer: Boolean? = false
+
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
 

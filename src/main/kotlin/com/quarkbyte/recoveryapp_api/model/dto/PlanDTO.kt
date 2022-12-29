@@ -15,6 +15,6 @@ data class PlanDTO(
     var productListId: List<UUID>,
     var customerId: UUID,
     var bondsmanId: UUID,
-    var caseCSJId: UUID
+    var caseCSJId: List<UUID>
 )
 

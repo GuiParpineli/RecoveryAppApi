@@ -1,7 +1,7 @@
 package com.quarkbyte.recoveryapp_api.model.dto
 
+import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import java.time.LocalDateTime
-import java.util.UUID
 
 data class PlanOutput(
     val code: String,
@@ -10,5 +10,6 @@ data class PlanOutput(
     val initialDate: LocalDateTime?,
     val finalDate: LocalDateTime?,
     var planStatus: Boolean,
-    val creationDate: LocalDateTime
+    var caseCSJ: List<CaseCSJ?>,
+    val creationDate: LocalDateTime,
 )

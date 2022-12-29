@@ -236,6 +236,23 @@ class DataLoader(
                 LocalDateTime.now()
             )
         )
+
+        misappropriationRepository.save(
+            Misappropriation(
+                UUID.randomUUID(),
+                Date(),
+                StepCSJ.ACORDO,
+                Date(),
+                10000.0,
+                3500.0,
+                2000.0,
+                ResolutionType.COMPRA_MAIS_MULTA,
+                "PAC897450813-BR",
+                PayMethod.RECORRENCIA,
+                false,
+                LocalDateTime.now()
+            )
+        )
         technicalSupportRepository.save(
             TechnicalSupport(
                 UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(), 12000.0, 10000.0,
@@ -268,7 +285,10 @@ class DataLoader(
                 ),
                 customerRepository.findAll()[0],
                 bondsmanRepository.findAll()[0],
-                sinistroRepository.findAll()[0]
+                listOf(
+                    misappropriationRepository.findAll()[2],
+                    sinistroRepository.findAll()[0],
+                )
             )
         )
         planRepository.save(
@@ -286,7 +306,7 @@ class DataLoader(
                 ),
                 customerRepository.findAll()[1],
                 bondsmanRepository.findAll()[1],
-                misappropriationRepository.findAll()[0]
+                listOf(misappropriationRepository.findAll()[0])
             )
         )
         planRepository.save(
@@ -305,7 +325,7 @@ class DataLoader(
                 ),
                 customerRepository.findAll()[2],
                 bondsmanRepository.findAll()[2],
-                misappropriationRepository.findAll()[1]
+                listOf(misappropriationRepository.findAll()[1])
             )
         )
         planRepository.save(
@@ -322,7 +342,7 @@ class DataLoader(
                 ),
                 customerRepository.findAll()[3],
                 bondsmanRepository.findAll()[3],
-                technicalSupportRepository.findAll()[0]
+                listOf(technicalSupportRepository.findAll()[0])
             )
         )
 
