@@ -28,7 +28,6 @@ abstract class CaseCSJ {
     var valueWithDiscount: Double? = 0.0
     var coverageValue: Double
     @Enumerated(EnumType.STRING) var resolutionType: ResolutionType?
-    var recidivistCustomer: Boolean
     @Enumerated(EnumType.STRING) var internalStatus: InternalStatus
     @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus
     @Column(unique = true) var postCode: String? = null
@@ -42,7 +41,6 @@ abstract class CaseCSJ {
         value: Double?,
         coverageValue: Double?,
         resolutionType: ResolutionType?,
-        recidivistCustomer: Boolean?,
     ) {
         this.id = id
         this.date = date!!
@@ -51,7 +49,6 @@ abstract class CaseCSJ {
         this.value = value!!
         this.coverageValue = coverageValue!!
         this.resolutionType = resolutionType!!
-        this.recidivistCustomer = recidivistCustomer!!
         this.internalStatus = InternalStatus.CASO_NOVO
         this.externalStatus = ExternalStatus.EM_ABERTO
     }
@@ -65,7 +62,6 @@ abstract class CaseCSJ {
         valueWithDiscount: Double?,
         coverageValue: Double?,
         resolutionType: ResolutionType?,
-        recidivistCustomer: Boolean?,
         postCode: String?,
     ) {
         this.id = id
@@ -75,7 +71,6 @@ abstract class CaseCSJ {
         this.value = value!!
         this.valueWithDiscount = valueWithDiscount
         this.coverageValue = coverageValue!!
-        this.recidivistCustomer = recidivistCustomer!!
         this.postCode = postCode
         this.resolutionType = resolutionType
         this.internalStatus = InternalStatus.CASO_NOVO

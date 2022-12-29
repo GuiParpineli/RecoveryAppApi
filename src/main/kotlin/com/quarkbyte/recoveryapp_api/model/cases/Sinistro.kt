@@ -17,7 +17,6 @@ class Sinistro(
     value: Double?,
     coverageValue: Double?,
     resolutionType: ResolutionType?,
-    recidivistCustomer: Boolean?,
     var initialTime: Date,
     var sinistroType: SinistroType,
     var imeiStatus: Boolean,
@@ -30,7 +29,7 @@ class Sinistro(
     var payment: Boolean,
 ) : CaseCSJ(
     id, date, stepCSJ, resolutionDate, value, coverageValue,
-    resolutionType, recidivistCustomer,
+    resolutionType
 ) {
     override var typeCaseCSJ: String = "SINISTRO"
 }

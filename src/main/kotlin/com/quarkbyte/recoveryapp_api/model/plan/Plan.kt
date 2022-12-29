@@ -27,19 +27,21 @@ open class Plan(
 
     val finalDate: LocalDateTime? = null,
 
+
     @ManyToMany @JoinTable(
         name = "plan_products", joinColumns = [JoinColumn(name = "id")],
         inverseJoinColumns = [JoinColumn(name = "id_products")]
     ) val productList: List<Product>,
 
-    @OneToOne @JoinColumn(name = "customer_id", unique = true) val customer: Customer,
+    @OneToOne @JoinColumn(name = "customer_id" ) val customer: Customer,
 
-    @OneToOne @JoinColumn(name = "bondsman_id", unique = true) val bondsman: Bondsman,
+    @OneToOne @JoinColumn(name = "bondsman_id" ) val bondsman: Bondsman,
 
     @OneToOne @JoinColumn(name = "caseCSJ_id", unique = true) val caseCSJ: CaseCSJ? = null,
 
     ) {
 
+    var recidivistCustomer: Boolean? = false
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
 

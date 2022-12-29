@@ -27,22 +27,22 @@ class PlanMapper(
         for (i in input.productListId.indices) {
             product.add(
                 productRepository.findById(input.productListId[i])
-                    .orElseThrow { ResourceNotFoundException("none plans founded") }
+                    .orElseThrow { ResourceNotFoundException("none products founded") }
             )
         }
 
         val analyst =
             userRepository.findById(input.analystId)
-                .orElseThrow { ResourceNotFoundException("none plans founded") }
+                .orElseThrow { ResourceNotFoundException("none user founded") }
         val customer =
             customerRepository.findById(input.customerId)
-                .orElseThrow { ResourceNotFoundException("none plans founded") }
+                .orElseThrow { ResourceNotFoundException("none customer founded") }
         val bondsman =
             bondsmanRepository.findById(input.bondsmanId)
-                .orElseThrow { ResourceNotFoundException("none plans founded") }
+                .orElseThrow { ResourceNotFoundException("none bondsman founded") }
         val case =
             caseRepository.findById(input.caseCSJId)
-                .orElseThrow { ResourceNotFoundException("none plans founded") }
+                .orElseThrow { ResourceNotFoundException("none case founded") }
 
         return Plan(
             planStatus = input.planStatus,
@@ -62,6 +62,7 @@ class PlanMapper(
         return PlanOutput(
             code = plan.code,
             value = plan.value,
+            recidivistCustomer = plan.recidivistCustomer,
             initialDate = plan.initialDate,
             finalDate = plan.finalDate,
             planStatus = plan.planStatus,

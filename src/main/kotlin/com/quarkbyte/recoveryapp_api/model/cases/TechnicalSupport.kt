@@ -20,13 +20,11 @@ class TechnicalSupport(
     valueWithDiscount: Double?,
     coverageValue: Double?,
     resolutionType: ResolutionType?,
-    recidivistCustomer: Boolean?,
     postCode: String?,
     var repairValue: Double = 0.0,
     var status: Boolean = true
 ) : CaseCSJ(
-    id, date, stepCSJ,  resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
-    recidivistCustomer!!,  postCode
+    id, date, stepCSJ,  resolutionDate, value, valueWithDiscount, coverageValue, resolutionType, postCode
 ){
     override var typeCaseCSJ: String = "TECHNICALSUPPORT"
 }

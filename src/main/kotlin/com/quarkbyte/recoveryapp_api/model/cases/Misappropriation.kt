@@ -19,7 +19,6 @@ class Misappropriation(
     valueWithDiscount: Double,
     coverageValue: Double,
     resolutionType: ResolutionType?,
-    recidivistCustomer: Boolean?,
     postCode: String?,
     var payMethod: PayMethod,
     var chargeBack: Boolean,
@@ -33,7 +32,6 @@ class Misappropriation(
     valueWithDiscount,
     coverageValue,
     resolutionType,
-    recidivistCustomer,
     postCode,
 ) {
     override var typeCaseCSJ: String = "MISAPPROPRIATION"

@@ -196,7 +196,7 @@ class DataLoader(
         sinistroRepository.save(
             Sinistro(
                 UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(),
-                2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO, false,
+                2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO,
                 Date(), SinistroType.FURTO_QUALIFICADO,
                 true, true,
                 true, Date(), 200.0f,
@@ -214,7 +214,6 @@ class DataLoader(
                 4500.0,
                 4000.0,
                 ResolutionType.RECORRENCIA_PAGA,
-                true,
                 "PAC213213BR",
                 PayMethod.NORMAL,
                 false,
@@ -231,7 +230,6 @@ class DataLoader(
                 3500.0,
                 2000.0,
                 ResolutionType.CHARGEBACK_PAGO,
-                true,
                 "PAC4313213BR",
                 PayMethod.RECORRENCIA,
                 false,
@@ -241,7 +239,7 @@ class DataLoader(
         technicalSupportRepository.save(
             TechnicalSupport(
                 UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(), 12000.0, 10000.0,
-                90000.0, ResolutionType.COMPRA, false,
+                90000.0, ResolutionType.COMPRA,
                 "2223201BR", 25000.0, true
             )
         )
