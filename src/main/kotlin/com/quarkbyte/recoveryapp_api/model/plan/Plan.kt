@@ -28,7 +28,6 @@ open class Plan(
 
     val finalDate: LocalDateTime? = null,
 
-
     @ManyToMany @JoinTable(
         name = "plan_products", joinColumns = [JoinColumn(name = "id")],
         inverseJoinColumns = [JoinColumn(name = "id_products")]
@@ -44,11 +43,9 @@ open class Plan(
     ) val caseCSJ: List<CaseCSJ?>,
 
     ) {
-
     var recidivistCustomer: Boolean? = false
 
     @DateTimeFormat(pattern = "dd-mm-yyyy")
     val creationDate: LocalDateTime = LocalDateTime.now()
-
 }
 

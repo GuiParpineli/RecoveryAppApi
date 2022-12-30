@@ -36,7 +36,6 @@ class CaseController(
     @GetMapping("sinistro/all")
     fun getAllSinistro() = sinistroService.get()
 
-
     //gets for each case
 
     @GetMapping("misappropriation/all")

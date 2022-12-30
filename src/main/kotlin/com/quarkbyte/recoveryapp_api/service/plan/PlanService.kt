@@ -3,10 +3,12 @@ package com.quarkbyte.recoveryapp_api.service.plan
 import com.quarkbyte.recoveryapp_api.exceptions.FinalDataException
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
+import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
 import com.quarkbyte.recoveryapp_api.model.dto.PlanInput
 import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
+import com.quarkbyte.recoveryapp_api.model.enums.csj.InternalStatus
 import com.quarkbyte.recoveryapp_api.model.mapper.PlanMapper
 import com.quarkbyte.recoveryapp_api.repository.CaseRepository
 import com.quarkbyte.recoveryapp_api.repository.PlanRepository
@@ -50,17 +52,55 @@ class PlanService(
     @Throws(SaveErrorException::class)
     fun save(input: PlanDTO): ResponseEntity<*> {
 
-        val haveplan = repository.findAll().map { it.customer.id == input.customerId }
-        val haveplanString = haveplan.joinToString(",")
+        val founded = repository.findAll()
+        val haveplan = founded.filter { it.customer.id == input.customerId }
         val plan: Plan?
-        val saved: EntityModel<PlanOutput>
+        var saved: EntityModel<PlanOutput>? = null
+        val listofCases = mutableListOf<UUID>()
 
-        if (haveplanString.contains("true")) {
-            val newSave = mapper.map(input)
+        if (haveplan.isNotEmpty() && haveplan.size == 1 && haveplan[0].planStatus) {
+            val savedplan = haveplan[0]
+            haveplan[0].caseCSJ.forEach { c -> listofCases.add(c?.id!!) }
+            input.caseCSJId.forEach { c -> listofCases.add(c) }
+            val casesIds = caseRepository.findAllById(listofCases)
+            if (haveplan[0].planStatus) {
+                val newSave = Plan(
+                    planStatus = true,
+                    code = savedplan.code,
+                    value = savedplan.value,
+                    analyst = savedplan.analyst,
+                    initialDate = savedplan.initialDate,
+                    finalDate = savedplan.finalDate,
+                    productList = savedplan.productList,
+                    customer = savedplan.customer,
+                    bondsman = savedplan.bondsman,
+                    caseCSJ = casesIds
+                )
+                newSave.recidivistCustomer = true
+                plan = repository.save(newSave)
+                val output = mapper.map(plan)
+                saved = mapper.buildPlanOutput(plan, output)
+            }
+        } else if (haveplan.size > 1) {
+            val planActive = haveplan.filter { it.planStatus }
+            val casesIds = caseRepository.findAllById(listofCases)
+            val newSave = Plan(
+                planStatus = true,
+                code = planActive[0].code,
+                value = planActive[0].value,
+                analyst = planActive[0].analyst,
+                initialDate = planActive[0].initialDate,
+                finalDate = planActive[0].finalDate,
+                productList = planActive[0].productList,
+                customer = planActive[0].customer,
+                bondsman = planActive[0].bondsman,
+                caseCSJ = casesIds
+            )
             newSave.recidivistCustomer = true
             plan = repository.save(newSave)
             val output = mapper.map(plan)
             saved = mapper.buildPlanOutput(plan, output)
+
         } else {
             plan = repository.save(mapper.map(input))
             val output = mapper.map(plan)
@@ -104,9 +144,9 @@ class PlanService(
         val saved = repository.findById(id)
         if (saved.isPresent) {
             repository.deleteById(id)
-/*
-            caseRepository.deleteById(saved.get().caseCSJ?.id!!)
-*/
+            /*
+                        caseRepository.deleteById(saved.get().caseCSJ?.id!!)
+            */
         }
         return ResponseEntity.ok("deleted successfully")
     }
