@@ -82,8 +82,9 @@ class PlanMapper(
         val productsIdList = mutableListOf<String>()
         val casesList= mutableListOf<String>()
         val names = mutableListOf<String>()
+        val typeCases = mutableListOf<String>()
         plan.productList.forEach { p -> names.add(p.name.toString()) && productsIdList.add(p.id.toString()) }
-        plan.caseCSJ.forEach { p -> casesList.add(p?.id.toString()) }
+        plan.caseCSJ.forEach { p -> casesList.add(p?.id.toString()) && typeCases.add(p!!.typeCaseCSJ) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")
@@ -93,7 +94,7 @@ class PlanMapper(
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
             .slash("/allbyid?id=${casesList.joinToString("," )}")
             .withRel("caseCSJ")
-            .withTitle(plan.caseCSJ.toString())
+            .withTitle(typeCases.toString())
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)
             .slash("?id=${plan.customer.id}")
@@ -108,7 +109,7 @@ class PlanMapper(
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
             .slash("?id=${plan.bondsman.id}")
             .withRel("bondsman")
-            .withTitle(plan.bondsman.name.toString())
+            .withTitle(plan.bondsman.name)
 
 
         return EntityModel.of(output, caseCSJLink,productLink, customerLink, bondsmanLInk, analystLink)

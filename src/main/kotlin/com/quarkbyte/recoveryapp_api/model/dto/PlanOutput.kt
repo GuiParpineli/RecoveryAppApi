@@ -1,14 +1,14 @@
 package com.quarkbyte.recoveryapp_api.model.dto
 
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import java.time.LocalDateTime
+import java.util.*
 
 data class PlanOutput(
     val code: String,
     var value: Double?,
     var recidivistCustomer: Boolean? = false,
-    val initialDate: LocalDateTime?,
-    val finalDate: LocalDateTime?,
+    val initialDate: Date?,
+    val finalDate: Date?,
     var planStatus: Boolean,
     val creationDate: LocalDateTime,
 )

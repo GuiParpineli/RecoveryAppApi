@@ -277,8 +277,8 @@ class DataLoader(
                 "xasd212",
                 47000.0,
                 userRepository.findAll()[0],
-                LocalDateTime.now(),
-                LocalDateTime.now(),
+                Date(),
+                Date(),
                 listOf(
                     productRepository.findAll()[0],
                     productRepository.findAll()[1]
@@ -298,8 +298,8 @@ class DataLoader(
                 "rsd201",
                 7000.0,
                 userRepository.findAll()[0],
-                LocalDateTime.now(),
-                LocalDateTime.now(),
+                Date(),
+                Date(),
                 listOf(
                     productRepository.findAll()[2],
                     productRepository.findAll()[1]
@@ -316,8 +316,8 @@ class DataLoader(
                 "k2310",
                 9400.0,
                 userRepository.findAll()[0],
-                LocalDateTime.now(),
-                LocalDateTime.now(),
+                Date(),
+                Date(),
                 listOf(
                     productRepository.findAll()[0],
                     productRepository.findAll()[1],
@@ -335,7 +335,7 @@ class DataLoader(
                 "puy123",
                 3000.0,
                 userRepository.findAll()[0],
-                LocalDateTime.now(),
+                Date(),
                 null,
                 listOf(
                     productRepository.findAll()[2]

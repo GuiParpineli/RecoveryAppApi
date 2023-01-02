@@ -3,8 +3,8 @@ package com.quarkbyte.recoveryapp_api.model.customer
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import jakarta.persistence.*
 import jakarta.validation.constraints.Size
-import org.hibernate.validator.constraints.UniqueElements
 import org.jetbrains.annotations.NotNull
+import org.springframework.format.annotation.DateTimeFormat
 import java.util.*
 
 @Entity

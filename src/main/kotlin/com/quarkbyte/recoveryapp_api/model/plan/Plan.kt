@@ -5,7 +5,6 @@ import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import jakarta.persistence.*
-import lombok.NoArgsConstructor
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import java.util.*
@@ -24,9 +23,9 @@ open class Plan(
 
     @ManyToOne @JoinColumn(name = "analyst_id") val analyst: UserApp,
 
-    val initialDate: LocalDateTime,
+    val initialDate: Date,
 
-    val finalDate: LocalDateTime? = null,
+    val finalDate: Date? = null,
 
     @ManyToMany @JoinTable(
         name = "plan_products", joinColumns = [JoinColumn(name = "id")],
