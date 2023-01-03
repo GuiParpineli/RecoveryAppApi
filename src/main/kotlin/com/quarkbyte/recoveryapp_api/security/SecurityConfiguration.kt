@@ -43,7 +43,7 @@ class SecurityConfiguration(
         http.csrf().disable()
             .authorizeHttpRequests()
             .requestMatchers("/user/login").permitAll()
-            .requestMatchers("/plan/allfull", "/scheduler/all").hasAnyRole("ADMIN", "ANALYST")
+            .requestMatchers("/plan**","/plan/allfull", "/scheduler/all", "/user/**", "/**","/user**").hasAnyRole("ADMIN", "ANALYST")
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .cors()

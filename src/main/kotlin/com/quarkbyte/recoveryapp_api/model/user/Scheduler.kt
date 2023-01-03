@@ -12,11 +12,8 @@ import jakarta.persistence.ManyToOne
 import java.util.UUID
 
 @Entity
-class Scheduler(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null,
+open class Scheduler(
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID? = null,
     @ManyToMany
     val task: MutableList<Tasks> = mutableListOf(),
-    @ManyToOne
-    val user: UserApp
 )

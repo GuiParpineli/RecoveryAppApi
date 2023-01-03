@@ -5,6 +5,7 @@ import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import jakarta.persistence.*
+import org.springframework.context.annotation.Lazy
 import java.util.*
 
 @Entity
@@ -19,7 +20,7 @@ open class Plan(
 
     var value: Double,
 
-    @ManyToOne @JoinColumn(name = "analyst_id") val analyst: UserApp,
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "analyst_id") val analyst: UserApp,
 
     val initialDate: Date,
 

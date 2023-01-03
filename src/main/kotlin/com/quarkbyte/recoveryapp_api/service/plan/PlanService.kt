@@ -58,6 +58,7 @@ class PlanService(
         var saved: EntityModel<PlanOutput>? = null
         val listofCases = mutableListOf<UUID>()
 
+        //se ha houver um plano salvo fazer isso
         if (haveplan.isNotEmpty() && haveplan.size == 1 && haveplan[0].planStatus) {
             val savedplan = haveplan[0]
             haveplan[0].caseCSJ.forEach { c -> listofCases.add(c?.id!!) }
@@ -81,6 +82,7 @@ class PlanService(
                 val output = mapper.map(plan)
                 saved = mapper.buildPlanOutput(plan, output)
             }
+                //mais de um plano salvo isso
         } else if (haveplan.size > 1) {
             val planActive = haveplan.filter { it.planStatus }
             val casesIds = caseRepository.findAllById(listofCases)

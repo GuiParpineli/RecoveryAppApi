@@ -371,7 +371,7 @@ class DataLoader(
         //save task
         val task = Tasks(
             null,
-            sinistroRepository.findAll()[0],
+            planRepository.findAll()[0],
             Date(),
             mutableMapOf(1 to "Ligar dia 10/02", 2 to "Falar com CEO sobre esse caso",3 to  "Vai pagar dia 25/10")
         )
@@ -383,7 +383,6 @@ class DataLoader(
             Scheduler(
                 null,
                 mutableListOf(tasksRepository.findAll()[0]),
-                userRepository.findAll()[0]
             )
         )
 
