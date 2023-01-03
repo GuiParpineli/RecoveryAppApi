@@ -12,6 +12,8 @@ import com.quarkbyte.recoveryapp_api.model.enums.SystemUserRoles
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.plan.Product
+import com.quarkbyte.recoveryapp_api.model.user.Scheduler
+import com.quarkbyte.recoveryapp_api.model.user.Tasks
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import com.quarkbyte.recoveryapp_api.repository.*
 import org.springframework.boot.ApplicationArguments
@@ -31,6 +33,8 @@ class DataLoader(
     private val technicalSupportRepository: TechnicalSupportRepository,
     private val misappropriationRepository: MisappropriationRepository,
     private val userRepository: UserRepository,
+    private val scheduleRepository: ScheduleRepository,
+    private val tasksRepository: TasksRepository
 ) : ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
 
@@ -194,6 +198,7 @@ class DataLoader(
                 "Brasil"
             )
         )
+
 
         //save plantypes
         sinistroRepository.save(
@@ -360,6 +365,24 @@ class DataLoader(
                 customerRepository.findAll()[3],
                 bondsmanRepository.findAll()[3],
                 listOf(technicalSupportRepository.findAll()[0])
+            )
+        )
+
+        //save task
+        val task = Tasks(
+            null,
+            sinistroRepository.findAll()[0],
+            Date(),
+            mutableMapOf(1 to "Ligar dia 10/02", 2 to "Falar com CEO sobre esse caso",3 to  "Vai pagar dia 25/10")
+        )
+
+        tasksRepository.save(task)
+
+        //save scheduler
+        scheduleRepository.save(
+            Scheduler(
+                null,
+                mutableListOf(tasksRepository.findAll()[0]),
             )
         )
 

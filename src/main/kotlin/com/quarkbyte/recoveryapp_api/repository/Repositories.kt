@@ -9,6 +9,8 @@ import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.plan.Product
+import com.quarkbyte.recoveryapp_api.model.user.Scheduler
+import com.quarkbyte.recoveryapp_api.model.user.Tasks
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
@@ -51,3 +53,9 @@ interface TechnicalSupportRepository : JpaRepository<TechnicalSupport, UUID>
 interface UserRepository : JpaRepository<UserApp, UUID> {
     fun findByUsername(username: String): UserApp
 }
+
+@Repository
+interface ScheduleRepository : JpaRepository<Scheduler, UUID>
+
+@Repository
+interface TasksRepository : JpaRepository<Tasks, UUID>

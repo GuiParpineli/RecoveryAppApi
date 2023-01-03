@@ -4,7 +4,7 @@ import com.quarkbyte.recoveryapp_api.exceptions.UserLoginException
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import com.quarkbyte.recoveryapp_api.model.user.UserJWT
 import com.quarkbyte.recoveryapp_api.security.JwtUtil
-import com.quarkbyte.recoveryapp_api.service.UserService
+import com.quarkbyte.recoveryapp_api.service.user.UserService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
