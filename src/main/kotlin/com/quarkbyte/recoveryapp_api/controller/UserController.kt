@@ -2,6 +2,7 @@ package com.quarkbyte.recoveryapp_api.controller
 
 import com.quarkbyte.recoveryapp_api.exceptions.UserLoginException
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
+import com.quarkbyte.recoveryapp_api.model.user.UserJWT
 import com.quarkbyte.recoveryapp_api.security.JwtUtil
 import com.quarkbyte.recoveryapp_api.service.UserService
 import org.springframework.http.MediaType
@@ -39,7 +40,7 @@ class UserController(
 
         val userDetails: UserDetails = service.loadUserByUsername(user.username)
         val jwt: String = jwtUtil.generateToken(userDetails)
-        return ResponseEntity.ok(jwt)
+        return ResponseEntity.ok(UserJWT(jwt))
     }
 
     @PostMapping

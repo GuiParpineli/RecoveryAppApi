@@ -12,7 +12,7 @@ class JwtUtil {
 
     val secretKey = "s2dKjIj230qukvadajhlqwejiohoaxhhouqhkouhdsgaqtrtzxuixlsj21aqx"
 
-    fun extractUserName(token: String): String = extractUserName(token)
+    fun extractUserName(token: String): String = extractClaimUsername(token)
 
     fun extractExpiration(token: String): Date = extractClaimDate(token)
 

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
+@EnableWebMvc
 @EnableWebSecurity
 class SecurityConfiguration(
     val jwtRequestFilter: JwtRequestFilter,
@@ -41,13 +42,11 @@ class SecurityConfiguration(
     fun configure(http: HttpSecurity): SecurityFilterChain {
         http.csrf().disable()
             .authorizeHttpRequests()
-            .requestMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll()
-            .and()
-            .authorizeHttpRequests()
             .requestMatchers("/user/login").permitAll()
-            .requestMatchers("/case/**").hasAnyRole("ADMIN", "ANALYST")
+            .requestMatchers("/plan/allfull").hasAnyRole("ADMIN", "ANALYST")
             .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .cors()
 
         // Custom JWT based security filter
         http .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
