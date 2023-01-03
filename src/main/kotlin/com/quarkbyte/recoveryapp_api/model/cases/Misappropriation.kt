@@ -22,7 +22,7 @@ class Misappropriation(
     postCode: String?,
     var payMethod: PayMethod,
     var chargeBack: Boolean,
-    var chargeBackDate: LocalDateTime
+    var chargeBackDate: Date
 ) : CaseCSJ(
     id,
     date,

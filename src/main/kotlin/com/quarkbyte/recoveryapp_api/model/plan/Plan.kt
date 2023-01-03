@@ -1,12 +1,10 @@
 package com.quarkbyte.recoveryapp_api.model.plan
 
-import com.quarkbyte.recoveryapp_api.model.UserApp
 import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
+import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import jakarta.persistence.*
-import org.springframework.format.annotation.DateTimeFormat
-import java.time.LocalDateTime
 import java.util.*
 
 @Entity
@@ -44,7 +42,6 @@ open class Plan(
     ) {
     var recidivistCustomer: Boolean? = false
 
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
-    val creationDate: LocalDateTime = LocalDateTime.now()
+    val creationDate: Date = Date()
 }
 

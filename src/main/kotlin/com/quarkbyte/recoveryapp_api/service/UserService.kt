@@ -2,14 +2,18 @@ package com.quarkbyte.recoveryapp_api.service
 
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.UserApp
+import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import com.quarkbyte.recoveryapp_api.repository.UserRepository
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
 import java.util.UUID
 
 @Service
-class UserService(val repository: UserRepository) {
+class UserService(
+    val repository: UserRepository,
+) : UserDetailsService {
     @Throws(ResourceNotFoundException::class)
     fun getAll(): ResponseEntity<*> {
         val saved = repository.findAll()
@@ -49,4 +53,6 @@ class UserService(val repository: UserRepository) {
         if (repository.findById(id).isPresent) repository.deleteById(id)
         return ResponseEntity.ok<String>(" deleted successfully")
     }
+
+    override fun loadUserByUsername(username: String?): UserDetails = repository.findByUsername(username!!)
 }

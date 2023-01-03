@@ -1,6 +1,5 @@
 package com.quarkbyte.recoveryapp_api.model.dto
 
-import java.time.LocalDateTime
 import java.util.*
 
 data class PlanOutput(
@@ -10,5 +9,5 @@ data class PlanOutput(
     val initialDate: Date?,
     val finalDate: Date?,
     var planStatus: Boolean,
-    val creationDate: LocalDateTime,
+    val creationDate: Date,
 )

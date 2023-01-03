@@ -1,6 +1,5 @@
 package com.quarkbyte.recoveryapp_api.repository
 
-import com.quarkbyte.recoveryapp_api.model.UserApp
 import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
 import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
@@ -10,6 +9,7 @@ import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.plan.Product
+import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.util.*
@@ -48,4 +48,6 @@ interface SinistroRepository : JpaRepository<Sinistro, UUID>
 interface TechnicalSupportRepository : JpaRepository<TechnicalSupport, UUID>
 
 @Repository
-interface UserRepository : JpaRepository<UserApp, UUID>
+interface UserRepository : JpaRepository<UserApp, UUID> {
+    fun findByUsername(username: String): UserApp
+}

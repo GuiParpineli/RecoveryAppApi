@@ -1,6 +1,5 @@
 package com.quarkbyte.recoveryapp_api
 
-import com.quarkbyte.recoveryapp_api.model.*
 import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.model.cases.TechnicalSupport
@@ -9,14 +8,16 @@ import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.enums.Gender
 import com.quarkbyte.recoveryapp_api.model.enums.StatusProduct
+import com.quarkbyte.recoveryapp_api.model.enums.SystemUserRoles
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.plan.Product
+import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import com.quarkbyte.recoveryapp_api.repository.*
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
-import java.time.LocalDateTime
 import java.util.*
 
 @Component
@@ -29,9 +30,11 @@ class DataLoader(
     private val sinistroRepository: SinistroRepository,
     private val technicalSupportRepository: TechnicalSupportRepository,
     private val misappropriationRepository: MisappropriationRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
+
+        val bCryptPasswordEncoder = BCryptPasswordEncoder();
 
 //        //save products
         productRepository.save(
@@ -217,7 +220,7 @@ class DataLoader(
                 "PAC213213BR",
                 PayMethod.NORMAL,
                 false,
-                LocalDateTime.now()
+                Date()
             )
         )
         misappropriationRepository.save(
@@ -233,7 +236,7 @@ class DataLoader(
                 "PAC4313213BR",
                 PayMethod.RECORRENCIA,
                 false,
-                LocalDateTime.now()
+                Date()
             )
         )
 
@@ -250,7 +253,7 @@ class DataLoader(
                 "PAC897450813-BR",
                 PayMethod.RECORRENCIA,
                 false,
-                LocalDateTime.now()
+                Date()
             )
         )
         technicalSupportRepository.save(
@@ -263,10 +266,24 @@ class DataLoader(
 
         //save users
         userRepository.save(
-            UserApp(null, "Paulera")
+            UserApp(
+                null,
+                "Paulera",
+                "paulo",
+                "paulo@gmail.com",
+                bCryptPasswordEncoder.encode("senha123456"),
+                SystemUserRoles.ROLE_ANALYST
+            )
         )
         userRepository.save(
-            UserApp(null, "Guilherme")
+            UserApp(
+                null,
+                "Guilherme",
+                "gui",
+                "gui@gmail.com",
+                bCryptPasswordEncoder.encode("senha123456"),
+                SystemUserRoles.ROLE_ADMIN
+            )
         )
 
         //save plan

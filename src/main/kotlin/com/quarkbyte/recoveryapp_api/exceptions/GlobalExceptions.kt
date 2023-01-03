@@ -23,4 +23,8 @@ class GlobalExceptions {
     @ExceptionHandler
     fun processDataError(e: FinalDataException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
+
+    @ExceptionHandler
+    fun processLoginError(e: UserLoginException): ResponseEntity<String> =
+        ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 }
