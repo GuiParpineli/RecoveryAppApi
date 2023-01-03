@@ -17,5 +17,6 @@ class Scheduler(
     val id: UUID? = null,
     @ManyToMany
     val task: MutableList<Tasks> = mutableListOf(),
-
+    @ManyToOne
+    val user: UserApp
 )

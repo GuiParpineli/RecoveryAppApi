@@ -383,6 +383,7 @@ class DataLoader(
             Scheduler(
                 null,
                 mutableListOf(tasksRepository.findAll()[0]),
+                userRepository.findAll()[0]
             )
         )
 
