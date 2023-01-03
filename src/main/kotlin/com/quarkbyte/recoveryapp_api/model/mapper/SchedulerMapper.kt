@@ -6,6 +6,7 @@ import com.quarkbyte.recoveryapp_api.controller.PlanController
 import com.quarkbyte.recoveryapp_api.controller.UserController
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.model.dto.SchedulerDTO
+import com.quarkbyte.recoveryapp_api.model.dto.TasksDTO
 import com.quarkbyte.recoveryapp_api.model.user.Scheduler
 import com.quarkbyte.recoveryapp_api.model.user.SchedulerOutput
 import com.quarkbyte.recoveryapp_api.model.user.Tasks
@@ -32,9 +33,24 @@ class SchedulerMapper(
         )
     }
 
+
     fun map(scheduler: Scheduler): SchedulerOutput {
+        val taksdtoList: MutableList<TasksDTO> = mutableListOf()
+        scheduler.task.forEach { s ->
+            taksdtoList.add(
+                TasksDTO(
+                    s.plan.code,
+                    s.plan.customer.name,
+                    s.plan.caseCSJ[0]!!.typeCaseCSJ,
+                    s.plan.analyst.username,
+                    s.day,
+                    s.note
+                )
+            )
+        }
         return SchedulerOutput(
-            id = scheduler.id!!
+            id = scheduler.id!!,
+            tasks = taksdtoList
         )
     }
 
@@ -46,15 +62,16 @@ class SchedulerMapper(
         val notes = mutableListOf<String>()
 
         scheduler.task.forEach { tasks ->
-                    caseList.add(tasks.plan.id.toString()) &&
+            caseList.add(tasks.plan.id.toString()) &&
                     user.add(tasks.plan.analyst.id.toString()) &&
                     customer.add(tasks.plan.customer.id.toString()) &&
                     notes.add(tasks.note.toString())
         }
 
         val caselistlink = WebMvcLinkBuilder.linkTo(PlanController::class.java)
-            .slash("allbyid?id=${caseList.joinToString(",")}")
-            .withRel("PLAN - CASE")
+            .slash("?id=${caseList.joinToString(",")}")
+            .withRel("PLAN")
+            .withTitle(scheduler.task[0].plan.customer.name)
         val userLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
             .slash("?id=${caseList.joinToString(",")}")
             .withRel("Analista")
