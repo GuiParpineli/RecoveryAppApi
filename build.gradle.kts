@@ -33,6 +33,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.0")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.6.0")
     implementation ("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation ("io.jsonwebtoken:jjwt-jackson:0.11.5")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly ("io.jsonwebtoken:jjwt-impl:0.11.5")
     runtimeOnly("com.h2database:h2")

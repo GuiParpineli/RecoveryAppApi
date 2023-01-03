@@ -28,6 +28,7 @@ class UserController(
 
     @PostMapping("/login")
     fun login(@RequestBody user: UserApp): ResponseEntity<*> {
+
         try {
             authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(user.username, user.password)

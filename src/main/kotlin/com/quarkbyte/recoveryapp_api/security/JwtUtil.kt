@@ -10,7 +10,7 @@ import java.util.*
 @Component
 class JwtUtil {
 
-    val secretKey = "s$2dKjIj230qukvxlsj21-aqx"
+    val secretKey = "s2dKjIj230qukvadajhlqwejiohoaxhhouqhkouhdsgaqtrtzxuixlsj21aqx"
 
     fun extractUserName(token: String): String = extractUserName(token)
 

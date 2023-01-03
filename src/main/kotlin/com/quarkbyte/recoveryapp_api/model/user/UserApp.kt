@@ -15,22 +15,23 @@ import java.util.*
 @Getter
 @Setter
 @Builder
-open class UserApp(
+class UserApp(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
     val name: @NotEmpty String? = null,
     val email: String = "",
-    private val username: String = "",
-    private val password: @NotEmpty String = "",
+    private var username: String = "",
+    private var password: @NotEmpty String = "",
 
     @Enumerated(EnumType.STRING)
-    private val systemUserRoles: SystemUserRoles = SystemUserRoles.ROLE_USER
+    var systemUserRoles: SystemUserRoles = SystemUserRoles.ROLE_USER
 
 ) : UserDetails {
+
     override fun getAuthorities(): Collection<GrantedAuthority> {
         val grantedAuthority = SimpleGrantedAuthority(systemUserRoles.name)
-        return setOf(grantedAuthority)
+        return Collections.singleton(grantedAuthority)
     }
 
     override fun getPassword(): String {

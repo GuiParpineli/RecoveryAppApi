@@ -269,8 +269,8 @@ class DataLoader(
             UserApp(
                 null,
                 "Paulera",
-                "paulo",
                 "paulo@gmail.com",
+                "paulo",
                 bCryptPasswordEncoder.encode("senha123456"),
                 SystemUserRoles.ROLE_ANALYST
             )
@@ -279,8 +279,8 @@ class DataLoader(
             UserApp(
                 null,
                 "Guilherme",
-                "gui",
                 "gui@gmail.com",
+                "gui",
                 bCryptPasswordEncoder.encode("senha123456"),
                 SystemUserRoles.ROLE_ADMIN
             )
