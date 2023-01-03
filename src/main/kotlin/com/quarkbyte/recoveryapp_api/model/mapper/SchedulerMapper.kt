@@ -36,18 +36,21 @@ class SchedulerMapper(
 
     fun map(scheduler: Scheduler): SchedulerOutput {
         val taksdtoList: MutableList<TasksDTO> = mutableListOf()
+
         scheduler.task.forEach { s ->
-            taksdtoList.add(
-                TasksDTO(
-                    s.plan.code,
-                    s.plan.customer.name,
-                    s.plan.caseCSJ[0]!!.typeCaseCSJ,
-                    s.plan.analyst.username,
-                    s.day,
-                    s.note
+            for (i in s.plan.caseCSJ.indices -1)
+                taksdtoList.add(
+                    TasksDTO(
+                        s.plan.code,
+                        s.plan.customer.name,
+                        s.plan.caseCSJ[i]!!.typeCaseCSJ,
+                        s.plan.analyst.username,
+                        s.day,
+                        s.note
+                    )
                 )
-            )
         }
+
         return SchedulerOutput(
             id = scheduler.id!!,
             tasks = taksdtoList

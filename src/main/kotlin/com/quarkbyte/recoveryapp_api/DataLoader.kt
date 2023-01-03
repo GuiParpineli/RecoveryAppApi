@@ -375,14 +375,21 @@ class DataLoader(
             Date(),
             mutableMapOf(1 to "Ligar dia 10/02", 2 to "Falar com CEO sobre esse caso",3 to  "Vai pagar dia 25/10")
         )
+        val task2 = Tasks(
+            null,
+            planRepository.findAll()[1],
+            Date(),
+            mutableMapOf(1 to "Plantar arvores", 2 to "Falar com vizinho sobre gastar menos agua",3 to  "Ser feliz")
+        )
 
         tasksRepository.save(task)
+        tasksRepository.save(task2)
 
         //save scheduler
         scheduleRepository.save(
             Scheduler(
                 null,
-                mutableListOf(tasksRepository.findAll()[0]),
+                mutableListOf(tasksRepository.findAll()[0], tasksRepository.findAll()[1]),
             )
         )
 
