@@ -40,7 +40,12 @@ interface CaseRepository : JpaRepository<CaseCSJ, UUID>
 interface MisappropriationRepository : JpaRepository<Misappropriation, UUID>
 
 @Repository
-interface PlanRepository : JpaRepository<Plan, UUID>
+interface PlanRepository : JpaRepository<Plan, UUID> {
+    fun findPlanByCode(code: String): Plan?
+    fun findByCustomer(customer: Customer): Plan?
+    fun findByAnalyst_Email(email: String): Plan?
+    fun findByBondsman(bondsman: Bondsman): Plan?
+}
 
 @Repository
 interface ProductRepository : JpaRepository<Product, UUID>

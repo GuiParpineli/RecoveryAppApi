@@ -49,6 +49,12 @@ class PlanService(
         return ResponseEntity.ok(saved)
     }
 
+    fun getByCode(code: String): ResponseEntity<*> {
+        val founded = repository.findPlanByCode(code) ?: throw ResourceNotFoundException("None plans founded")
+        return ResponseEntity.ok(founded)
+    }
+
+
     @Throws(ResourceNotFoundException::class)
     fun getById(id: UUID): ResponseEntity<*> {
         val saved = repository.findById(id)
