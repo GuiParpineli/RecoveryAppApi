@@ -21,6 +21,9 @@ class PlanController(private val service: PlanService) {
     @GetMapping
     fun getById(@RequestParam("id") id: UUID) = service.getById(id)
 
+    @GetMapping("allbyid")
+    fun getAllbyId(@RequestParam(value = "id") ids: List<UUID>) = service.getAllById(ids)
+
     @PostMapping("save")
     fun save(@RequestBody plan: PlanDTO) = service.save(plan)
 

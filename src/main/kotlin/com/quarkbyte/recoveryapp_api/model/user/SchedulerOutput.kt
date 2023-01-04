@@ -5,5 +5,7 @@ import java.util.UUID
 
 data class SchedulerOutput(
     val id: UUID,
+    val userId: UUID,
+    val userName: String,
     val tasks: List<TasksDTO>
 )

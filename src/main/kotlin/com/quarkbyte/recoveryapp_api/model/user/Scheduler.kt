@@ -14,6 +14,8 @@ import java.util.UUID
 @Entity
 open class Scheduler(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID? = null,
+    @ManyToOne
+    val user: UserApp,
     @ManyToMany
     val task: MutableList<Tasks> = mutableListOf(),
 )

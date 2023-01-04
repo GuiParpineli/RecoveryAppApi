@@ -5,5 +5,6 @@ import java.util.UUID
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class SchedulerDTO(
+    val user: UUID,
     val tasksID: List<UUID>,
 )

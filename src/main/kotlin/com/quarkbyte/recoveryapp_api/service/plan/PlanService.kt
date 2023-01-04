@@ -43,6 +43,13 @@ class PlanService(
     }
 
     @Throws(ResourceNotFoundException::class)
+    fun getAllById(ids: List<UUID>): ResponseEntity<*> {
+        val saved = repository.findAllById(ids)
+        if (saved.isEmpty()) throw ResourceNotFoundException("None plans founded")
+        return ResponseEntity.ok(saved)
+    }
+
+    @Throws(ResourceNotFoundException::class)
     fun getById(id: UUID): ResponseEntity<*> {
         val saved = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("None  plans founded") }!!
@@ -82,7 +89,7 @@ class PlanService(
                 val output = mapper.map(plan)
                 saved = mapper.buildPlanOutput(plan, output)
             }
-                //mais de um plano salvo isso
+            //mais de um plano salvo isso
         } else if (haveplan.size > 1) {
             val planActive = haveplan.filter { it.planStatus }
             val casesIds = caseRepository.findAllById(listofCases)

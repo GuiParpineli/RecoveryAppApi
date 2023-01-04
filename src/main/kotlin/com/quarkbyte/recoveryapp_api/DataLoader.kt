@@ -389,6 +389,7 @@ class DataLoader(
         scheduleRepository.save(
             Scheduler(
                 null,
+                userRepository.findAll()[0],
                 mutableListOf(tasksRepository.findAll()[0], tasksRepository.findAll()[1]),
             )
         )
