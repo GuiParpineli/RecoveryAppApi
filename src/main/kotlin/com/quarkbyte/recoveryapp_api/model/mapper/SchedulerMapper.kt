@@ -46,11 +46,13 @@ class SchedulerMapper(
             for (i in s.plan.caseCSJ.indices - 1)
                 taksdtoList.add(
                     TasksDTO(
+                        s.title,
                         s.plan.code,
                         "${s.plan.customer.name}  ${s.plan.customer.lastName}",
                         s.plan.caseCSJ[i]!!.typeCaseCSJ,
                         s.plan.analyst.username,
-                        s.day,
+                        s.initalDate,
+                        s.finalDate,
                         s.note
                     )
                 )

@@ -5,10 +5,12 @@ import java.util.*
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TasksDTO(
+    val title: String,
     val planCode: String,
     val planCustomer: String,
     val planCaseType: String,
     val analyst: String,
-    val day: Date,
+    val initalDay: Date,
+    val finalDay: Date,
     val note: MutableMap<Int, String>
 )

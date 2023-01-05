@@ -371,13 +371,17 @@ class DataLoader(
         //save task
         val task = Tasks(
             null,
+            "Confirmar pagamento",
             planRepository.findAll()[0],
+            Date(),
             Date(),
             mutableMapOf(1 to "Ligar dia 10/02", 2 to "Falar com CEO sobre esse caso",3 to  "Vai pagar dia 25/10")
         )
         val task2 = Tasks(
             null,
+            "ligar para fulano",
             planRepository.findAll()[1],
+            Date(),
             Date(),
             mutableMapOf(1 to "Plantar arvores", 2 to "Falar com vizinho sobre gastar menos agua",3 to  "Ser feliz")
         )

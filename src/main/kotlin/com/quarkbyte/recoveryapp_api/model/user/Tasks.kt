@@ -9,9 +9,11 @@ import java.util.*
 class Tasks(
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
+    val title: String,
     @ManyToOne(fetch = FetchType.LAZY)
     val plan: Plan,
-    val day: Date,
+    val initalDate: Date,
+    val finalDate: Date,
     @ElementCollection
     val note: MutableMap<Int, String>
 )
