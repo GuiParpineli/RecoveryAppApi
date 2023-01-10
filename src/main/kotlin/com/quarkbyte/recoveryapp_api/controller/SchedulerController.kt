@@ -1,5 +1,6 @@
 package com.quarkbyte.recoveryapp_api.controller
 
+import com.quarkbyte.recoveryapp_api.model.dto.SchedulerDTO
 import com.quarkbyte.recoveryapp_api.model.user.Scheduler
 import com.quarkbyte.recoveryapp_api.service.user.SchedulerService
 import org.springframework.http.MediaType
@@ -17,6 +18,6 @@ class SchedulerController(val service: SchedulerService) {
     fun getAll() = service.getAll()
 
     @PostMapping
-    fun save(@RequestBody scheduler: Scheduler) = service.save(scheduler)
+    fun save(@RequestBody scheduler: SchedulerDTO) = service.save(scheduler)
 
 }

@@ -1,5 +1,6 @@
 package com.quarkbyte.recoveryapp_api.service.user
 
+import com.quarkbyte.recoveryapp_api.model.dto.SchedulerDTO
 import com.quarkbyte.recoveryapp_api.model.mapper.SchedulerMapper
 import com.quarkbyte.recoveryapp_api.model.user.Scheduler
 import com.quarkbyte.recoveryapp_api.model.user.SchedulerOutput
@@ -24,10 +25,11 @@ class SchedulerService(
         return ResponseEntity.ok(saved)
     }
 
-    
 
-    fun save(scheduler: Scheduler): ResponseEntity<*> {
-        val saved = repository.save(scheduler)
+
+    fun save(scheduler: SchedulerDTO): ResponseEntity<*> {
+        val schedulerSave = mapper.map(scheduler)
+        val saved = repository.save(schedulerSave)
         return ResponseEntity.ok(saved)
     }
 
