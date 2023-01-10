@@ -9,5 +9,5 @@ data class UserDTO(
     val id: UUID?,
     val name: String,
     val lastname: String,
-    val jwt: String
+    val jwt: String? = null
 )

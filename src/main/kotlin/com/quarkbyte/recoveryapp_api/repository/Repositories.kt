@@ -62,7 +62,9 @@ interface UserRepository : JpaRepository<UserApp, UUID> {
 }
 
 @Repository
-interface ScheduleRepository : JpaRepository<Scheduler, UUID>
+interface ScheduleRepository : JpaRepository<Scheduler, UUID>{
+    fun findByUser(user: UserApp): Scheduler?
+}
 
 @Repository
 interface TasksRepository : JpaRepository<Tasks, UUID>

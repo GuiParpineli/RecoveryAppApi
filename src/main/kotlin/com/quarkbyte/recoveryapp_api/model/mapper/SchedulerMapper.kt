@@ -45,7 +45,7 @@ class SchedulerMapper(
                     taksdtoList.add(
                         TasksDTO(
                             s.title,
-                            s.plan?.code.toString(),
+                            s.plan.code.toString(),
                             "${s.plan.customer.name}  ${s.plan.customer.lastName}",
                             s.plan.caseCSJ[i]!!.typeCaseCSJ,
                             s.plan.analyst.username,
@@ -54,6 +54,20 @@ class SchedulerMapper(
                             s.note
                         )
                     )
+            }
+            else {
+                taksdtoList.add(
+                    TasksDTO(
+                        s.title,
+                        "",
+                        "",
+                        "",
+                        "",
+                        s.initialDate,
+                        s.finalDate,
+                        s.note
+                    )
+                )
             }
         }
 
