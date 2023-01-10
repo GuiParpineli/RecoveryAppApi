@@ -12,5 +12,5 @@ data class TasksDTO(
     val analyst: String,
     val initialDay: Date,
     val finalDay: Date,
-    val note: MutableMap<Int, String>
+    val note: String
 )

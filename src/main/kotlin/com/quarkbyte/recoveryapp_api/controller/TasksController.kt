@@ -1,7 +1,6 @@
 package com.quarkbyte.recoveryapp_api.controller
 
 import com.quarkbyte.recoveryapp_api.model.dto.TaskInput
-import com.quarkbyte.recoveryapp_api.model.user.Tasks
 import com.quarkbyte.recoveryapp_api.service.user.TaskService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping

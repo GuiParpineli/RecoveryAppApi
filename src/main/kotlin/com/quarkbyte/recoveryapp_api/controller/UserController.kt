@@ -1,8 +1,8 @@
 package com.quarkbyte.recoveryapp_api.controller
 
 import com.quarkbyte.recoveryapp_api.exceptions.UserLoginException
+import com.quarkbyte.recoveryapp_api.model.dto.UserDTO
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
-import com.quarkbyte.recoveryapp_api.model.user.UserJWT
 import com.quarkbyte.recoveryapp_api.security.JwtUtil
 import com.quarkbyte.recoveryapp_api.service.user.UserService
 import org.springframework.http.MediaType
@@ -29,7 +29,7 @@ class UserController(
 
     @PostMapping("/login")
     fun login(@RequestBody user: UserApp): ResponseEntity<*> {
-
+        val saved = service.getByUserName(user.username)
         try {
             authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(user.username, user.password)
@@ -40,7 +40,14 @@ class UserController(
 
         val userDetails: UserDetails = service.loadUserByUsername(user.username)
         val jwt: String = jwtUtil.generateToken(userDetails)
-        return ResponseEntity.ok(UserJWT(jwt))
+        return ResponseEntity.ok(
+            UserDTO(
+                id = saved.id,
+                name = saved.name,
+                lastname = saved.lastname,
+                jwt = jwt
+            )
+        )
     }
 
     @PostMapping

@@ -62,5 +62,10 @@ class UserService(
         return ResponseEntity.ok<String>(" deleted successfully")
     }
 
+    fun getByUserName(username: String): UserApp {
+        return repository.findByUsername(username)
+
+    }
+
     override fun loadUserByUsername(username: String): UserDetails = repository.findByUsername(username!!)
 }

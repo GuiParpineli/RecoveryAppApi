@@ -19,7 +19,9 @@ class UserApp(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null,
-    val name: @NotEmpty String? = null,
+    val name: @NotEmpty String = "",
+    val lastname: String = "",
+    val jwt: String? = null,
     val email: String = "",
     private var username: String = "",
     private var password: @NotEmpty String = "",

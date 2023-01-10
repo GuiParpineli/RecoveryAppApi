@@ -272,22 +272,22 @@ class DataLoader(
         //save users
         userRepository.save(
             UserApp(
-                null,
-                "Paulera",
-                "paulo@gmail.com",
-                "paulo",
-                bCryptPasswordEncoder.encode("senha123456"),
-                SystemUserRoles.ROLE_ANALYST
+                name = "Paulera",
+                lastname = "Wilson",
+                email = "paulo@gmail.com",
+                username = "paulo",
+                password = bCryptPasswordEncoder.encode("senha123456"),
+                systemUserRoles = SystemUserRoles.ROLE_ANALYST
             )
         )
         userRepository.save(
             UserApp(
-                null,
-                "Guilherme",
-                "gui@gmail.com",
-                "gui",
-                bCryptPasswordEncoder.encode("senha123456"),
-                SystemUserRoles.ROLE_ADMIN
+                name = "Guilherme",
+                lastname = "Parpineli",
+                email = "gui@gmail.com",
+                username = "gui",
+                password = bCryptPasswordEncoder.encode("senha123456"),
+                systemUserRoles = SystemUserRoles.ROLE_ADMIN
             )
         )
 
@@ -375,7 +375,7 @@ class DataLoader(
             planRepository.findAll()[0],
             Date(),
             Date(),
-            mutableMapOf(1 to "Ligar dia 10/02", 2 to "Falar com CEO sobre esse caso", 3 to "Vai pagar dia 25/10")
+            "Ligar dia 10/02"
         )
         val task2 = Tasks(
             null,
@@ -383,7 +383,7 @@ class DataLoader(
             planRepository.findAll()[1],
             Date(),
             Date(),
-            mutableMapOf(1 to "Plantar arvores", 2 to "Falar com vizinho sobre gastar menos agua", 3 to "Ser feliz")
+            "Plantar arvores"
         )
         val c: Calendar = Calendar.getInstance();
         c.set(2023, Calendar.JANUARY, 10);
@@ -395,7 +395,7 @@ class DataLoader(
             planRepository.findAll()[2],
             data,
             data,
-            mutableMapOf(1 to "checar se foi pago")
+            "checar se foi pago"
         )
 
         tasksRepository.save(task)

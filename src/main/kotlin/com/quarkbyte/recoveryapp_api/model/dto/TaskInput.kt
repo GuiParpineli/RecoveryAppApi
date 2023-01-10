@@ -7,5 +7,5 @@ data class TaskInput(
     val planCode: String?,
     val initialDate: Date,
     val finalDate: Date,
-    val note: MutableMap<Int, String>
+    val note: String
 )

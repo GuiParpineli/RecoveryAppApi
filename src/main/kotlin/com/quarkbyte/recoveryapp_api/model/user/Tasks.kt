@@ -13,6 +13,5 @@ class Tasks(
     val plan: Plan?,
     val initialDate: Date,
     val finalDate: Date,
-    @ElementCollection
-    val note: MutableMap<Int, String>
+    val note: String
 )

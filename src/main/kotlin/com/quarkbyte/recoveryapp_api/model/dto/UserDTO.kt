@@ -8,5 +8,6 @@ import java.util.UUID
 data class UserDTO(
     val id: UUID?,
     val name: String,
-    val systemUserRoles: SystemUserRoles
+    val lastname: String,
+    val jwt: String
 )
