@@ -1,7 +1,8 @@
 package com.quarkbyte.recoveryapp_api.controller
 
-import com.quarkbyte.recoveryapp_api.model.user.Scheduler
-import com.quarkbyte.recoveryapp_api.service.user.SchedulerService
+import com.quarkbyte.recoveryapp_api.model.dto.TaskInput
+import com.quarkbyte.recoveryapp_api.model.user.Tasks
+import com.quarkbyte.recoveryapp_api.service.user.TaskService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -10,13 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value = ["scheduler"], produces = [MediaType.APPLICATION_JSON_VALUE])
-class SchedulerController(val service: SchedulerService) {
+@RequestMapping(value = ["task"], produces = [MediaType.APPLICATION_JSON_VALUE])
+class TasksController(val service: TaskService) {
 
-    @GetMapping("all")
+    @GetMapping
     fun getAll() = service.getAll()
-
     @PostMapping
-    fun save(@RequestBody scheduler: Scheduler) = service.save(scheduler)
-
+    fun save(@RequestBody tasks: TaskInput) = service.save(tasks)
 }

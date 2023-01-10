@@ -10,7 +10,7 @@ data class TasksDTO(
     val planCustomer: String,
     val planCaseType: String,
     val analyst: String,
-    val initalDay: Date,
+    val initialDay: Date,
     val finalDay: Date,
     val note: MutableMap<Int, String>
 )

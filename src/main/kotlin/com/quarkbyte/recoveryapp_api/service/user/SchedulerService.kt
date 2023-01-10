@@ -14,7 +14,7 @@ class SchedulerService(
     val mapper: SchedulerMapper
 ) {
 
-    fun getall(): ResponseEntity<*> {
+    fun getAll(): ResponseEntity<*> {
         val founded = repository.findAll()
         val output: MutableList<SchedulerOutput> = mutableListOf()
         founded.forEach { f -> output.add(mapper.map(f)) }
@@ -23,6 +23,8 @@ class SchedulerService(
             saved.add(mapper.buildSchedulerOutput(founded[s], output[s]))
         return ResponseEntity.ok(saved)
     }
+
+    
 
     fun save(scheduler: Scheduler): ResponseEntity<*> {
         val saved = repository.save(scheduler)

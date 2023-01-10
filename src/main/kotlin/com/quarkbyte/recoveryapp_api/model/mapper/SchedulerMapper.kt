@@ -1,9 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.mapper
 
-import com.quarkbyte.recoveryapp_api.controller.CaseController
-import com.quarkbyte.recoveryapp_api.controller.CustomerController
 import com.quarkbyte.recoveryapp_api.controller.PlanController
-import com.quarkbyte.recoveryapp_api.controller.UserController
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.model.dto.SchedulerDTO
 import com.quarkbyte.recoveryapp_api.model.dto.TasksDTO
@@ -43,19 +40,21 @@ class SchedulerMapper(
         val taksdtoList: MutableList<TasksDTO> = mutableListOf()
 
         scheduler.task.forEach { s ->
-            for (i in s.plan.caseCSJ.indices - 1)
-                taksdtoList.add(
-                    TasksDTO(
-                        s.title,
-                        s.plan.code,
-                        "${s.plan.customer.name}  ${s.plan.customer.lastName}",
-                        s.plan.caseCSJ[i]!!.typeCaseCSJ,
-                        s.plan.analyst.username,
-                        s.initalDate,
-                        s.finalDate,
-                        s.note
+            if (s.plan != null) {
+                for (i in (s.plan.caseCSJ.indices) - 1)
+                    taksdtoList.add(
+                        TasksDTO(
+                            s.title,
+                            s.plan?.code.toString(),
+                            "${s.plan.customer.name}  ${s.plan.customer.lastName}",
+                            s.plan.caseCSJ[i]!!.typeCaseCSJ,
+                            s.plan.analyst.username,
+                            s.initialDate,
+                            s.finalDate,
+                            s.note
+                        )
                     )
-                )
+            }
         }
 
         return SchedulerOutput(
@@ -73,15 +72,16 @@ class SchedulerMapper(
         val notes = mutableListOf<String>()
 
         scheduler.task.forEach { tasks ->
-            caseList.add(tasks.plan.id.toString()) &&
-                    customer.add(tasks.plan.customer.id.toString()) &&
-                    notes.add(tasks.note.toString())
+            if (tasks.plan != null)
+                caseList.add(tasks.plan.id.toString()) &&
+                        customer.add(tasks.plan.customer.id.toString()) &&
+                        notes.add(tasks.note.toString())
         }
 
         val caselistlink = WebMvcLinkBuilder.linkTo(PlanController::class.java)
             .slash("/allbyid?id=${caseList.joinToString(",")}")
             .withRel("PLAN")
-            .withTitle(scheduler.task[0].plan.customer.name)
+            .withTitle(scheduler.task[0].plan?.customer?.name.toString())
 
         return EntityModel.of(output, caselistlink)
     }
