@@ -210,6 +210,8 @@ class DataLoader(
                 observation = mutableListOf("Sinistro observacao aleatoria"),
                 coverageValue = 20.0,
                 resolutionType = ResolutionType.CHARGEBACK_PAGO,
+                internalStatus = InternalStatus.CASO_NOVO,
+                externalStatus = ExternalStatus.EM_ABERTO,
                 initialTime = Date(),
                 sinistroType = SinistroType.FURTO_QUALIFICADO,
                 imeiStatus = true,
@@ -236,7 +238,9 @@ class DataLoader(
                 observation = mutableListOf<String>("Vai pagar um dia, quem sabe"),
                 payMethod = PayMethod.NORMAL,
                 chargeBack = false,
-                chargeBackDate = Date()
+                chargeBackDate = Date(),
+                internalStatus = InternalStatus.FINALIZADO,
+                externalStatus = ExternalStatus.RECUPERADO
             )
         )
         misappropriationRepository.save(
@@ -248,6 +252,8 @@ class DataLoader(
                 valueWithDiscount = 3500.0,
                 coverageValue = 2000.0,
                 resolutionType = ResolutionType.CHARGEBACK_PAGO,
+                internalStatus = InternalStatus.CASO_NOVO,
+                externalStatus = ExternalStatus.EM_ABERTO,
                 postCode = "PAC4313213BR",
                 observation = mutableListOf<String>("Vai pagar um dia, quem sabe"),
                 payMethod = PayMethod.RECORRENCIA,
@@ -265,6 +271,8 @@ class DataLoader(
                 valueWithDiscount = 1000.0,
                 coverageValue = 2000.0,
                 resolutionType = ResolutionType.COMPRA_MAIS_MULTA,
+                internalStatus = InternalStatus.CASO_NOVO,
+                externalStatus = ExternalStatus.EM_ABERTO,
                 postCode = "P87453213BR",
                 observation = mutableListOf<String>(),
                 payMethod = PayMethod.RECORRENCIA,
@@ -281,6 +289,8 @@ class DataLoader(
                 valueWithDiscount =  10000.0,
                 coverageValue =  90000.0,
                 resolutionType =  ResolutionType.COMPRA,
+                internalStatus = InternalStatus.CASO_NOVO,
+                externalStatus = ExternalStatus.EM_ABERTO,
                 postCode =  "2223201BR",
                 repairValue =  25000.0,
                 status = true

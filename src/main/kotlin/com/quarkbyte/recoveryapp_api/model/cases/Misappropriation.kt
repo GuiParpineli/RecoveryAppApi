@@ -21,6 +21,8 @@ class Misappropriation(
     resolutionType: ResolutionType?,
     postCode: String?,
     observation: MutableList<String>?= null,
+    internalStatus: InternalStatus ,
+    externalStatus: ExternalStatus ,
     var payMethod: PayMethod,
     var chargeBack: Boolean,
     var chargeBackDate: Date
@@ -32,9 +34,12 @@ class Misappropriation(
     value,
     valueWithDiscount,
     coverageValue,
+    postCode,
     resolutionType,
+    internalStatus,
+    externalStatus,
     observation,
-    postCode
 ) {
     override var typeCaseCSJ: String = "MISAPPROPRIATION"
+
 }

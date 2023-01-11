@@ -22,11 +22,13 @@ class TechnicalSupport(
     resolutionType: ResolutionType?,
     postCode: String?,
     observation: MutableList<String>? = null,
+    internalStatus: InternalStatus ,
+    externalStatus: ExternalStatus ,
     var repairValue: Double = 0.0,
     var status: Boolean = true
 ) : CaseCSJ(
-    id, date, stepCSJ, resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
-    observation, postCode
+    id, date, stepCSJ, resolutionDate, value, valueWithDiscount, coverageValue, postCode, resolutionType,
+    internalStatus, externalStatus , observation
 ) {
     override var typeCaseCSJ: String = "TECHNICALSUPPORT"
 }

@@ -18,6 +18,8 @@ class Sinistro(
     observation: MutableList<String>? = null,
     coverageValue: Double?,
     resolutionType: ResolutionType?,
+    internalStatus: InternalStatus,
+    externalStatus: ExternalStatus,
     var initialTime: Date,
     var sinistroType: SinistroType,
     var imeiStatus: Boolean,
@@ -30,7 +32,7 @@ class Sinistro(
     var payment: Boolean,
 ) : CaseCSJ(
     id, date, stepCSJ, resolutionDate, value, coverageValue, observation,
-    resolutionType
+    resolutionType, externalStatus, internalStatus
 ) {
     override var typeCaseCSJ: String = "SINISTRO"
 }

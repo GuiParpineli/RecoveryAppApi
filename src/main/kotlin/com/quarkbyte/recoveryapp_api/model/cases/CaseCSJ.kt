@@ -28,8 +28,8 @@ abstract class CaseCSJ {
     var valueWithDiscount: Double? = 0.0
     var coverageValue: Double
     @Enumerated(EnumType.STRING) var resolutionType: ResolutionType?
-    @Enumerated(EnumType.STRING) var internalStatus: InternalStatus
-    @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus
+    @Enumerated(EnumType.STRING) var internalStatus: InternalStatus = InternalStatus.CASO_NOVO
+    @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus = ExternalStatus.EM_ABERTO
     @Column(unique = true) var postCode: String? = null
     @ElementCollection var observation: MutableList<String>? = null
     abstract var typeCaseCSJ: String
@@ -43,6 +43,8 @@ abstract class CaseCSJ {
         coverageValue: Double?,
         observation: MutableList<String>?,
         resolutionType: ResolutionType?,
+        externalStatus: ExternalStatus,
+        internalStatus: InternalStatus,
     ) {
         this.id = id
         this.date = date!!
@@ -52,8 +54,8 @@ abstract class CaseCSJ {
         this.coverageValue = coverageValue!!
         this.resolutionType = resolutionType!!
         this.observation = observation
-        this.internalStatus = InternalStatus.CASO_NOVO
-        this.externalStatus = ExternalStatus.EM_ABERTO
+        this.internalStatus = internalStatus
+        this.externalStatus = externalStatus
     }
 
     constructor(
@@ -64,9 +66,11 @@ abstract class CaseCSJ {
         value: Double?,
         valueWithDiscount: Double?,
         coverageValue: Double?,
-        resolutionType: ResolutionType?,
-        observation: MutableList<String>?,
         postCode: String?,
+        resolutionType: ResolutionType?,
+        internalStatus: InternalStatus,
+        externalStatus: ExternalStatus,
+        observation: MutableList<String>?,
     ) {
         this.id = id
         this.date = date!!
@@ -77,8 +81,8 @@ abstract class CaseCSJ {
         this.coverageValue = coverageValue!!
         this.postCode = postCode
         this.resolutionType = resolutionType
-        this.internalStatus = InternalStatus.CASO_NOVO
-        this.externalStatus = ExternalStatus.EM_ABERTO
+        this.internalStatus = internalStatus
+        this.externalStatus = externalStatus
         this.observation = observation
     }
 
