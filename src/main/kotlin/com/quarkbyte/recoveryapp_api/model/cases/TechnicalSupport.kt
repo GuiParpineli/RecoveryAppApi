@@ -12,7 +12,7 @@ import java.util.*
 @Entity
 @JsonTypeName("TechnicalSupport")
 class TechnicalSupport(
-    id: UUID? = UUID.randomUUID(),
+    id: UUID? = null,
     date: Date?,
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,
@@ -21,10 +21,12 @@ class TechnicalSupport(
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     postCode: String?,
+    observation: MutableList<String>? = null,
     var repairValue: Double = 0.0,
     var status: Boolean = true
 ) : CaseCSJ(
-    id, date, stepCSJ,  resolutionDate, value, valueWithDiscount, coverageValue, resolutionType, postCode
-){
+    id, date, stepCSJ, resolutionDate, value, valueWithDiscount, coverageValue, resolutionType,
+    observation, postCode
+) {
     override var typeCaseCSJ: String = "TECHNICALSUPPORT"
 }

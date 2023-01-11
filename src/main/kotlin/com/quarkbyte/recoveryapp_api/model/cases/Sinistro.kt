@@ -10,11 +10,12 @@ import java.util.*
 @NoArgsConstructor
 @JsonTypeName("Sinistro")
 class Sinistro(
-    id: UUID?,
+    id: UUID? = null,
     date: Date?,
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,
     value: Double?,
+    observation: MutableList<String>? = null,
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     var initialTime: Date,
@@ -28,7 +29,7 @@ class Sinistro(
     var discountValue: Double,
     var payment: Boolean,
 ) : CaseCSJ(
-    id, date, stepCSJ, resolutionDate, value, coverageValue,
+    id, date, stepCSJ, resolutionDate, value, coverageValue, observation,
     resolutionType
 ) {
     override var typeCaseCSJ: String = "SINISTRO"

@@ -203,69 +203,87 @@ class DataLoader(
         //save plantypes
         sinistroRepository.save(
             Sinistro(
-                UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(),
-                2000.0, 20.0, ResolutionType.CHARGEBACK_PAGO,
-                Date(), SinistroType.FURTO_QUALIFICADO,
-                true, true,
-                true, Date(), 200.0f,
-                2222.0, 20.0, false
+                date = Date(),
+                stepCSJ = StepCSJ.ACORDO,
+                resolutionDate = Date(),
+                value = 2000.0,
+                observation = mutableListOf("Sinistro observacao aleatoria"),
+                coverageValue = 20.0,
+                resolutionType = ResolutionType.CHARGEBACK_PAGO,
+                initialTime = Date(),
+                sinistroType = SinistroType.FURTO_QUALIFICADO,
+                imeiStatus = true,
+                boStatus = true,
+                videoStatus = true,
+                sinistroDate = Date(),
+                franchise = 200.0f,
+                franchiseTotalValue = 2222.0,
+                discountValue = 20.0,
+                payment = false
             )
         )
 
         misappropriationRepository.save(
             Misappropriation(
-                UUID.randomUUID(),
-                Date(),
-                StepCSJ.EXTRAJUDICIAL,
-                Date(),
-                5000.0,
-                4500.0,
-                4000.0,
-                ResolutionType.RECORRENCIA_PAGA,
-                "PAC213213BR",
-                PayMethod.NORMAL,
-                false,
-                Date()
+                date = Date(),
+                stepCSJ = StepCSJ.EXTRAJUDICIAL,
+                resolutionDate = Date(),
+                value = 5000.0,
+                valueWithDiscount = 4500.0,
+                coverageValue = 4000.0,
+                resolutionType = ResolutionType.RECORRENCIA_PAGA,
+                postCode = "PAC213213BR",
+                observation = mutableListOf<String>("Vai pagar um dia, quem sabe"),
+                payMethod = PayMethod.NORMAL,
+                chargeBack = false,
+                chargeBackDate = Date()
             )
         )
         misappropriationRepository.save(
             Misappropriation(
-                UUID.randomUUID(),
-                Date(),
-                StepCSJ.EXTRAJUDICIAL,
-                Date(),
-                10000.0,
-                3500.0,
-                2000.0,
-                ResolutionType.CHARGEBACK_PAGO,
-                "PAC4313213BR",
-                PayMethod.RECORRENCIA,
-                false,
-                Date()
+                date = Date(),
+                stepCSJ = StepCSJ.EXTRAJUDICIAL,
+                resolutionDate = Date(),
+                value = 10000.0,
+                valueWithDiscount = 3500.0,
+                coverageValue = 2000.0,
+                resolutionType = ResolutionType.CHARGEBACK_PAGO,
+                postCode = "PAC4313213BR",
+                observation = mutableListOf<String>("Vai pagar um dia, quem sabe"),
+                payMethod = PayMethod.RECORRENCIA,
+                chargeBack = false,
+                chargeBackDate = Date()
             )
         )
 
         misappropriationRepository.save(
             Misappropriation(
-                UUID.randomUUID(),
-                Date(),
-                StepCSJ.ACORDO,
-                Date(),
-                10000.0,
-                3500.0,
-                2000.0,
-                ResolutionType.COMPRA_MAIS_MULTA,
-                "PAC897450813-BR",
-                PayMethod.RECORRENCIA,
-                false,
-                Date()
+                date = Date(),
+                stepCSJ = StepCSJ.ACORDO,
+                resolutionDate = Date(),
+                value = 10000.0,
+                valueWithDiscount = 1000.0,
+                coverageValue = 2000.0,
+                resolutionType = ResolutionType.COMPRA_MAIS_MULTA,
+                postCode = "P87453213BR",
+                observation = mutableListOf<String>(),
+                payMethod = PayMethod.RECORRENCIA,
+                chargeBack = true,
+                chargeBackDate = Date()
             )
         )
         technicalSupportRepository.save(
             TechnicalSupport(
-                UUID.randomUUID(), Date(), StepCSJ.ACORDO, Date(), 12000.0, 10000.0,
-                90000.0, ResolutionType.COMPRA,
-                "2223201BR", 25000.0, true
+                date = Date(),
+                stepCSJ = StepCSJ.ACORDO,
+                resolutionDate =  Date(),
+                value = 12000.0,
+                valueWithDiscount =  10000.0,
+                coverageValue =  90000.0,
+                resolutionType =  ResolutionType.COMPRA,
+                postCode =  "2223201BR",
+                repairValue =  25000.0,
+                status = true
             )
         )
 

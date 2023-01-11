@@ -11,7 +11,7 @@ import java.util.*
 @NoArgsConstructor
 @JsonTypeName("Misappropriation")
 class Misappropriation(
-    id: UUID?,
+    id: UUID? = null,
     date: Date,
     stepCSJ: StepCSJ,
     resolutionDate: Date?,
@@ -20,6 +20,7 @@ class Misappropriation(
     coverageValue: Double,
     resolutionType: ResolutionType?,
     postCode: String?,
+    observation: MutableList<String>?= null,
     var payMethod: PayMethod,
     var chargeBack: Boolean,
     var chargeBackDate: Date
@@ -32,7 +33,8 @@ class Misappropriation(
     valueWithDiscount,
     coverageValue,
     resolutionType,
-    postCode,
+    observation,
+    postCode
 ) {
     override var typeCaseCSJ: String = "MISAPPROPRIATION"
 }

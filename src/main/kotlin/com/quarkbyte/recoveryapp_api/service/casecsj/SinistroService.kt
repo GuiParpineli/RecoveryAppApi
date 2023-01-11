@@ -42,79 +42,83 @@ class SinistroService(private val repository: SinistroRepository) {
         var newSinistro: Sinistro? = null
         try {
             if (saved.isPresent)
+                sinistro.observation?.forEach { saved.get().observation?.add(it) }
             //SINISTRO TYPE VAI SER CHECADO E NAO PODE ATUALIZAR ALGUNS CAMPOS DEPENDENDO DO TIPO
-                when (saved.get().sinistroType) {
-                    SinistroType.FURTO_QUALIFICADO, SinistroType.ROUBO, SinistroType.FURTO_SIMPLES ->
-                        if (!(saved.get().boStatus && saved.get().imeiStatus && saved.get().videoStatus)) {
-                            val copy = Sinistro(
-                                saved.get().id,
-                                saved.get().date,
-                                saved.get().stepCSJ,
-                                saved.get().resolutionDate,
-                                saved.get().value,
-                                saved.get().coverageValue,
-                                saved.get().resolutionType,
-                                saved.get().initialTime,
-                                saved.get().sinistroType,
-                                sinistro.imeiStatus,
-                                sinistro.boStatus,
-                                sinistro.videoStatus,
-                                sinistro.sinistroDate,
-                                saved.get().franchise,
-                                saved.get().franchiseTotalValue,
-                                saved.get().discountValue,
-                                saved.get().payment
-                            )
-                            newSinistro = repository.saveAndFlush(copy)
-                        }
-
-                    SinistroType.DANO, SinistroType.DANO_DE_FABRICA ->
-                        if (!(saved.get().payment)) {
-                            val copy = Sinistro(
-                                saved.get().id,
-                                saved.get().date,
-                                saved.get().stepCSJ,
-                                sinistro.resolutionDate,
-                                saved.get().value,
-                                saved.get().coverageValue,
-                                saved.get().resolutionType,
-                                saved.get().initialTime,
-                                saved.get().sinistroType,
-                                saved.get().imeiStatus,
-                                saved.get().boStatus,
-                                saved.get().videoStatus,
-                                saved.get().sinistroDate,
-                                saved.get().franchise,
-                                saved.get().franchiseTotalValue,
-                                saved.get().discountValue,
-                                sinistro.payment
-                            )
-                            newSinistro = repository.saveAndFlush(copy)
-                        }
-
-                    SinistroType.PERDA -> {
+            when (saved.get().sinistroType) {
+                SinistroType.FURTO_QUALIFICADO, SinistroType.ROUBO, SinistroType.FURTO_SIMPLES ->
+                    if (!(saved.get().boStatus && saved.get().imeiStatus && saved.get().videoStatus)) {
                         val copy = Sinistro(
-                            saved.get().id,
-                            saved.get().date,
-                            sinistro.stepCSJ,
-                            sinistro.resolutionDate,
-                            saved.get().value,
-                            sinistro.coverageValue,
-                            sinistro.resolutionType,
-                            sinistro.initialTime,
-                            sinistro.sinistroType,
+                            id = saved.get().id,
+                            date = saved.get().date,
+                            stepCSJ = saved.get().stepCSJ,
+                            resolutionDate = saved.get().resolutionDate,
+                            value = saved.get().value,
+                            observation = saved.get().observation,
+                            coverageValue = saved.get().coverageValue,
+                            resolutionType = saved.get().resolutionType,
+                            initialTime = saved.get().initialTime,
+                            sinistroType = saved.get().sinistroType,
                             sinistro.imeiStatus,
                             sinistro.boStatus,
                             sinistro.videoStatus,
                             sinistro.sinistroDate,
-                            sinistro.franchise,
-                            sinistro.franchiseTotalValue,
-                            sinistro.discountValue,
-                            sinistro.payment
+                            saved.get().franchise,
+                            saved.get().franchiseTotalValue,
+                            saved.get().discountValue,
+                            saved.get().payment
                         )
                         newSinistro = repository.saveAndFlush(copy)
                     }
+
+                SinistroType.DANO, SinistroType.DANO_DE_FABRICA ->
+                    if (!(saved.get().payment)) {
+                        val copy = Sinistro(
+                            id = saved.get().id,
+                            date = saved.get().date,
+                            stepCSJ = saved.get().stepCSJ,
+                            resolutionDate = sinistro.resolutionDate,
+                            value = saved.get().value,
+                            observation = saved.get().observation,
+                            coverageValue = saved.get().coverageValue,
+                            resolutionType = saved.get().resolutionType,
+                            initialTime = saved.get().initialTime,
+                            sinistroType = saved.get().sinistroType,
+                            imeiStatus = saved.get().imeiStatus,
+                            boStatus = saved.get().boStatus,
+                            videoStatus = saved.get().videoStatus,
+                            sinistroDate = saved.get().sinistroDate,
+                            franchise = saved.get().franchise,
+                            franchiseTotalValue = saved.get().franchiseTotalValue,
+                            discountValue = saved.get().discountValue,
+                            payment = sinistro.payment
+                        )
+                        newSinistro = repository.saveAndFlush(copy)
+                    }
+
+                SinistroType.PERDA -> {
+                    val copy = Sinistro(
+                        saved.get().id,
+                        saved.get().date,
+                        sinistro.stepCSJ,
+                        sinistro.resolutionDate,
+                        saved.get().value,
+                        saved.get().observation,
+                        sinistro.coverageValue,
+                        sinistro.resolutionType,
+                        sinistro.initialTime,
+                        sinistro.sinistroType,
+                        sinistro.imeiStatus,
+                        sinistro.boStatus,
+                        sinistro.videoStatus,
+                        sinistro.sinistroDate,
+                        sinistro.franchise,
+                        sinistro.franchiseTotalValue,
+                        sinistro.discountValue,
+                        sinistro.payment
+                    )
+                    newSinistro = repository.saveAndFlush(copy)
                 }
+            }
         } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
