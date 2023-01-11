@@ -1,14 +1,12 @@
 package com.quarkbyte.recoveryapp_api.service.plan
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.convertValue
 import com.quarkbyte.recoveryapp_api.exceptions.FinalDataException
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.dto.*
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
-import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
-import com.quarkbyte.recoveryapp_api.model.dto.PlanInput
-import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
-import com.quarkbyte.recoveryapp_api.model.enums.csj.InternalStatus
 import com.quarkbyte.recoveryapp_api.model.mapper.PlanMapper
 import com.quarkbyte.recoveryapp_api.repository.CaseRepository
 import com.quarkbyte.recoveryapp_api.repository.PlanRepository
@@ -38,20 +36,34 @@ class PlanService(
     @Throws(ResourceNotFoundException::class)
     fun getAllFull(): ResponseEntity<*> {
         val saved = repository.findAll()
+        val mapper = ObjectMapper()
+        val newReturn: MutableList<PlanDTOs> = mutableListOf()
         if (saved.isEmpty()) throw ResourceNotFoundException("None plans founded")
-        return ResponseEntity.ok(saved)
+        saved.forEach {
+            newReturn.add(
+                it.convertDTO( it )
+            )
+        }
+        return ResponseEntity.ok(newReturn)
     }
 
     @Throws(ResourceNotFoundException::class)
     fun getAllById(ids: List<UUID>): ResponseEntity<*> {
         val saved = repository.findAllById(ids)
+        val newReturn: MutableList<PlanDTOs> = mutableListOf()
         if (saved.isEmpty()) throw ResourceNotFoundException("None plans founded")
-        return ResponseEntity.ok(saved)
+        saved.forEach {
+            newReturn.add(
+                it.convertDTO( it )
+            )
+        }
+        return ResponseEntity.ok(newReturn)
     }
 
     fun getByCode(code: String): ResponseEntity<*> {
         val founded = repository.findPlanByCode(code) ?: throw ResourceNotFoundException("None plans founded")
-        return ResponseEntity.ok(founded)
+        val planDTO: PlanDTOs = founded.convertDTO(founded)
+        return ResponseEntity.ok(planDTO)
     }
 
 
