@@ -20,7 +20,7 @@ class Misappropriation(
     coverageValue: Double,
     resolutionType: ResolutionType?,
     postCode: String?,
-    observation: MutableList<String>?= null,
+    observation: MutableSet<String>?= null,
     internalStatus: InternalStatus ,
     externalStatus: ExternalStatus ,
     var payMethod: PayMethod,

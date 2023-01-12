@@ -21,7 +21,7 @@ class TechnicalSupport(
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     postCode: String?,
-    observation: MutableList<String>? = null,
+    observation: MutableSet<String>?= null,
     internalStatus: InternalStatus ,
     externalStatus: ExternalStatus ,
     var repairValue: Double = 0.0,

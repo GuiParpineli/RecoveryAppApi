@@ -31,7 +31,7 @@ abstract class CaseCSJ {
     @Enumerated(EnumType.STRING) var internalStatus: InternalStatus = InternalStatus.CASO_NOVO
     @Enumerated(EnumType.STRING) var externalStatus: ExternalStatus = ExternalStatus.EM_ABERTO
     @Column(unique = true) var postCode: String? = null
-    @ElementCollection var observation: MutableList<String>? = null
+    @ElementCollection var observation: MutableSet<String>? = null
     abstract var typeCaseCSJ: String
 
     constructor(
@@ -41,7 +41,7 @@ abstract class CaseCSJ {
         resolutionDate: Date?,
         value: Double?,
         coverageValue: Double?,
-        observation: MutableList<String>?,
+        observation: MutableSet<String>?,
         resolutionType: ResolutionType?,
         externalStatus: ExternalStatus,
         internalStatus: InternalStatus,
@@ -70,7 +70,7 @@ abstract class CaseCSJ {
         resolutionType: ResolutionType?,
         internalStatus: InternalStatus,
         externalStatus: ExternalStatus,
-        observation: MutableList<String>?,
+        observation: MutableSet<String>?,
     ) {
         this.id = id
         this.date = date!!

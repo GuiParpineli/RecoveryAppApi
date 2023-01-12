@@ -15,7 +15,7 @@ class Sinistro(
     stepCSJ: StepCSJ?,
     resolutionDate: Date?,
     value: Double?,
-    observation: MutableList<String>? = null,
+    observation: MutableSet<String>?= null,
     coverageValue: Double?,
     resolutionType: ResolutionType?,
     internalStatus: InternalStatus,
