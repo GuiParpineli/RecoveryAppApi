@@ -55,6 +55,7 @@ class SinistroService(
                 when (saved.get().sinistroType) {
                     SinistroType.FURTO_QUALIFICADO, SinistroType.ROUBO, SinistroType.FURTO_SIMPLES -> {
 
+                        if (saved.get().boStatus || saved.get().imeiStatus || saved.get().videoStatus) {
                             val copy = Sinistro(
                                 id = saved.get().id,
                                 date = saved.get().date,
@@ -64,11 +65,11 @@ class SinistroService(
                                 observation = saved.get().observation,
                                 coverageValue = saved.get().coverageValue,
                                 resolutionType = saved.get().resolutionType,
-                                internalStatus = sinistro.internalStatus,
-                                externalStatus = sinistro.externalStatus,
+                                internalStatus = saved.get().internalStatus,
+                                externalStatus = saved.get().externalStatus,
                                 initialTime = saved.get().initialTime,
                                 sinistroType = saved.get().sinistroType,
-                                imeiStatus =  sinistro.imeiStatus,
+                                imeiStatus = sinistro.imeiStatus,
                                 boStatus = sinistro.boStatus,
                                 videoStatus = sinistro.videoStatus,
                                 sinistroDate = sinistro.sinistroDate,
@@ -79,10 +80,37 @@ class SinistroService(
                             )
                             logger.info("PRIMEIRO CASE: ${saved.get().observation.toString()}")
                             newSinistro = repository.saveAndFlush(copy)
+                        } else {
+                            val copy = Sinistro(
+                                id = saved.get().id,
+                                date = saved.get().date,
+                                stepCSJ = sinistro.stepCSJ,
+                                resolutionDate = sinistro.resolutionDate,
+                                value = saved.get().value,
+                                observation = saved.get().observation,
+                                coverageValue = saved.get().coverageValue,
+                                resolutionType = sinistro.resolutionType,
+                                internalStatus = sinistro.internalStatus,
+                                externalStatus = sinistro.externalStatus,
+                                initialTime = saved.get().initialTime,
+                                sinistroType = saved.get().sinistroType,
+                                imeiStatus = saved.get().imeiStatus,
+                                boStatus = saved.get().boStatus,
+                                videoStatus = saved.get().videoStatus,
+                                sinistroDate = saved.get().sinistroDate,
+                                franchise = saved.get().franchise,
+                                franchiseTotalValue = saved.get().franchiseTotalValue,
+                                discountValue = sinistro.discountValue,
+                                payment = sinistro.payment
+                            )
+                            logger.info("PRIMEIRO CASE: ${saved.get().observation.toString()}")
+                            newSinistro = repository.saveAndFlush(copy)
+                        }
 
                     }
 
                     SinistroType.DANO, SinistroType.DANO_DE_FABRICA -> {
+                        if (saved.get().boStatus || saved.get().imeiStatus || saved.get().videoStatus) {
                             val copy = Sinistro(
                                 id = saved.get().id,
                                 date = saved.get().date,
@@ -107,6 +135,32 @@ class SinistroService(
                             )
                             logger.info("SEGUNDO CASE: ${saved.get().observation.toString()}")
                             newSinistro = repository.saveAndFlush(copy)
+                        } else {
+                            val copy = Sinistro(
+                                id = saved.get().id,
+                                date = saved.get().date,
+                                stepCSJ = sinistro.stepCSJ,
+                                resolutionDate = sinistro.resolutionDate,
+                                value = saved.get().value,
+                                observation = saved.get().observation,
+                                coverageValue = saved.get().coverageValue,
+                                resolutionType = sinistro.resolutionType,
+                                internalStatus = sinistro.internalStatus,
+                                externalStatus = sinistro.externalStatus,
+                                initialTime = saved.get().initialTime,
+                                sinistroType = saved.get().sinistroType,
+                                imeiStatus = saved.get().imeiStatus,
+                                boStatus = saved.get().boStatus,
+                                videoStatus = saved.get().videoStatus,
+                                sinistroDate = saved.get().sinistroDate,
+                                franchise = saved.get().franchise,
+                                franchiseTotalValue = saved.get().franchiseTotalValue,
+                                discountValue = saved.get().discountValue,
+                                payment = sinistro.payment
+                            )
+                            logger.info("SEGUNDO CASE else: ${saved.get().observation.toString()}")
+                            newSinistro = repository.saveAndFlush(copy)
+                        }
                     }
 
                     SinistroType.PERDA -> {
@@ -142,7 +196,7 @@ class SinistroService(
         } catch (e: Exception) {
             throw SaveErrorException("Error, not saved")
         }
-        logger.info("Como foi salvo: $newSinistro")
+        logger.info("Como foi salvo: ${newSinistro.sinistroType}")
         return ResponseEntity.ok(newSinistro)
     }
 

@@ -3,8 +3,7 @@ package com.quarkbyte.recoveryapp_api.model.mapper
 import com.quarkbyte.recoveryapp_api.controller.*
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
-import com.quarkbyte.recoveryapp_api.model.dto.PlanDTO
-import com.quarkbyte.recoveryapp_api.model.dto.PlanOutput
+import com.quarkbyte.recoveryapp_api.model.dto.*
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.plan.Product
 import com.quarkbyte.recoveryapp_api.repository.*
@@ -65,6 +64,27 @@ class PlanMapper(
     }
 
     fun map(plan: Plan): PlanOutput {
+            val userDTO=  UserDTO(
+            plan.analyst.id,
+            plan.analyst.name,
+            plan.analyst.lastname,
+            null
+        )
+        val customerDTO =CustomerDTO(
+            plan.customer.name,
+            plan.customer.lastName,
+            plan.customer.phone,
+            plan.customer.email,
+            plan.customer.address
+        )
+        val bondsmanDTO = BondsmanDTO(
+            plan.bondsman.name,
+            plan.bondsman.lastName,
+            plan.bondsman.phone,
+            plan.bondsman.email,
+            plan.bondsman.address
+        )
+
         return PlanOutput(
             code = plan.code,
             value = plan.value,
@@ -72,7 +92,12 @@ class PlanMapper(
             initialDate = plan.initialDate,
             finalDate = plan.finalDate,
             planStatus = plan.planStatus,
-            creationDate = plan.creationDate
+            creationDate = plan.creationDate,
+            analyst= userDTO,
+            productList = plan.productList,
+            customer= customerDTO,
+            bondsman= bondsmanDTO,
+            caseCSJ = plan.caseCSJ
         )
     }
 
@@ -89,7 +114,7 @@ class PlanMapper(
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")
             .withRel("products")
-            .withTitle("products: $names")
+            .withTitle("products")
 
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
             .slash("/allbyid?id=${casesList.joinToString("," )}")
@@ -104,7 +129,7 @@ class PlanMapper(
         val analystLink = WebMvcLinkBuilder.linkTo(UserController::class.java)
             .slash("?id=${plan.analyst.id}")
             .withRel("Analyst")
-            .withTitle(plan.analyst.name!!)
+            .withTitle(plan.analyst.name)
 
         val bondsmanLInk = WebMvcLinkBuilder.linkTo(BondsmanController::class.java)
             .slash("?id=${plan.bondsman.id}")

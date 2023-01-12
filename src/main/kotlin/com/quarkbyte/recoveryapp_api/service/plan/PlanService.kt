@@ -36,12 +36,11 @@ class PlanService(
     @Throws(ResourceNotFoundException::class)
     fun getAllFull(): ResponseEntity<*> {
         val saved = repository.findAll()
-        val mapper = ObjectMapper()
         val newReturn: MutableList<PlanDTOs> = mutableListOf()
         if (saved.isEmpty()) throw ResourceNotFoundException("None plans founded")
         saved.forEach {
             newReturn.add(
-                it.convertDTO( it )
+                it.convertDTO(it)
             )
         }
         return ResponseEntity.ok(newReturn)
@@ -54,7 +53,7 @@ class PlanService(
         if (saved.isEmpty()) throw ResourceNotFoundException("None plans founded")
         saved.forEach {
             newReturn.add(
-                it.convertDTO( it )
+                it.convertDTO(it)
             )
         }
         return ResponseEntity.ok(newReturn)
@@ -62,8 +61,9 @@ class PlanService(
 
     fun getByCode(code: String): ResponseEntity<*> {
         val founded = repository.findPlanByCode(code) ?: throw ResourceNotFoundException("None plans founded")
-        val planDTO: PlanDTOs = founded.convertDTO(founded)
-        return ResponseEntity.ok(planDTO)
+        val output = mapper.map(founded)
+        val saved = mapper.buildPlanOutput(founded, output)
+        return ResponseEntity.ok(saved)
     }
 
 
