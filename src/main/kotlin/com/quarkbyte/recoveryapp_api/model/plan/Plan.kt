@@ -52,13 +52,14 @@ open class Plan(
     val creationDate: Date = Date()
 
     fun convertDTO(plan: Plan): PlanDTOs {
-        val userDTO=  UserDTO(
+        val userDTO =  UserDTO(
             plan.analyst.id,
             plan.analyst.name,
             plan.analyst.lastname,
             null
         )
         val customerDTO =CustomerDTO(
+            plan.customer.id!!,
             plan.customer.name,
             plan.customer.lastName,
             plan.customer.phone,
@@ -66,6 +67,7 @@ open class Plan(
             plan.customer.address
         )
         val bondsmanDTO = BondsmanDTO(
+            plan.bondsman.id!!,
             plan.bondsman.name,
             plan.bondsman.lastName,
             plan.bondsman.phone,

@@ -71,6 +71,7 @@ class PlanMapper(
             null
         )
         val customerDTO =CustomerDTO(
+            plan.customer.id!!,
             plan.customer.name,
             plan.customer.lastName,
             plan.customer.phone,
@@ -78,6 +79,7 @@ class PlanMapper(
             plan.customer.address
         )
         val bondsmanDTO = BondsmanDTO(
+            plan.bondsman.id!!,
             plan.bondsman.name,
             plan.bondsman.lastName,
             plan.bondsman.phone,

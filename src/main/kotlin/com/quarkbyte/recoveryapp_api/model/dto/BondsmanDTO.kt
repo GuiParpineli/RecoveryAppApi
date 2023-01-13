@@ -2,9 +2,11 @@ package com.quarkbyte.recoveryapp_api.model.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.quarkbyte.recoveryapp_api.model.customer.Address
+import java.util.UUID
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BondsmanDTO(
+    val id: UUID,
     val name: String,
     val lastName: String,
     val phone: String,
