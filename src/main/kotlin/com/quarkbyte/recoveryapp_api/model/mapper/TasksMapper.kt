@@ -22,7 +22,6 @@ class TasksMapper(
             title = input.title,
             plan = plan,
             initialDate = input.initialDate,
-            finalDate = input.finalDate,
             note = input.note
         )
     }

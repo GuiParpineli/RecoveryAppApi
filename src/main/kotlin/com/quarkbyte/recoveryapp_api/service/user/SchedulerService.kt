@@ -30,18 +30,18 @@ class SchedulerService(
 
 
     fun save(scheduler: SchedulerDTO): ResponseEntity<*> {
-        var saved: Scheduler
+        val saved: Scheduler
         val user =
             userRepository.findById(scheduler.user).orElseThrow {
                 ResourceNotFoundException("None users founded")
             }
         val schedulerSave = mapper.map(scheduler)
         val founded = repository.findByUser(user)
-        if (founded !== null) {
+        saved = if (founded !== null) {
             schedulerSave.task.forEach { founded.task.add(it) }
-            saved = repository.saveAndFlush(founded)
+            repository.saveAndFlush(founded)
         } else {
-            saved = repository.save(schedulerSave)
+            repository.save(schedulerSave)
         }
         return ResponseEntity.ok(saved)
     }

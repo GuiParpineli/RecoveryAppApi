@@ -12,6 +12,5 @@ class Tasks(
     @ManyToOne(fetch = FetchType.LAZY)
     val plan: Plan?,
     val initialDate: Date,
-    val finalDate: Date,
     val note: String
 )

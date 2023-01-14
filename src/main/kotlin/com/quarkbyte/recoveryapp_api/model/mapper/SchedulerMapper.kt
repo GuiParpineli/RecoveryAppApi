@@ -50,7 +50,6 @@ class SchedulerMapper(
                             s.plan.caseCSJ[i]!!.typeCaseCSJ,
                             s.plan.analyst.username,
                             s.initialDate,
-                            s.finalDate,
                             s.note
                         )
                     )
@@ -64,7 +63,6 @@ class SchedulerMapper(
                         "",
                         "",
                         s.initialDate,
-                        s.finalDate,
                         s.note
                     )
                 )

@@ -402,14 +402,12 @@ class DataLoader(
             "Confirmar pagamento",
             planRepository.findAll()[0],
             Date(),
-            Date(),
             "Ligar dia 10/02"
         )
         val task2 = Tasks(
             null,
             "ligar para fulano",
             planRepository.findAll()[1],
-            Date(),
             Date(),
             "Plantar arvores"
         )
@@ -421,7 +419,6 @@ class DataLoader(
             null,
             "Dar baixa em plano Xjs34",
             planRepository.findAll()[2],
-            data,
             data,
             "checar se foi pago"
         )

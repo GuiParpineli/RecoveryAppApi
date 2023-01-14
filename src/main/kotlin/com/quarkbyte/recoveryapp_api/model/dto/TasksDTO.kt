@@ -11,6 +11,5 @@ data class TasksDTO(
     val planCaseType: String,
     val analyst: String,
     val initialDay: Date,
-    val finalDay: Date,
     val note: String
 )
