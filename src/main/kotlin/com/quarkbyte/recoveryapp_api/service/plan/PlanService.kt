@@ -25,7 +25,7 @@ class PlanService(
     fun getAll(): ResponseEntity<*> {
         val plans = repository.findAll()
         val output: MutableList<PlanOutput> = mutableListOf()
-        plans.forEach { p -> output.add(mapper.map(p)) }
+        plans.forEach { output.add(mapper.map(it)) }
         val saved: MutableList<EntityModel<PlanOutput>> = mutableListOf()
         for (p in plans.indices) {
             saved.add(mapper.buildPlanOutput(plans[p], output[p]))
@@ -69,8 +69,10 @@ class PlanService(
 
     @Throws(ResourceNotFoundException::class)
     fun getById(id: UUID): ResponseEntity<*> {
-        val saved = repository.findById(id)
+        val founded = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("None  plans founded") }!!
+        val output = mapper.map(founded)
+        val saved = mapper.buildPlanOutput(founded, output)
         return ResponseEntity.ok(saved)
     }
 
