@@ -19,6 +19,7 @@ class TasksMapper(
         }
 
         return Tasks(
+            id = input.id,
             title = input.title,
             plan = plan,
             initialDate = input.initialDate,

@@ -44,6 +44,7 @@ class SchedulerMapper(
                 for (i in (s.plan.caseCSJ.indices) - 1)
                     taksdtoList.add(
                         TasksDTO(
+                            s.id,
                             s.title,
                             s.plan.code.toString(),
                             "${s.plan.customer.name}  ${s.plan.customer.lastName}",
@@ -57,6 +58,7 @@ class SchedulerMapper(
             else {
                 taksdtoList.add(
                     TasksDTO(
+                        s.id,
                         s.title,
                         "",
                         "",
@@ -93,7 +95,6 @@ class SchedulerMapper(
         val caselistlink = WebMvcLinkBuilder.linkTo(PlanController::class.java)
             .slash("/allbyid?id=${caseList.joinToString(",")}")
             .withRel("PLAN")
-            .withTitle(scheduler.task[0].plan?.customer?.name.toString())
 
         return EntityModel.of(output, caselistlink)
     }

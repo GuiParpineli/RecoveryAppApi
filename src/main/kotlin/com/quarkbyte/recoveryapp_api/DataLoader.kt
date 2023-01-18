@@ -74,11 +74,11 @@ class DataLoader(
         //save address
         addressRepository.save(
             Address(
+                "Ruas das flores",
                 "Berilo",
                 "MG",
-                "Ruas das flores",
                 "Brasil",
-                "1231-3123",
+                "12310-312",
                 ""
             )
         )
@@ -313,7 +313,7 @@ class DataLoader(
                 name = "Guilherme",
                 lastname = "Parpineli",
                 email = "gui@gmail.com",
-                username = "gui",
+                username = "guilherme",
                 password = bCryptPasswordEncoder.encode("senha123456"),
                 systemUserRoles = SystemUserRoles.ROLE_ADMIN
             )

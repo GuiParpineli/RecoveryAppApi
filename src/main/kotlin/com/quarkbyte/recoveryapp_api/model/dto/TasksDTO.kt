@@ -5,6 +5,7 @@ import java.util.*
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TasksDTO(
+    val id: UUID? = null,
     val title: String,
     val planCode: String,
     val planCustomer: String,

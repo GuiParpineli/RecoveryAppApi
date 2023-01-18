@@ -1,11 +1,13 @@
 package com.quarkbyte.recoveryapp_api.service.user
 
+import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.model.dto.TaskInput
 import com.quarkbyte.recoveryapp_api.model.mapper.TasksMapper
 import com.quarkbyte.recoveryapp_api.model.user.Tasks
 import com.quarkbyte.recoveryapp_api.repository.TasksRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class TaskService(
@@ -22,4 +24,5 @@ class TaskService(
         val saved = repository.save(task)
         return ResponseEntity.ok(saved)
     }
+
 }
