@@ -18,9 +18,6 @@ class TasksController(val service: TaskService) {
 
     @GetMapping
     fun getAll() = service.getAll()
-
     @PostMapping
     fun save(@RequestBody tasks: TaskInput) = service.save(tasks)
-
-
 }
