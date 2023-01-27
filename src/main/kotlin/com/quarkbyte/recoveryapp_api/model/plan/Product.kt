@@ -12,7 +12,6 @@ class Product(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID?,
     val name: String?,
     val statusProduct: StatusProduct?,
-    val imei: String?,
-    val imei2: String?,
+    val ean: String?,
     val value: Double?
 )

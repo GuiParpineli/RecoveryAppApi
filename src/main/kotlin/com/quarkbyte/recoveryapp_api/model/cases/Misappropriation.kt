@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import jakarta.persistence.Entity
 import lombok.NoArgsConstructor
-import java.time.LocalDateTime
 import java.util.*
 
 @Entity
@@ -26,7 +25,7 @@ class Misappropriation(
     var payMethod: PayMethod,
     var chargeBack: Boolean,
     var chargeBackDate: Date
-) : CaseCSJ(
+) : CaseRecovery(
     id,
     date,
     stepCSJ,

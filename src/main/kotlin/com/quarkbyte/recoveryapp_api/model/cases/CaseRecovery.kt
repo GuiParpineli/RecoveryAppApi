@@ -18,7 +18,7 @@ import java.util.*
     JsonSubTypes.Type(value = Sinistro::class, name = "Sinistro"),
     JsonSubTypes.Type(value = TechnicalSupport::class, name = "TechnicalSupport")
 )
-abstract class CaseCSJ {
+abstract class CaseRecovery {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: UUID?
     @DateTimeFormat(pattern = "dd-mm-yyyy") var date: Date

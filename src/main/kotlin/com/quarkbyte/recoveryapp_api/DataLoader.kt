@@ -38,7 +38,7 @@ class DataLoader(
 ) : ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
 
-        val bCryptPasswordEncoder = BCryptPasswordEncoder();
+        val bCryptPasswordEncoder = BCryptPasswordEncoder()
 
 //        //save products
         productRepository.save(
@@ -47,7 +47,6 @@ class DataLoader(
                 "Iphone 13 Pro",
                 StatusProduct.ADQUIRIDO,
                 "22345",
-                "999929-229",
                 8000.0
             )
         )
@@ -57,7 +56,6 @@ class DataLoader(
                 "Iphone 9",
                 StatusProduct.ADQUIRIDO,
                 "22345",
-                "999929-229",
                 3000.0
             )
         )
@@ -67,7 +65,6 @@ class DataLoader(
                 "AppleWatch 5",
                 StatusProduct.ADQUIRIDO,
                 "3sa151345",
-                "888929-229",
                 5000.0
             )
         )
@@ -411,9 +408,9 @@ class DataLoader(
             Date(),
             "Plantar arvores"
         )
-        val c: Calendar = Calendar.getInstance();
-        c.set(2023, Calendar.JANUARY, 10);
-        val data: Date = c.time;
+        val c: Calendar = Calendar.getInstance()
+        c.set(2023, Calendar.JANUARY, 10)
+        val data: Date = c.time
 
         val task3 = Tasks(
             null,

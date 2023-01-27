@@ -1,8 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.plan
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.convertValue
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.cases.CaseRecovery
 import com.quarkbyte.recoveryapp_api.model.customer.Bondsman
 import com.quarkbyte.recoveryapp_api.model.customer.Customer
 import com.quarkbyte.recoveryapp_api.model.dto.BondsmanDTO
@@ -11,7 +9,6 @@ import com.quarkbyte.recoveryapp_api.model.dto.PlanDTOs
 import com.quarkbyte.recoveryapp_api.model.dto.UserDTO
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import jakarta.persistence.*
-import org.springframework.context.annotation.Lazy
 import java.util.*
 
 @Entity
@@ -44,7 +41,7 @@ open class Plan(
     @ManyToMany @JoinTable(
         joinColumns = [JoinColumn(name = "plan_id")],
         inverseJoinColumns = [JoinColumn(name = "caseCSJ_id", unique = true)]
-    ) val caseCSJ: List<CaseCSJ?>,
+    ) val caseRecovery: List<CaseRecovery?>,
 
     ) {
     var recidivistCustomer: Boolean? = false
@@ -86,7 +83,7 @@ open class Plan(
                     productList = plan.productList,
                     customer = customerDTO,
                     bondsman = bondsmanDTO,
-                    caseCSJ = plan.caseCSJ,
+                    caseRecovery = plan.caseRecovery,
                     recidivistCustomer = plan.recidivistCustomer,
                     creationDate = plan.creationDate
                 )

@@ -1,7 +1,7 @@
 package com.quarkbyte.recoveryapp_api.service.casecsj
 
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.cases.CaseRecovery
 import com.quarkbyte.recoveryapp_api.repository.CaseRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -11,7 +11,7 @@ import java.util.*
 class CaseService(private val repository: CaseRepository) {
 
     fun getAll(): ResponseEntity<*> {
-        val saved: MutableList<CaseCSJ> = repository.findAll()
+        val saved: MutableList<CaseRecovery> = repository.findAll()
         return ResponseEntity.ok(saved)
     }
 

@@ -1,7 +1,5 @@
 package com.quarkbyte.recoveryapp_api.service.plan
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.convertValue
 import com.quarkbyte.recoveryapp_api.exceptions.FinalDataException
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
 import com.quarkbyte.recoveryapp_api.exceptions.SaveErrorException
@@ -88,7 +86,7 @@ class PlanService(
         //se ha houver um plano salvo fazer isso
         if (haveplan.isNotEmpty() && haveplan.size == 1 && haveplan[0].planStatus) {
             val savedplan = haveplan[0]
-            haveplan[0].caseCSJ.forEach { c -> listofCases.add(c?.id!!) }
+            haveplan[0].caseRecovery.forEach { c -> listofCases.add(c?.id!!) }
             input.caseCSJId.forEach { c -> listofCases.add(c) }
             val casesIds = caseRepository.findAllById(listofCases)
             if (haveplan[0].planStatus) {
@@ -102,7 +100,7 @@ class PlanService(
                     productList = savedplan.productList,
                     customer = savedplan.customer,
                     bondsman = savedplan.bondsman,
-                    caseCSJ = casesIds
+                    caseRecovery = casesIds
                 )
                 newSave.recidivistCustomer = true
                 plan = repository.save(newSave)
@@ -123,7 +121,7 @@ class PlanService(
                 productList = planActive[0].productList,
                 customer = planActive[0].customer,
                 bondsman = planActive[0].bondsman,
-                caseCSJ = casesIds
+                caseRecovery = casesIds
             )
             newSave.recidivistCustomer = true
             plan = repository.save(newSave)
@@ -155,7 +153,7 @@ class PlanService(
             productList = input.productList ?: saved.get().productList,
             customer = saved.get().customer,
             bondsman = saved.get().bondsman,
-            caseCSJ = saved.get().caseCSJ
+            caseRecovery = saved.get().caseRecovery
         )
 
         if (copy.finalDate != null)
@@ -174,7 +172,7 @@ class PlanService(
         if (saved.isPresent) {
             repository.deleteById(id)
             /*
-                        caseRepository.deleteById(saved.get().caseCSJ?.id!!)
+                        caseRepository.deleteById(saved.get().caseRecovery?.id!!)
             */
         }
         return ResponseEntity.ok("deleted successfully")

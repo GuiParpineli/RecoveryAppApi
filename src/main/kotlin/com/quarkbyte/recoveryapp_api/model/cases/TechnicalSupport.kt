@@ -1,12 +1,8 @@
 package com.quarkbyte.recoveryapp_api.model.cases
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonTypeName
 import com.quarkbyte.recoveryapp_api.model.enums.csj.*
 import jakarta.persistence.Entity
-import lombok.NoArgsConstructor
 import java.util.*
 
 @Entity
@@ -26,7 +22,7 @@ class TechnicalSupport(
     externalStatus: ExternalStatus ,
     var repairValue: Double = 0.0,
     var status: Boolean = true
-) : CaseCSJ(
+) : CaseRecovery(
     id, date, stepCSJ, resolutionDate, value, valueWithDiscount, coverageValue, postCode, resolutionType,
     internalStatus, externalStatus , observation
 ) {

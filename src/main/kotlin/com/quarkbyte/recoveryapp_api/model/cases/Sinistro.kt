@@ -30,7 +30,7 @@ class Sinistro(
     var franchiseTotalValue: Double,
     var discountValue: Double,
     var payment: Boolean,
-) : CaseCSJ(
+) : CaseRecovery(
     id, date, stepCSJ, resolutionDate, value, coverageValue, observation,
     resolutionType, externalStatus, internalStatus
 ) {

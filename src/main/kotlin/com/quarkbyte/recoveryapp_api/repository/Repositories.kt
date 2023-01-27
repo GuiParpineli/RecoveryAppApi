@@ -1,6 +1,6 @@
 package com.quarkbyte.recoveryapp_api.repository
 
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.cases.CaseRecovery
 import com.quarkbyte.recoveryapp_api.model.cases.Misappropriation
 import com.quarkbyte.recoveryapp_api.model.cases.Sinistro
 import com.quarkbyte.recoveryapp_api.model.cases.TechnicalSupport
@@ -13,8 +13,6 @@ import com.quarkbyte.recoveryapp_api.model.user.Scheduler
 import com.quarkbyte.recoveryapp_api.model.user.Tasks
 import com.quarkbyte.recoveryapp_api.model.user.UserApp
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
-import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -34,7 +32,7 @@ interface CustomerRepository : JpaRepository<Customer, UUID> {
 }
 
 @Repository
-interface CaseRepository : JpaRepository<CaseCSJ, UUID>
+interface CaseRepository : JpaRepository<CaseRecovery, UUID>
 
 @Repository
 interface MisappropriationRepository : JpaRepository<Misappropriation, UUID>

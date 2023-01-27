@@ -1,6 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.dto
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.cases.CaseRecovery
 import com.quarkbyte.recoveryapp_api.model.plan.Product
 import java.util.*
 
@@ -16,7 +16,7 @@ data class PlanDTOs(
     var productList: List<Product>,
     var customer: CustomerDTO,
     var bondsman: BondsmanDTO,
-    var caseCSJ: List<CaseCSJ?>,
+    var caseRecovery: List<CaseRecovery?>,
     var recidivistCustomer: Boolean?,
     var creationDate: Date
 ) {

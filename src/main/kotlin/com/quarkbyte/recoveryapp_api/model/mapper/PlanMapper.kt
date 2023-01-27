@@ -2,7 +2,7 @@ package com.quarkbyte.recoveryapp_api.model.mapper
 
 import com.quarkbyte.recoveryapp_api.controller.*
 import com.quarkbyte.recoveryapp_api.exceptions.ResourceNotFoundException
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.cases.CaseRecovery
 import com.quarkbyte.recoveryapp_api.model.dto.*
 import com.quarkbyte.recoveryapp_api.model.plan.Plan
 import com.quarkbyte.recoveryapp_api.model.plan.Product
@@ -23,7 +23,7 @@ class PlanMapper(
 
     fun map(input: PlanDTO): Plan {
         val product = mutableListOf<Product>()
-        val cases = mutableListOf<CaseCSJ>()
+        val cases = mutableListOf<CaseRecovery>()
 
         for (i in input.productListId.indices) {
             product.add(
@@ -59,7 +59,7 @@ class PlanMapper(
             customer = customer,
             analyst = analyst,
             bondsman = bondsman,
-            caseCSJ = cases
+            caseRecovery = cases
         )
     }
 
@@ -99,7 +99,7 @@ class PlanMapper(
             productList = plan.productList,
             customer= customerDTO,
             bondsman= bondsmanDTO,
-            caseCSJ = plan.caseCSJ
+            caseRecovery = plan.caseRecovery
         )
     }
 
@@ -111,7 +111,7 @@ class PlanMapper(
         val names = mutableListOf<String>()
         val typeCases = mutableListOf<String>()
         plan.productList.forEach { p -> names.add(p.name.toString()) && productsIdList.add(p.id.toString()) }
-        plan.caseCSJ.forEach { p -> casesList.add(p?.id.toString()) && typeCases.add(p!!.typeCaseCSJ) }
+        plan.caseRecovery.forEach { p -> casesList.add(p?.id.toString()) && typeCases.add(p!!.typeCaseCSJ) }
 
         productLink = WebMvcLinkBuilder.linkTo(ProductController::class.java)
             .slash("/allbyid?id=${productsIdList.joinToString(separator = ",")}")
@@ -120,7 +120,7 @@ class PlanMapper(
 
         val caseCSJLink = WebMvcLinkBuilder.linkTo(CaseController::class.java)
             .slash("/allbyid?id=${casesList.joinToString("," )}")
-            .withRel("caseCSJ")
+            .withRel("caseRecovery")
             .withTitle(typeCases.toString())
 
         val customerLink = WebMvcLinkBuilder.linkTo(CustomerController::class.java)

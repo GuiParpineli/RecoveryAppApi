@@ -41,14 +41,14 @@ class SchedulerMapper(
 
         scheduler.task.forEach { s ->
             if (s.plan != null) {
-                for (i in (s.plan.caseCSJ.indices) - 1)
+                for (i in (s.plan.caseRecovery.indices) - 1)
                     taksdtoList.add(
                         TasksDTO(
                             s.id,
                             s.title,
                             s.plan.code.toString(),
                             "${s.plan.customer.name}  ${s.plan.customer.lastName}",
-                            s.plan.caseCSJ[i]!!.typeCaseCSJ,
+                            s.plan.caseRecovery[i]!!.typeCaseCSJ,
                             s.plan.analyst.username,
                             s.initialDate,
                             s.note

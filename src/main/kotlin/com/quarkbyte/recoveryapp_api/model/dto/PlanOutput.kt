@@ -1,6 +1,6 @@
 package com.quarkbyte.recoveryapp_api.model.dto
 
-import com.quarkbyte.recoveryapp_api.model.cases.CaseCSJ
+import com.quarkbyte.recoveryapp_api.model.cases.CaseRecovery
 import com.quarkbyte.recoveryapp_api.model.plan.Product
 import java.util.*
 
@@ -16,5 +16,5 @@ data class PlanOutput(
     val analyst: UserDTO,
     val customer: CustomerDTO,
     val bondsman: BondsmanDTO,
-    val caseCSJ: List<CaseCSJ?>
+    val caseRecovery: List<CaseRecovery?>
 )
